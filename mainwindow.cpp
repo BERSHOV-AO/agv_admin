@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     logWidget = createLogWidget();
 
     titleLabel = new QLabel("Администрирование AGV");
-    titleLabel->setStyleSheet("font-size: 28px; color: white;");
+    titleLabel->setStyleSheet("font-size: 28px; color: white; font-weight: bold;");
 
     QLabel *imageLabel = new QLabel();
     QPixmap pixmap("C:/Users/Aleksey/Documents/agv_admin/image/logo_gaz.png");
@@ -46,9 +46,6 @@ MainWindow::MainWindow(QWidget *parent)
     });
 
     QHBoxLayout *headerLayout = new QHBoxLayout;
-//    headerLayout->addWidget(titleLabel);   // Заголовок слева
-//    headerLayout->addStretch();             // Заполнение пространства между заголовком и изображением
-//    headerLayout->addWidget(imageLabel);    // Изображение справа
     // Добавляем спейсер перед заголовком
     headerLayout->addSpacerItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
 
@@ -71,8 +68,6 @@ MainWindow::MainWindow(QWidget *parent)
     this->setStyleSheet("background-color: #FF1C385A;");
     setWindowTitle("AGV Management");
 
-
-
 }
 
 QHBoxLayout* MainWindow::createButtonLayout() {
@@ -94,14 +89,9 @@ QWidget* MainWindow::createAddAGVWidget() {
 }
 
 QWidget* MainWindow::createListAGVWidget() {
-//    QWidget *widget = new QWidget;
-//    QVBoxLayout *layout = new QVBoxLayout;
-//    layout->addWidget(new QLabel("Список AGV"));
-//    // Здесь можно добавить элементы управления для отображения списка AGV
-//    widget->setLayout(layout);
-//    return widget;
     QWidget *widget = new QWidget;
        QVBoxLayout *layout = new QVBoxLayout;
+       widget->setStyleSheet("background-color: lightgray;");
 
        layout->addWidget(new QLabel("Список AGV"));
 

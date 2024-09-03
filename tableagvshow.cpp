@@ -4,8 +4,17 @@ TableAgvShow::TableAgvShow(QWidget *parent) : QWidget(parent)
 {
     layout = new QVBoxLayout(this);
     tableWidget = new QTableWidget(this);
-    tableWidget->setColumnCount(3); // Например, 3 колонки: ID, Название, Статус
-    tableWidget->setHorizontalHeaderLabels(QStringList() << "ID" << "Название" << "Статус");
+    tableWidget->setColumnCount(6); // Например, 3 колонки: ID, Название, Статус
+    tableWidget->setHorizontalHeaderLabels(QStringList() << "Наименование" << "Серийный номер" << "Версия FW" << "Модель" << "Проектная документация" << "Дата последнего ТО");
+    tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section { background-color: #4CAF50; color: white; }");
+
+    tableWidget->setColumnWidth(0, 180);
+    tableWidget->setColumnWidth(1, 180);
+    tableWidget->setColumnWidth(2, 200);
+    tableWidget->setColumnWidth(3, 180);
+    tableWidget->setColumnWidth(4, 200);
+    tableWidget->setColumnWidth(5, 180);
+
     loadData();
 
     layout->addWidget(tableWidget);

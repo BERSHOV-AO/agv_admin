@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QTableWidget>
 #include <QVBoxLayout>
+#include <QHeaderView>
 
 class TableAgvShow : public QWidget
 {
