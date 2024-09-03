@@ -80,12 +80,22 @@ QHBoxLayout* MainWindow::createButtonLayout() {
 }
 
 QWidget* MainWindow::createAddAGVWidget() {
-    QWidget *widget = new QWidget;
-    QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget(new QLabel("Добавить AGV"));
-    // Здесь можно добавить элементы управления для добавления AGV
-    widget->setLayout(layout);
-    return widget;
+//    QWidget *widget = new QWidget;
+//    QVBoxLayout *layout = new QVBoxLayout;
+//    layout->addWidget(new QLabel("Добавить AGV"));
+//    // Здесь можно добавить элементы управления для добавления AGV
+//    widget->setLayout(layout);
+//    return widget;
+
+     QWidget *widget = new QWidget;
+     QVBoxLayout *layout = new QVBoxLayout;
+     widget->setStyleSheet("background-color: lightgray;");
+
+     AddAGVWidget *addAGVWidget = new AddAGVWidget();
+      layout->addWidget(addAGVWidget);
+     widget->setLayout(layout);
+    // return new AddAGVWidget(this);
+     return widget;
 }
 
 QWidget* MainWindow::createListAGVWidget() {

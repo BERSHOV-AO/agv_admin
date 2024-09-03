@@ -11,6 +11,7 @@
 #include <QHBoxLayout>
 #include <QFrame>
 #include "tableagvshow.h"
+#include "addagvwidget.h"
 
 class MainWindow : public QWidget
 {
