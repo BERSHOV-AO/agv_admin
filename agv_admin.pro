@@ -19,12 +19,14 @@ SOURCES += \
     agvitem.cpp \
     database.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    tableagvshow.cpp
 
 HEADERS += \
     agvitem.h \
     database.h \
-    mainwindow.h
+    mainwindow.h \
+    tableagvshow.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

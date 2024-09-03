@@ -94,12 +94,23 @@ QWidget* MainWindow::createAddAGVWidget() {
 }
 
 QWidget* MainWindow::createListAGVWidget() {
+//    QWidget *widget = new QWidget;
+//    QVBoxLayout *layout = new QVBoxLayout;
+//    layout->addWidget(new QLabel("Список AGV"));
+//    // Здесь можно добавить элементы управления для отображения списка AGV
+//    widget->setLayout(layout);
+//    return widget;
     QWidget *widget = new QWidget;
-    QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget(new QLabel("Список AGV"));
-    // Здесь можно добавить элементы управления для отображения списка AGV
-    widget->setLayout(layout);
-    return widget;
+       QVBoxLayout *layout = new QVBoxLayout;
+
+       layout->addWidget(new QLabel("Список AGV"));
+
+       // Создаем и добавляем таблицу AGV
+       TableAgvShow *tableAgvShow = new TableAgvShow();
+       layout->addWidget(tableAgvShow);
+
+       widget->setLayout(layout);
+       return widget;
 }
 
 QWidget* MainWindow::createLogWidget() {

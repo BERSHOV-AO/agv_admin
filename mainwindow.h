@@ -10,6 +10,7 @@
 #include <QPixmap>
 #include <QHBoxLayout>
 #include <QFrame>
+#include "tableagvshow.h"
 
 class MainWindow : public QWidget
 {
