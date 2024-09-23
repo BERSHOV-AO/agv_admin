@@ -45,6 +45,8 @@ MainWindow::MainWindow(QWidget *parent)
         stackedWidget->setCurrentIndex(2); // Индекс 2 - виджет лога
     });
 
+     stackedWidget->setCurrentIndex(1);
+
     QHBoxLayout *headerLayout = new QHBoxLayout;
     // Добавляем спейсер перед заголовком
     headerLayout->addSpacerItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
@@ -66,6 +68,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     setLayout(mainLayout);
     this->setStyleSheet("background-color: #FF1C385A;");
+
     setWindowTitle("AGV Management");
 
 }
@@ -80,60 +83,44 @@ QHBoxLayout* MainWindow::createButtonLayout() {
 }
 
 QWidget* MainWindow::createAddAGVWidget() {
-//    QWidget *widget = new QWidget;
-//    QVBoxLayout *layout = new QVBoxLayout;
-//    layout->addWidget(new QLabel("Добавить AGV"));
-//    // Здесь можно добавить элементы управления для добавления AGV
-//    widget->setLayout(layout);
-//    return widget;
+    QWidget *widget = new QWidget;
+    QVBoxLayout *layout = new QVBoxLayout;
+    widget->setStyleSheet("background-color: lightgray;");
 
-     QWidget *widget = new QWidget;
-     QVBoxLayout *layout = new QVBoxLayout;
-     widget->setStyleSheet("background-color: lightgray;");
-
-     AddAGVWidget *addAGVWidget = new AddAGVWidget();
-      layout->addWidget(addAGVWidget);
-     widget->setLayout(layout);
-    // return new AddAGVWidget(this);
-     return widget;
+    AddAGVWidget *addAGVWidget = new AddAGVWidget();
+    layout->addWidget(addAGVWidget);
+    widget->setLayout(layout);
+    return widget;
 }
 
 QWidget* MainWindow::createListAGVWidget() {
     QWidget *widget = new QWidget;
-       QVBoxLayout *layout = new QVBoxLayout;
-       widget->setStyleSheet("background-color: lightgray;");
+    QVBoxLayout *layout = new QVBoxLayout;
+    widget->setStyleSheet("background-color: lightgray;");
 
-       layout->addWidget(new QLabel("Список AGV"));
+    layout->addWidget(new QLabel("Список AGV"));
 
-       // Создаем и добавляем таблицу AGV
-       TableAgvShow *tableAgvShow = new TableAgvShow();
-       layout->addWidget(tableAgvShow);
+    // Создаем и добавляем таблицу AGV
+    TableAgvShow *tableAgvShow = new TableAgvShow();
+    layout->addWidget(tableAgvShow);
 
-       widget->setLayout(layout);
-       return widget;
+    widget->setLayout(layout);
+    return widget;
 }
 
 QWidget* MainWindow::createLogWidget() {
 
     QWidget *widget = new QWidget;
-       QVBoxLayout *layout = new QVBoxLayout;
-       widget->setStyleSheet("background-color: lightgray;");
+    QVBoxLayout *layout = new QVBoxLayout;
+    widget->setStyleSheet("background-color: lightgray;");
 
-       layout->addWidget(new QLabel("Log AGV"));
+    layout->addWidget(new QLabel("Log AGV"));
+    // Создаем и добавляем таблицу AGV
+    TableLogAgvShow *tableLogAgvShow = new TableLogAgvShow();
+    layout->addWidget(tableLogAgvShow);
 
-       // Создаем и добавляем таблицу AGV
-      // TableAgvShow *tableAgvShow = new TableAgvShow();
-       TableLogAgvShow *tableLogAgvShow = new TableLogAgvShow();
-       layout->addWidget(tableLogAgvShow);
-
-       widget->setLayout(layout);
-       return widget;
-//    QWidget *widget = new QWidget;
-//    QVBoxLayout *layout = new QVBoxLayout;
-//    layout->addWidget(new QLabel("Лог приложения"));
-//    // Здесь можно добавить элементы управления для отображения логов
-//    widget->setLayout(layout);
-//    return widget;
+    widget->setLayout(layout);
+    return widget;
 }
 
 MainWindow::~MainWindow()

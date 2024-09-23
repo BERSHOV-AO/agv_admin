@@ -10,7 +10,7 @@ TableLogAgvShow::TableLogAgvShow(QWidget *parent) : QWidget(parent)
 
     tableWidget->setColumnWidth(0, 250);
     tableWidget->setColumnWidth(1, 250);
-    tableWidget->setColumnWidth(2, 350);
+    tableWidget->setColumnWidth(2, 370);
     tableWidget->setColumnWidth(3, 250);
 
     loadData();

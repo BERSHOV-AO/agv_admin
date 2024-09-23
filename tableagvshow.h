@@ -5,6 +5,8 @@
 #include <QTableWidget>
 #include <QVBoxLayout>
 #include <QHeaderView>
+#include <QDateTime>
+#include "database.h"
 
 class TableAgvShow : public QWidget
 {
@@ -13,8 +15,10 @@ public:
     explicit TableAgvShow(QWidget *parent = nullptr);
     QVBoxLayout *layout;
     QTableWidget *tableWidget;
+    DataBase *db;
 
     void loadData();
+    QString formatDateFromMilliseconds(const QString& millisecondsStr);
 
 signals:
 

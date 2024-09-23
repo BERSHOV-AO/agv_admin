@@ -30,6 +30,7 @@ public:
     bool restoreDataBase();                                                               // Востановление базы данных
     bool createTable();                                                                   // Создание базы таблицы в базе данных
     bool closeDataBase();
+    bool saveAgvItem(QString name, QString serialNumber, QString versionFW, QString model, QString ePlan, QString dataLastTo);
     QList<AgvItem> fetchAGVs();
 
     explicit DataBase(QObject *parent = nullptr);

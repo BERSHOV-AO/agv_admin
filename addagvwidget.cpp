@@ -3,6 +3,8 @@
 AddAGVWidget::AddAGVWidget(QWidget *parent) : QWidget(parent)
 {
     layout = new QVBoxLayout(this);
+    db = new DataBase();
+    db->connectToDataBase();
 
     // Устанавливаем отступы для верхней части
     layout->setContentsMargins(0, 10, 0, 300); // Уменьшаем верхний отступ
@@ -91,15 +93,26 @@ AddAGVWidget::AddAGVWidget(QWidget *parent) : QWidget(parent)
     layout->addLayout(buttonLayout); // добавляем горизонтальный layout с кнопкой в основной
 
     connect(saveButton, &QPushButton::clicked, this, [=]() {
-        // Здесь можно добавить логику для сохранения AGV
+
         QString name = nameLineEdit->text();
         QString serialNumber = serialNumberLineEdit->text();
         QString fwVersion = fwVersionComboBox->currentText();
         QString model = modelLineEdit->text();
         QString documentation = documentationComboBox->currentText();
+        QString dataLastTo = QString::number(getCurrentMillisecondsSinceEpoch());
 
-        // Логика сохранения
-        // ...
+        db->saveAgvItem(name, serialNumber, fwVersion, model, documentation, dataLastTo);
+
         qDebug() << "Сохранено AGV:" << name << serialNumber << fwVersion << model << documentation;
     });
+}
+
+qint64 AddAGVWidget::getCurrentMillisecondsSinceEpoch() {
+    // Получаем текущее время
+    QDateTime currentDateTime = QDateTime::currentDateTime();
+
+    // Преобразуем его в миллисекунды с начала эпохи
+    qint64 milliseconds = currentDateTime.toMSecsSinceEpoch();
+
+    return milliseconds;
 }

@@ -2,6 +2,9 @@
 
 TableAgvShow::TableAgvShow(QWidget *parent) : QWidget(parent)
 {
+    db = new DataBase();
+    db->connectToDataBase();
+
     layout = new QVBoxLayout(this);
     tableWidget = new QTableWidget(this);
     tableWidget->setColumnCount(6); // Например, 3 колонки: ID, Название, Статус
@@ -21,18 +24,48 @@ TableAgvShow::TableAgvShow(QWidget *parent) : QWidget(parent)
     setLayout(layout);
 }
 
+
+
 void TableAgvShow::loadData() {
-    tableWidget->setRowCount(3); // Пример: 3 строки
+    // Получаем список AGV из базы данных
+    // DataBase db; // Предположим, у вас есть экземпляр класса DataBase
 
-    tableWidget->setItem(0, 0, new QTableWidgetItem("1"));
-    tableWidget->setItem(0, 1, new QTableWidgetItem("AGV-1"));
-    tableWidget->setItem(0, 2, new QTableWidgetItem("Доступен"));
+    QList<AgvItem> agvs = db->fetchAGVs(); // Получаем данные
 
-    tableWidget->setItem(1, 0, new QTableWidgetItem("2"));
-    tableWidget->setItem(1, 1, new QTableWidgetItem("AGV-2"));
-    tableWidget->setItem(1, 2, new QTableWidgetItem("Занят"));
+    // Очищаем таблицу перед загрузкой новых данных
+    tableWidget->setRowCount(0);
 
-    tableWidget->setItem(2, 0, new QTableWidgetItem("3"));
-    tableWidget->setItem(2, 1, new QTableWidgetItem("AGV-3"));
-    tableWidget->setItem(2, 2, new QTableWidgetItem("Недоступен"));
+    // Заполняем таблицу данными из списка agvs
+    for (const AgvItem &agv : agvs) {
+        int rowCount = tableWidget->rowCount();
+        tableWidget->insertRow(rowCount); // Добавляем новую строку
+
+        tableWidget->setItem(rowCount, 0, new QTableWidgetItem(agv.getName()));
+        tableWidget->setItem(rowCount, 1, new QTableWidgetItem(agv.getSerialNumber()));
+        tableWidget->setItem(rowCount, 2, new QTableWidgetItem(agv.getVersionFW()));
+        tableWidget->setItem(rowCount, 3, new QTableWidgetItem(agv.getModel()));
+        tableWidget->setItem(rowCount, 4, new QTableWidgetItem(agv.getEPlan()));
+        tableWidget->setItem(rowCount, 5, new QTableWidgetItem(formatDateFromMilliseconds(agv.getDataLastTo())));
+    }
 }
+
+QString TableAgvShow::formatDateFromMilliseconds(const QString& millisecondsStr) {
+    // Преобразуем строку в qint64
+    bool ok;
+    qint64 milliseconds = millisecondsStr.toLongLong(&ok);
+
+    // Проверяем, успешно ли прошло преобразование
+    if (!ok) {
+        return QString(); // Возвращаем пустую строку в случае ошибки
+    }
+
+    // Преобразуем миллисекунды в секунды
+    qint64 seconds = milliseconds / 1000;
+
+    // Создаем объект QDateTime из секунд
+    QDateTime dateTime = QDateTime::fromSecsSinceEpoch(seconds);
+
+    // Форматируем дату и время в строку "ЧЧ:MM dd.MM.yyyy"
+    return dateTime.toString("hh:mm  dd.MM.yyyy");
+}
+

@@ -10,6 +10,8 @@
 #include <QDir>
 #include <QComboBox>
 #include <QDebug>
+#include <QDateTime>
+#include "database.h"
 
 class AddAGVWidget : public QWidget
 {
@@ -21,7 +23,7 @@ public:
 
     QLineEdit *nameLineEdit;
     QLineEdit *serialNumberLineEdit;
-//    QLineEdit *fwVersionLineEdit;
+    //    QLineEdit *fwVersionLineEdit;
     QLineEdit *modelLineEdit;
     //QLineEdit *documentationLineEdit;
 
@@ -29,6 +31,9 @@ public:
 
     QComboBox *documentationComboBox;
     QComboBox *fwVersionComboBox;
+
+    qint64 getCurrentMillisecondsSinceEpoch();
+    DataBase *db;
 
 signals:
 

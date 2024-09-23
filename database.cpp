@@ -177,3 +177,52 @@ QList<AgvItem> DataBase::fetchAGVs() {
     return agvs;
 }
 
+//QString strCreateTableAgv = "CREATE TABLE " TABLE_AGV " ("
+//                                                      "name TEXT, "
+//                                                      "serialNumber TEXT, "
+//                                                      "versionFW TEXT, "
+//                                                      "model TEXT, "
+//                                                      "ePlan TEXT, "
+//                                                      "dataLastTo TEXT "
+//                                                      ");";
+
+//bool DataBase::saveAgvItem(QString name, QString serialNumber, QString versionFW, QString model, QString ePlan, QString dataLastTo)
+//{
+
+
+
+//}
+
+bool DataBase::saveAgvItem(QString name, QString serialNumber, QString versionFW, QString model, QString ePlan, QString dataLastTo)
+{
+    // Открываем соединение с базой данных
+  //  QSqlDatabase db = QSqlDatabase::database();
+//    if (!db.isOpen()) {
+//        if (!db.open()) {
+//            qDebug() << "Ошибка открытия базы данных:"; //<< db.lastError().text();
+//            return false;
+//        }
+//    }
+
+    // Подготавливаем SQL-запрос
+    QSqlQuery query(db);
+    query.prepare("INSERT INTO " TABLE_AGV " (name, serialNumber, versionFW, model, ePlan, dataLastTo) "
+                  "VALUES (:name, :serialNumber, :versionFW, :model, :ePlan, :dataLastTo)");
+
+    // Устанавливаем значения параметров
+    query.bindValue(":name", name);
+    query.bindValue(":serialNumber", serialNumber);
+    query.bindValue(":versionFW", versionFW);
+    query.bindValue(":model", model);
+    query.bindValue(":ePlan", ePlan);
+    query.bindValue(":dataLastTo", dataLastTo);
+
+    // Выполняем запрос
+    if (!query.exec()) {
+        qDebug() << "Ошибка выполнения запроса:"; //<< query.lastError().text();
+        return false;
+    }
+
+    return true; // Успешное выполнение
+}
+
