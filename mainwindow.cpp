@@ -114,12 +114,26 @@ QWidget* MainWindow::createListAGVWidget() {
 }
 
 QWidget* MainWindow::createLogWidget() {
+
     QWidget *widget = new QWidget;
-    QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget(new QLabel("Лог приложения"));
-    // Здесь можно добавить элементы управления для отображения логов
-    widget->setLayout(layout);
-    return widget;
+       QVBoxLayout *layout = new QVBoxLayout;
+       widget->setStyleSheet("background-color: lightgray;");
+
+       layout->addWidget(new QLabel("Log AGV"));
+
+       // Создаем и добавляем таблицу AGV
+      // TableAgvShow *tableAgvShow = new TableAgvShow();
+       TableLogAgvShow *tableLogAgvShow = new TableLogAgvShow();
+       layout->addWidget(tableLogAgvShow);
+
+       widget->setLayout(layout);
+       return widget;
+//    QWidget *widget = new QWidget;
+//    QVBoxLayout *layout = new QVBoxLayout;
+//    layout->addWidget(new QLabel("Лог приложения"));
+//    // Здесь можно добавить элементы управления для отображения логов
+//    widget->setLayout(layout);
+//    return widget;
 }
 
 MainWindow::~MainWindow()
