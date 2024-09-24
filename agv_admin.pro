@@ -22,7 +22,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     tableagvshow.cpp \
-    tablelogagvshow.cpp
+    tablelogagvshow.cpp \
+    userstableshowandediting.cpp
 
 HEADERS += \
     addagvwidget.h \
@@ -30,7 +31,8 @@ HEADERS += \
     database.h \
     mainwindow.h \
     tableagvshow.h \
-    tablelogagvshow.h
+    tablelogagvshow.h \
+    userstableshowandediting.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

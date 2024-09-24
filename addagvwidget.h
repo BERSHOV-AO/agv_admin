@@ -11,6 +11,7 @@
 #include <QComboBox>
 #include <QDebug>
 #include <QDateTime>
+#include <QMessageBox>
 #include "database.h"
 
 class AddAGVWidget : public QWidget

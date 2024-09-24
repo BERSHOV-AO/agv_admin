@@ -13,6 +13,7 @@
 #include "tableagvshow.h"
 #include "addagvwidget.h"
 #include "tablelogagvshow.h"
+#include "userstableshowandediting.h"
 
 class MainWindow : public QWidget
 {
@@ -29,7 +30,9 @@ private:
     QWidget *addAGVWidget;
     QWidget *listAGVWidget;
     QWidget *logWidget;
+    QWidget *usersWidget;
 
+    QPushButton *usersButton;
     QPushButton *addAGVButton;
     QPushButton *listAGVButton;
     QPushButton *logButton;
@@ -37,6 +40,7 @@ private:
     QWidget* createAddAGVWidget();
     QWidget* createListAGVWidget();
     QWidget* createLogWidget();
+    QWidget* createUsresWidget();
 
     QLabel *titleLabel;
     QLabel *imageLabel;

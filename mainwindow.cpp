@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     addAGVWidget = createAddAGVWidget();
     listAGVWidget = createListAGVWidget();
     logWidget = createLogWidget();
+    usersWidget = createUsresWidget();
 
     titleLabel = new QLabel("Администрирование AGV");
     titleLabel->setStyleSheet("font-size: 28px; color: white; font-weight: bold;");
@@ -21,31 +22,37 @@ MainWindow::MainWindow(QWidget *parent)
     line->setLineWidth(5); // Устанавливаем ширину линии
     line->setStyleSheet("background-color: white;"); // Устанавливаем цвет
 
-
+    stackedWidget->addWidget(usersWidget);
     stackedWidget->addWidget(addAGVWidget);
     stackedWidget->addWidget(listAGVWidget);
     stackedWidget->addWidget(logWidget);
 
+    usersButton = new QPushButton("Пользователи");
     addAGVButton = new QPushButton("Добавить AGV");
     listAGVButton = new QPushButton("Список AGV");
     logButton = new QPushButton("Лог приложения");
 
+    usersButton->setStyleSheet("background-color: white;");
     addAGVButton->setStyleSheet("background-color: white;");
     listAGVButton->setStyleSheet("background-color: white;");
     logButton->setStyleSheet("background-color: white;");
 
     // Подключаем кнопки к слоту переключения
-    connect(addAGVButton, &QPushButton::clicked, this, [this]() {
+
+    connect(usersButton, &QPushButton::clicked, this, [this]() {
         stackedWidget->setCurrentIndex(0); // Индекс 0 - виджет добавления AGV
     });
+    connect(addAGVButton, &QPushButton::clicked, this, [this]() {
+        stackedWidget->setCurrentIndex(1); // Индекс 1 - виджет добавления AGV
+    });
     connect(listAGVButton, &QPushButton::clicked, this, [this]() {
-        stackedWidget->setCurrentIndex(1); // Индекс 1 - виджет списка AGV
+        stackedWidget->setCurrentIndex(2); // Индекс 2 - виджет списка AGV
     });
     connect(logButton, &QPushButton::clicked, this, [this]() {
-        stackedWidget->setCurrentIndex(2); // Индекс 2 - виджет лога
+        stackedWidget->setCurrentIndex(3); // Индекс 3 - виджет лога
     });
 
-     stackedWidget->setCurrentIndex(1);
+    stackedWidget->setCurrentIndex(2);
 
     QHBoxLayout *headerLayout = new QHBoxLayout;
     // Добавляем спейсер перед заголовком
@@ -76,10 +83,27 @@ MainWindow::MainWindow(QWidget *parent)
 QHBoxLayout* MainWindow::createButtonLayout() {
     // Создаем горизонтальный layout для кнопок
     QHBoxLayout *buttonLayout = new QHBoxLayout;
+    buttonLayout->addWidget(usersButton);
     buttonLayout->addWidget(addAGVButton);
     buttonLayout->addWidget(listAGVButton);
     buttonLayout->addWidget(logButton);
     return buttonLayout;
+}
+
+QWidget* MainWindow::createUsresWidget() {
+
+    QWidget *widget = new QWidget;
+    QVBoxLayout *layout = new QVBoxLayout;
+    widget->setStyleSheet("background-color: lightgray;");
+
+    layout->addWidget(new QLabel("Пользователи"));
+
+    // Создаем и добавляем таблицу Users
+    UsersTableShowAndEditing *usersTableShowAndEditing = new UsersTableShowAndEditing();
+    layout->addWidget(usersTableShowAndEditing);
+
+    widget->setLayout(layout);
+    return widget;
 }
 
 QWidget* MainWindow::createAddAGVWidget() {
@@ -122,6 +146,7 @@ QWidget* MainWindow::createLogWidget() {
     widget->setLayout(layout);
     return widget;
 }
+
 
 MainWindow::~MainWindow()
 {

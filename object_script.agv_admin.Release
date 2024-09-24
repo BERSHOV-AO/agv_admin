@@ -5,8 +5,10 @@ release/main.o
 release/mainwindow.o
 release/tableagvshow.o
 release/tablelogagvshow.o
+release/userstableshowandediting.o
 release/moc_addagvwidget.o
 release/moc_database.o
 release/moc_mainwindow.o
 release/moc_tableagvshow.o
 release/moc_tablelogagvshow.o
+release/moc_userstableshowandediting.o

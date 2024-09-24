@@ -24,8 +24,6 @@ TableAgvShow::TableAgvShow(QWidget *parent) : QWidget(parent)
     setLayout(layout);
 }
 
-
-
 void TableAgvShow::loadData() {
     // Получаем список AGV из базы данных
     // DataBase db; // Предположим, у вас есть экземпляр класса DataBase

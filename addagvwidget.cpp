@@ -32,7 +32,6 @@ AddAGVWidget::AddAGVWidget(QWidget *parent) : QWidget(parent)
     modelLineEdit->setFixedSize(300, 30);
     this->setStyleSheet("QLineEdit { background-color: white; font-size: 16px;}");
 
-
     //---------------------combo box FW---------------------------
     fwVersionComboBox = new QComboBox(this);
     fwVersionComboBox->setFixedSize(300, 30);
@@ -59,6 +58,8 @@ AddAGVWidget::AddAGVWidget(QWidget *parent) : QWidget(parent)
 
     // Создаем контейнер для формы
     QWidget *formContainer = new QWidget();
+    formContainer->setStyleSheet("background-color: #FFFBFBFB;");
+
     formContainer->setLayout(formLayout);
 
     // Создаем горизонтальный layout для центрирования формы
@@ -101,9 +102,18 @@ AddAGVWidget::AddAGVWidget(QWidget *parent) : QWidget(parent)
         QString documentation = documentationComboBox->currentText();
         QString dataLastTo = QString::number(getCurrentMillisecondsSinceEpoch());
 
-        db->saveAgvItem(name, serialNumber, fwVersion, model, documentation, dataLastTo);
+        if(name.isEmpty() || serialNumber.isEmpty() || fwVersion.isEmpty() || model.isEmpty() || documentation.isEmpty() || dataLastTo.isEmpty()) {
 
-        qDebug() << "Сохранено AGV:" << name << serialNumber << fwVersion << model << documentation;
+             qDebug() << "Не все поля заполнены!";
+             QMessageBox::warning(this, "Предупреждение", "Не все поля заполнены!");
+
+        } else {
+            db->saveAgvItem(name, serialNumber, fwVersion, model, documentation, dataLastTo);
+            qDebug() << "Сохранено AGV:" << name << serialNumber << fwVersion << model << documentation;
+            nameLineEdit->clear();
+            serialNumberLineEdit->clear();
+            modelLineEdit->clear();
+        }
     });
 }
 
@@ -113,6 +123,5 @@ qint64 AddAGVWidget::getCurrentMillisecondsSinceEpoch() {
 
     // Преобразуем его в миллисекунды с начала эпохи
     qint64 milliseconds = currentDateTime.toMSecsSinceEpoch();
-
     return milliseconds;
 }

@@ -5,8 +5,10 @@ debug/main.o
 debug/mainwindow.o
 debug/tableagvshow.o
 debug/tablelogagvshow.o
+debug/userstableshowandediting.o
 debug/moc_addagvwidget.o
 debug/moc_database.o
 debug/moc_mainwindow.o
 debug/moc_tableagvshow.o
 debug/moc_tablelogagvshow.o
+debug/moc_userstableshowandediting.o
