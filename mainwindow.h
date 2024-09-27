@@ -48,11 +48,5 @@ private:
     QFrame *line;
 
     QHBoxLayout* createButtonLayout();
-
-
-
-
-
-
 };
 #endif // MAINWINDOW_H

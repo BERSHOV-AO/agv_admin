@@ -14,6 +14,8 @@
 #include <QMessageBox>
 #include "database.h"
 
+#define ADD_AGV_STRING  "Добавление AGV в базу данных"
+
 class AddAGVWidget : public QWidget
 {
     Q_OBJECT

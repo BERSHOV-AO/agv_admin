@@ -5,6 +5,8 @@
 #include <QTableWidget>
 #include <QVBoxLayout>
 #include <QHeaderView>
+#include "database.h"
+#include "usereditdialog.h"
 
 class UsersTableShowAndEditing : public QWidget
 {
@@ -14,8 +16,13 @@ public:
 
     QVBoxLayout *layout;
     QTableWidget *tableWidget;
+    DataBase *db;
 
     void loadData();
+
+
+private slots:
+    void onCellDoubleClicked(int row, int column);
 
 signals:
 

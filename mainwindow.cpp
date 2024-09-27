@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
     usersButton = new QPushButton("Пользователи");
     addAGVButton = new QPushButton("Добавить AGV");
     listAGVButton = new QPushButton("Список AGV");
-    logButton = new QPushButton("Лог приложения");
+    logButton = new QPushButton("Логи приложения");
 
     usersButton->setStyleSheet("background-color: white;");
     addAGVButton->setStyleSheet("background-color: white;");

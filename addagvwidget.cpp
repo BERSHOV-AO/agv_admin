@@ -104,12 +104,13 @@ AddAGVWidget::AddAGVWidget(QWidget *parent) : QWidget(parent)
 
         if(name.isEmpty() || serialNumber.isEmpty() || fwVersion.isEmpty() || model.isEmpty() || documentation.isEmpty() || dataLastTo.isEmpty()) {
 
-             qDebug() << "Не все поля заполнены!";
-             QMessageBox::warning(this, "Предупреждение", "Не все поля заполнены!");
+            qDebug() << "Не все поля заполнены!";
+            QMessageBox::warning(this, "Предупреждение", "Не все поля заполнены!");
 
         } else {
             db->saveAgvItem(name, serialNumber, fwVersion, model, documentation, dataLastTo);
             qDebug() << "Сохранено AGV:" << name << serialNumber << fwVersion << model << documentation;
+            db->saveLogItem("3", "Admin", NULL, serialNumber, ADD_AGV_STRING, QString::number(getCurrentMillisecondsSinceEpoch()));
             nameLineEdit->clear();
             serialNumberLineEdit->clear();
             modelLineEdit->clear();

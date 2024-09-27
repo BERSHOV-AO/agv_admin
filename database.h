@@ -8,6 +8,8 @@
 #include <QDebug>
 #include <QList>
 #include "agvitem.h"
+#include "useritem.h"
+#include "logitem.h"
 
 /* Директивы имен таблицы, полей таблицы и базы данных */
 #define DATABASE_NAME           "agv_db.db"
@@ -30,8 +32,13 @@ public:
     bool restoreDataBase();                                                               // Востановление базы данных
     bool createTable();                                                                   // Создание базы таблицы в базе данных
     bool closeDataBase();
+
     bool saveAgvItem(QString name, QString serialNumber, QString versionFW, QString model, QString ePlan, QString dataLastTo);
+    bool saveLogItem(QString typeLog, QString tabelNum, QString timeOpenApp, QString serialNumberAgv, QString nameTO, QString timeToAgv);
+    bool updateUser(const QString &login, const QString &newName, const QString &newSurname, const QString &newPass);
     QList<AgvItem> fetchAGVs();
+    QList<UserItem> fetchUsers();
+    QList<LogItem> fetchLogs();
 
     explicit DataBase(QObject *parent = nullptr);
 

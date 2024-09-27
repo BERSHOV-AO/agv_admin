@@ -19,19 +19,25 @@ SOURCES += \
     addagvwidget.cpp \
     agvitem.cpp \
     database.cpp \
+    logitem.cpp \
     main.cpp \
     mainwindow.cpp \
     tableagvshow.cpp \
     tablelogagvshow.cpp \
+    usereditdialog.cpp \
+    useritem.cpp \
     userstableshowandediting.cpp
 
 HEADERS += \
     addagvwidget.h \
     agvitem.h \
     database.h \
+    logitem.h \
     mainwindow.h \
     tableagvshow.h \
     tablelogagvshow.h \
+    usereditdialog.h \
+    useritem.h \
     userstableshowandediting.h
 
 # Default rules for deployment.

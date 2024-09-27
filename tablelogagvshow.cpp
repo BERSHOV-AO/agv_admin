@@ -2,6 +2,9 @@
 
 TableLogAgvShow::TableLogAgvShow(QWidget *parent) : QWidget(parent)
 {
+    db = new DataBase();
+    db->connectToDataBase();
+
     layout = new QVBoxLayout(this);
     tableWidget = new QTableWidget(this);
     tableWidget->setColumnCount(4); // Например, 3 колонки: ID, Название, Статус
@@ -20,20 +23,42 @@ TableLogAgvShow::TableLogAgvShow(QWidget *parent) : QWidget(parent)
 }
 
 void TableLogAgvShow::loadData() {
-    tableWidget->setRowCount(3); // Пример: 3 строки
+    // Получаем список AGV из базы данных
+    // DataBase db; // Предположим, у вас есть экземпляр класса DataBase
 
-    tableWidget->setItem(0, 0, new QTableWidgetItem("23-09-24"));
-    tableWidget->setItem(0, 1, new QTableWidgetItem("421011"));
-    tableWidget->setItem(0, 2, new QTableWidgetItem("Корпус - очистка от загрязнений"));
-    tableWidget->setItem(0, 3, new QTableWidgetItem("556949"));
+    QList<LogItem> logs = db->fetchLogs(); // Получаем данные
 
-    tableWidget->setItem(1, 0, new QTableWidgetItem("20-09-24"));
-    tableWidget->setItem(1, 1, new QTableWidgetItem("321017"));
-    tableWidget->setItem(1, 2, new QTableWidgetItem("Электрика - проверка работы звука"));
-    tableWidget->setItem(1, 3, new QTableWidgetItem("200145"));
+    // Очищаем таблицу перед загрузкой новых данных
+    tableWidget->setRowCount(0);
 
-    tableWidget->setItem(2, 0, new QTableWidgetItem("18-09-24"));
-    tableWidget->setItem(2, 1, new QTableWidgetItem("421022"));
-    tableWidget->setItem(2, 2, new QTableWidgetItem("Подъемник - Проверить устан. штифты на кулачке"));
-    tableWidget->setItem(2, 3, new QTableWidgetItem("776548"));
+    // Заполняем таблицу данными из списка agvs
+    for (const LogItem &log : logs) {
+        int rowCount = tableWidget->rowCount();
+        tableWidget->insertRow(rowCount); // Добавляем новую строку
+
+        tableWidget->setItem(rowCount, 0, new QTableWidgetItem(formatDateFromMilliseconds(log.getTimeToAgv())));
+        tableWidget->setItem(rowCount, 1, new QTableWidgetItem(log.getSerialNumberAgv()));
+        tableWidget->setItem(rowCount, 2, new QTableWidgetItem(log.getNameTO()));
+        tableWidget->setItem(rowCount, 3, new QTableWidgetItem(log.getTabelNum()));
+    }
+}
+
+QString TableLogAgvShow::formatDateFromMilliseconds(const QString& millisecondsStr) {
+    // Преобразуем строку в qint64
+    bool ok;
+    qint64 milliseconds = millisecondsStr.toLongLong(&ok);
+
+    // Проверяем, успешно ли прошло преобразование
+    if (!ok) {
+        return QString(); // Возвращаем пустую строку в случае ошибки
+    }
+
+    // Преобразуем миллисекунды в секунды
+    qint64 seconds = milliseconds / 1000;
+
+    // Создаем объект QDateTime из секунд
+    QDateTime dateTime = QDateTime::fromSecsSinceEpoch(seconds);
+
+    // Форматируем дату и время в строку "ЧЧ:MM dd.MM.yyyy"
+    return dateTime.toString("hh:mm  dd.MM.yyyy");
 }
