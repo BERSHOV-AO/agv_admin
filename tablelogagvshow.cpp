@@ -8,7 +8,7 @@ TableLogAgvShow::TableLogAgvShow(QWidget *parent) : QWidget(parent)
     layout = new QVBoxLayout(this);
     tableWidget = new QTableWidget(this);
     tableWidget->setColumnCount(4); // Например, 3 колонки: ID, Название, Статус
-    tableWidget->setHorizontalHeaderLabels(QStringList() << "Дата технического обслуживания" << "S/N AGV" << "Наименование технического обслуживания" << "Табельный номер");
+    tableWidget->setHorizontalHeaderLabels(QStringList() << "Дата технического обслуживания" << "S/N AGV" << "Наименование ТО/Управление AGV" << "Табельный номер");
     tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section { background-color: #4CAF50; color: white; }");
 
     tableWidget->setColumnWidth(0, 250);
