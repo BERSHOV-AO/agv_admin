@@ -17,6 +17,8 @@ UsersTableShowAndEditing::UsersTableShowAndEditing(QWidget *parent) : QWidget(pa
     tableWidget->setColumnWidth(2, 370);
     tableWidget->setColumnWidth(3, 250);
 
+    tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+
     connect(tableWidget, &QTableWidget::cellDoubleClicked, this, &UsersTableShowAndEditing::onCellDoubleClicked);
 
     loadData();

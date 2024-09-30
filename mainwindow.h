@@ -41,6 +41,14 @@ private:
     QWidget* createListAGVWidget();
     QWidget* createLogWidget();
     QWidget* createUsresWidget();
+    void clearStackedWidget();
+
+    void updateUsersData();
+    void updateAddAGVData();
+    void updateListAGVData();
+    void updateLogData();
+    void replaceWidgetAt(int index, QWidget* newWidget);
+
 
     QLabel *titleLabel;
     QLabel *imageLabel;

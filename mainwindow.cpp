@@ -4,10 +4,13 @@ MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
 {
     stackedWidget = new QStackedWidget(this);
+
+
+    usersWidget = createUsresWidget();
     addAGVWidget = createAddAGVWidget();
     listAGVWidget = createListAGVWidget();
     logWidget = createLogWidget();
-    usersWidget = createUsresWidget();
+
 
     titleLabel = new QLabel("Администрирование AGV");
     titleLabel->setStyleSheet("font-size: 28px; color: white; font-weight: bold;");
@@ -40,15 +43,18 @@ MainWindow::MainWindow(QWidget *parent)
     // Подключаем кнопки к слоту переключения
 
     connect(usersButton, &QPushButton::clicked, this, [this]() {
+        updateUsersData();
         stackedWidget->setCurrentIndex(0); // Индекс 0 - виджет добавления AGV
     });
     connect(addAGVButton, &QPushButton::clicked, this, [this]() {
         stackedWidget->setCurrentIndex(1); // Индекс 1 - виджет добавления AGV
     });
     connect(listAGVButton, &QPushButton::clicked, this, [this]() {
+        updateListAGVData();
         stackedWidget->setCurrentIndex(2); // Индекс 2 - виджет списка AGV
     });
     connect(logButton, &QPushButton::clicked, this, [this]() {
+        updateLogData();
         stackedWidget->setCurrentIndex(3); // Индекс 3 - виджет лога
     });
 
@@ -147,6 +153,43 @@ QWidget* MainWindow::createLogWidget() {
     return widget;
 }
 
+void MainWindow::clearStackedWidget() {
+    // Удаляем все виджеты из QStackedWidget
+    while (stackedWidget->count() > 0) {
+        QWidget* widget = stackedWidget->widget(0); // Получаем первый виджет
+        stackedWidget->removeWidget(widget); // Удаляем его из stackedWidget
+        delete widget; // Освобождаем память
+    }
+}
+
+void MainWindow::updateUsersData() {
+
+    replaceWidgetAt(0, createUsresWidget());
+}
+
+void MainWindow::updateListAGVData() {
+
+    replaceWidgetAt(2, createListAGVWidget());
+}
+
+void MainWindow::updateLogData() {
+
+    replaceWidgetAt(3, createLogWidget());
+}
+
+
+void MainWindow::replaceWidgetAt(int index, QWidget* newWidget) {
+    // Проверяем, что индекс валиден
+    if (index >= 0 && index < stackedWidget->count()) {
+        // Удаляем старый виджет
+        QWidget* oldWidget = stackedWidget->widget(index);
+        stackedWidget->removeWidget(oldWidget);
+        delete oldWidget; // Освобождаем память
+
+        // Добавляем новый виджет на ту же позицию
+        stackedWidget->insertWidget(index, newWidget);
+    }
+}
 
 MainWindow::~MainWindow()
 {

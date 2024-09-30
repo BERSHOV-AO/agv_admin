@@ -8,7 +8,7 @@ UserEditDialog::UserEditDialog(const UserItem &user, QWidget *parent)
     surnameEdit = new QLineEdit(user.getSurname(), this);
     loginEdit = new QLineEdit(user.getLogin(), this);
     passEdit = new QLineEdit(user.getPass(), this);
-    passEdit->setEchoMode(QLineEdit::Password);
+   // passEdit->setEchoMode(QLineEdit::Password);
 
     QPushButton *saveButton = new QPushButton("Сохранить", this);
     connect(saveButton, &QPushButton::clicked, this, &UserEditDialog::saveData);
