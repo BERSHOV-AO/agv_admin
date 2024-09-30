@@ -6,6 +6,7 @@ debug/main.o
 debug/mainwindow.o
 debug/tableagvshow.o
 debug/tablelogagvshow.o
+debug/useradddialog.o
 debug/usereditdialog.o
 debug/useritem.o
 debug/userstableshowandediting.o
@@ -14,5 +15,6 @@ debug/moc_database.o
 debug/moc_mainwindow.o
 debug/moc_tableagvshow.o
 debug/moc_tablelogagvshow.o
+debug/moc_useradddialog.o
 debug/moc_usereditdialog.o
 debug/moc_userstableshowandediting.o

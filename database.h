@@ -36,6 +36,8 @@ public:
     bool saveAgvItem(QString name, QString serialNumber, QString versionFW, QString model, QString ePlan, QString dataLastTo);
     bool saveLogItem(QString typeLog, QString tabelNum, QString timeOpenApp, QString serialNumberAgv, QString nameTO, QString timeToAgv);
     bool updateUser(const QString &login, const QString &newName, const QString &newSurname, const QString &newPass);
+    bool saveUserItem(QString name, QString surname, QString login, QString pass);
+    bool deleteUser(const QString &login, const QString &name, const QString &surname);
     QList<AgvItem> fetchAGVs();
     QList<UserItem> fetchUsers();
     QList<LogItem> fetchLogs();

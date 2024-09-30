@@ -24,6 +24,7 @@ SOURCES += \
     mainwindow.cpp \
     tableagvshow.cpp \
     tablelogagvshow.cpp \
+    useradddialog.cpp \
     usereditdialog.cpp \
     useritem.cpp \
     userstableshowandediting.cpp
@@ -36,6 +37,7 @@ HEADERS += \
     mainwindow.h \
     tableagvshow.h \
     tablelogagvshow.h \
+    useradddialog.h \
     usereditdialog.h \
     useritem.h \
     userstableshowandediting.h

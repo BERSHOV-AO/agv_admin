@@ -7,6 +7,22 @@ UsersTableShowAndEditing::UsersTableShowAndEditing(QWidget *parent) : QWidget(pa
     db->connectToDataBase();
 
     layout = new QVBoxLayout(this);
+
+    QHBoxLayout *topLayout = new QHBoxLayout();
+
+    addUserButton = new QPushButton("Добавить пользователя", this);
+    addUserButton->setStyleSheet("background-color: #10732c; color: white; font-size: 16px; font-family: Arial; font-weight: bold;");
+    addUserButton->setFixedSize(250, 40);
+
+
+    connect(addUserButton, &QPushButton::clicked, this, &UsersTableShowAndEditing::onAddUserClicked);
+
+    // Spacer для отталкивания кнопки к правому краю
+    topLayout->addSpacerItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
+    topLayout->addWidget(addUserButton);
+    // Добавляем горизонтальный макет в основной вертикальный макет
+    layout->addLayout(topLayout);
+
     tableWidget = new QTableWidget(this);
     tableWidget->setColumnCount(4); // Например, 3 колонки: ID, Название, Статус
     tableWidget->setHorizontalHeaderLabels(QStringList() << "Имя" << "Фамилия" << "Логин/Табельный Номер" << "Пароль");
@@ -47,6 +63,15 @@ void UsersTableShowAndEditing::loadData() {
 }
 
 
+void UsersTableShowAndEditing::onAddUserClicked() {
+
+    UserAddDialog addDialog(this);
+    if (addDialog.exec() == QDialog::Accepted) {
+
+    }
+}
+
+
 void UsersTableShowAndEditing::onCellDoubleClicked(int row, int column) {
     if (row < 0) return; // Проверка на корректность строки
 
@@ -58,8 +83,22 @@ void UsersTableShowAndEditing::onCellDoubleClicked(int row, int column) {
 
     UserItem selectedUser(name, surname, login, pass);
 
+
+
     // Открываем диалог для редактирования
     UserEditDialog editDialog(selectedUser, this);
+
+    // connect(&editDialog, &UserEditDialog::userDeleted, this, &UsersTableShowAndEditing::updateTable);
+    // Подключаем сигнал для удаления пользователя
+    //        connect(&editDialog, &UserEditDialog::userDeleted, this, [this, row]() {
+    //          //  if (db->deleteUser(login)) { // Предполагается, что у вас есть метод deleteUser в DataBase
+    //                tableWidget->removeRow(row); // Удаляем строку из таблицы
+    //     //           qDebug() << "User deleted successfully.";
+    //  //          } else {
+    //    //            qDebug() << "Failed to delete user.";
+    //   //         }
+    //        });
+
     if (editDialog.exec() == QDialog::Accepted) {
         UserItem updatedUser = editDialog.getUser();
 
@@ -76,6 +115,16 @@ void UsersTableShowAndEditing::onCellDoubleClicked(int row, int column) {
         }
     }
 }
+
+void UsersTableShowAndEditing::updateTable() {
+    // Очистите таблицу
+    //  tableWidget->clearContents();
+
+    // Загрузите новые данные из базы данных и заполните таблицу
+    // loadData(); // Предполагается, что у вас есть метод loadData для загрузки данных
+
+}
+
 
 
 

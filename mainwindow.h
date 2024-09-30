@@ -14,7 +14,7 @@
 #include "addagvwidget.h"
 #include "tablelogagvshow.h"
 #include "userstableshowandediting.h"
-
+#include "usereditdialog.h"
 class MainWindow : public QWidget
 {
     Q_OBJECT
@@ -24,6 +24,7 @@ public:
     ~MainWindow();
 
 private:
+
 
     QStackedWidget *stackedWidget;
 

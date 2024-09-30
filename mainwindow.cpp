@@ -11,6 +11,10 @@ MainWindow::MainWindow(QWidget *parent)
     listAGVWidget = createListAGVWidget();
     logWidget = createLogWidget();
 
+   // UsersTableShowAndEditing *usersTable1 = new UsersTableShowAndEditing(this);
+    // usersTableShowAndEditing = new UsersTableShowAndEditing();
+
+
 
     titleLabel = new QLabel("Администрирование AGV");
     titleLabel->setStyleSheet("font-size: 28px; color: white; font-weight: bold;");
@@ -46,6 +50,11 @@ MainWindow::MainWindow(QWidget *parent)
         updateUsersData();
         stackedWidget->setCurrentIndex(0); // Индекс 0 - виджет добавления AGV
     });
+
+//    connect(usersTableShowAndEditing, &UsersTableShowAndEditing::dataUsersUpdated, this,[this]() {
+//        updateUsersData();
+//        stackedWidget->setCurrentIndex(0); // Индекс 0 - виджет добавления AGV
+//    });
     connect(addAGVButton, &QPushButton::clicked, this, [this]() {
         stackedWidget->setCurrentIndex(1); // Индекс 1 - виджет добавления AGV
     });
@@ -105,7 +114,7 @@ QWidget* MainWindow::createUsresWidget() {
     layout->addWidget(new QLabel("Пользователи"));
 
     // Создаем и добавляем таблицу Users
-    UsersTableShowAndEditing *usersTableShowAndEditing = new UsersTableShowAndEditing();
+   UsersTableShowAndEditing *usersTableShowAndEditing = new UsersTableShowAndEditing();
     layout->addWidget(usersTableShowAndEditing);
 
     widget->setLayout(layout);

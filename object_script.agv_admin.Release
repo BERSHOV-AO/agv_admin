@@ -6,6 +6,7 @@ release/main.o
 release/mainwindow.o
 release/tableagvshow.o
 release/tablelogagvshow.o
+release/useradddialog.o
 release/usereditdialog.o
 release/useritem.o
 release/userstableshowandediting.o
@@ -14,5 +15,6 @@ release/moc_database.o
 release/moc_mainwindow.o
 release/moc_tableagvshow.o
 release/moc_tablelogagvshow.o
+release/moc_useradddialog.o
 release/moc_usereditdialog.o
 release/moc_userstableshowandediting.o

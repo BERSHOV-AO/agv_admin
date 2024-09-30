@@ -191,8 +191,7 @@ QList<UserItem> DataBase::fetchUsers() {
     }
 
     while (query.next()) {
-        UserItem user(
-                    query.value(0).toString(),
+        UserItem user(query.value(0).toString(),
                     query.value(1).toString(),
                     query.value(2).toString(),
                     query.value(3).toString()
@@ -255,8 +254,6 @@ bool DataBase::saveAgvItem(QString name, QString serialNumber, QString versionFW
     return true; // Успешное выполнение
 }
 
-
-
 //tabelNum - табельный номер
 //--------------------------------
 // typeLog
@@ -287,6 +284,30 @@ bool DataBase::saveLogItem(QString typeLog, QString tabelNum, QString timeOpenAp
     return true; // Успешное выполнение
 }
 
+bool DataBase::saveUserItem(QString name, QString surname, QString login, QString pass)
+{
+    // Подготавливаем SQL-запрос
+    QSqlQuery query(db);
+    query.prepare("INSERT INTO " TABLE_USERS " (name, surname, login, pass) "
+                   "VALUES (:name, :surname, :login, :pass)");
+
+    // Устанавливаем значения параметров
+    query.bindValue(":name", name);
+    query.bindValue(":surname", surname);
+    query.bindValue(":login", login);
+    query.bindValue(":pass", pass);
+
+    // Выполняем запрос
+    if (!query.exec()) {
+        qDebug() << "Ошибка выполнения запроса:"; //<< query.lastError().text();
+        return false;
+    }
+
+    return true; // Успешное выполнение
+}
+
+
+
 bool DataBase::updateUser(const QString &login, const QString &newName, const QString &newSurname, const QString &newPass) {
     QSqlQuery query;
 
@@ -307,4 +328,25 @@ bool DataBase::updateUser(const QString &login, const QString &newName, const QS
 
     return true; // Возвращаем true, если все прошло успешно
 }
+
+bool DataBase::deleteUser(const QString &login, const QString &name, const QString &surname) {
+    QSqlQuery query;
+
+    // Подготовка SQL-запроса
+    query.prepare("DELETE FROM " TABLE_USERS " WHERE login = :login AND name = :name AND surname = :surname");
+
+    // Привязка параметров
+    query.bindValue(":login", login);
+    query.bindValue(":name", name);
+    query.bindValue(":surname", surname);
+
+    // Выполнение запроса
+    if (!query.exec()) {
+        qDebug() << "Error: Unable to delete user"; //<< query.lastError().text();
+        return false; // Возвращаем false в случае ошибки
+    }
+
+    return true; // Возвращаем true, если все прошло успешно
+}
+
 
