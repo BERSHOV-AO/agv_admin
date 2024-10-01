@@ -11,7 +11,7 @@ UsersTableShowAndEditing::UsersTableShowAndEditing(QWidget *parent) : QWidget(pa
     QHBoxLayout *topLayout = new QHBoxLayout();
 
     addUserButton = new QPushButton("Добавить пользователя", this);
-    addUserButton->setStyleSheet("background-color: #10732c; color: white; font-size: 16px; font-family: Arial; font-weight: bold;");
+    addUserButton->setStyleSheet("background-color: #4986cf; color: white; font-size: 16px; font-family: Arial; font-weight: bold;");
     addUserButton->setFixedSize(250, 40);
     connect(addUserButton, &QPushButton::clicked, this, &UsersTableShowAndEditing::onAddUserClicked);
 
@@ -26,10 +26,10 @@ UsersTableShowAndEditing::UsersTableShowAndEditing(QWidget *parent) : QWidget(pa
     tableWidget->setHorizontalHeaderLabels(QStringList() << "Имя" << "Фамилия" << "Логин/Табельный Номер" << "Пароль");
     tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section { background-color: #4CAF50; color: white; }");
 
-    tableWidget->setColumnWidth(0, 250);
-    tableWidget->setColumnWidth(1, 250);
+    tableWidget->setColumnWidth(0, 270);
+    tableWidget->setColumnWidth(1, 270);
     tableWidget->setColumnWidth(2, 370);
-    tableWidget->setColumnWidth(3, 250);
+    tableWidget->setColumnWidth(3, 270);
 
     tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
 

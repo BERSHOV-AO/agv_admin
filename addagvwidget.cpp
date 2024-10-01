@@ -14,7 +14,6 @@ AddAGVWidget::AddAGVWidget(QWidget *parent) : QWidget(parent)
     titleLabel->setAlignment(Qt::AlignCenter); // Центрируем текст в QLabel
     titleLabel->setStyleSheet("font-size: 20px; font-weight: bold;");
 
-
     QHBoxLayout *titleLayout = new QHBoxLayout();
     titleLayout->addStretch(); // добавляем отступ слева
     titleLayout->addWidget(titleLabel); // добавляем заголовок

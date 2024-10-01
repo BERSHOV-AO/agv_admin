@@ -1,5 +1,6 @@
 release/addagvwidget.o
 release/agvadddialog.o
+release/agveditdialog.o
 release/agvitem.o
 release/database.o
 release/logitem.o
@@ -13,6 +14,7 @@ release/useritem.o
 release/userstableshowandediting.o
 release/moc_addagvwidget.o
 release/moc_agvadddialog.o
+release/moc_agveditdialog.o
 release/moc_database.o
 release/moc_mainwindow.o
 release/moc_tableagvshow.o

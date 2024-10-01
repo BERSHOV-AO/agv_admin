@@ -11,6 +11,8 @@
 #include <QComboBox>
 #include "database.h"
 #include "agvadddialog.h"
+#include "agveditdialog.h"
+#include "agvitem.h"
 
 class TableAgvShow : public QWidget
 {
@@ -26,6 +28,7 @@ public:
     QString formatDateFromMilliseconds(const QString& millisecondsStr);
 
 private slots:
+    void onCellDoubleClicked(int row, int column);
     void onAddAGVClicked();
 
 signals:

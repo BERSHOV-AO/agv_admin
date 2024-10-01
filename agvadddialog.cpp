@@ -27,7 +27,6 @@ AGVAddDialog::AGVAddDialog(QWidget *parent) : QDialog(parent)
     saveButton->setStyleSheet(" background-color: #4CAF50; color: white;");
     connect(saveButton, &QPushButton::clicked, this, &AGVAddDialog::addAGV);
 
-
     //---------------------combo box FW---------------------------
     fwVersionComboBox = new QComboBox(this);
     // fwVersionComboBox->setFixedSize(300, 30);
@@ -37,7 +36,6 @@ AGVAddDialog::AGVAddDialog(QWidget *parent) : QDialog(parent)
     fwVersionComboBox->setStyleSheet("QComboBox { background-color: white; }");
     //  fwVersionComboBox->setFixedSize(370, 30);
     fwVersionComboBox->addItems(directoriesFW);
-    //----------------------------------------------------------
 
     //---------------------combo box sPlan---------------------------
     documentationComboBox = new QComboBox(this);
@@ -48,7 +46,6 @@ AGVAddDialog::AGVAddDialog(QWidget *parent) : QDialog(parent)
     documentationComboBox->setStyleSheet("QComboBox { background-color: white; }");
     documentationComboBox->addItems(directories);
     //----------------------------------------------------------
-
 
     // Создаем вертикальный layout
     QVBoxLayout *layout = new QVBoxLayout(this);
