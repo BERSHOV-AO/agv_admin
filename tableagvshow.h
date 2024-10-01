@@ -6,7 +6,11 @@
 #include <QVBoxLayout>
 #include <QHeaderView>
 #include <QDateTime>
+#include <QHBoxLayout>
+#include <QPushButton>
+#include <QComboBox>
 #include "database.h"
+#include "agvadddialog.h"
 
 class TableAgvShow : public QWidget
 {
@@ -15,10 +19,14 @@ public:
     explicit TableAgvShow(QWidget *parent = nullptr);
     QVBoxLayout *layout;
     QTableWidget *tableWidget;
+    QPushButton *addAGVButton;
     DataBase *db;
 
     void loadData();
     QString formatDateFromMilliseconds(const QString& millisecondsStr);
+
+private slots:
+    void onAddAGVClicked();
 
 signals:
 

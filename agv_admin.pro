@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     addagvwidget.cpp \
+    agvadddialog.cpp \
     agvitem.cpp \
     database.cpp \
     logitem.cpp \
@@ -31,6 +32,7 @@ SOURCES += \
 
 HEADERS += \
     addagvwidget.h \
+    agvadddialog.h \
     agvitem.h \
     database.h \
     logitem.h \

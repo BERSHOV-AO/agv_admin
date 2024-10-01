@@ -1,4 +1,5 @@
 debug/addagvwidget.o
+debug/agvadddialog.o
 debug/agvitem.o
 debug/database.o
 debug/logitem.o
@@ -11,6 +12,7 @@ debug/usereditdialog.o
 debug/useritem.o
 debug/userstableshowandediting.o
 debug/moc_addagvwidget.o
+debug/moc_agvadddialog.o
 debug/moc_database.o
 debug/moc_mainwindow.o
 debug/moc_tableagvshow.o

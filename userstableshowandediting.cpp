@@ -13,8 +13,6 @@ UsersTableShowAndEditing::UsersTableShowAndEditing(QWidget *parent) : QWidget(pa
     addUserButton = new QPushButton("Добавить пользователя", this);
     addUserButton->setStyleSheet("background-color: #10732c; color: white; font-size: 16px; font-family: Arial; font-weight: bold;");
     addUserButton->setFixedSize(250, 40);
-
-
     connect(addUserButton, &QPushButton::clicked, this, &UsersTableShowAndEditing::onAddUserClicked);
 
     // Spacer для отталкивания кнопки к правому краю

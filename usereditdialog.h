@@ -7,6 +7,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QDebug>
+#include <QLabel>
 #include "useritem.h"
 #include "database.h"
 

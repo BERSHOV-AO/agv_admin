@@ -1,9 +1,9 @@
 #include "useradddialog.h"
 
-UserAddDialog::UserAddDialog(QWidget *parent)
+UserAddDialog::UserAddDialog(QWidget *parent) : QDialog(parent)
 {
 
-    setWindowTitle("Управление настройками пользователя");
+    setWindowTitle("Добавлениe пользователя");
 
     db = new DataBase();
     db->connectToDataBase();

@@ -6,6 +6,20 @@ TableAgvShow::TableAgvShow(QWidget *parent) : QWidget(parent)
     db->connectToDataBase();
 
     layout = new QVBoxLayout(this);
+    QHBoxLayout *topLayout = new QHBoxLayout();
+
+    addAGVButton = new QPushButton("Добавить AGV", this);
+    addAGVButton->setStyleSheet("background-color: #10732c; color: white; font-size: 16px; font-family: Arial; font-weight: bold;");
+    addAGVButton->setFixedSize(250, 40);
+    connect(addAGVButton, &QPushButton::clicked, this, &TableAgvShow::onAddAGVClicked);
+
+    // Spacer для отталкивания кнопки к правому краю
+    topLayout->addSpacerItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
+    topLayout->addWidget(addAGVButton);
+    // Добавляем горизонтальный макет в основной вертикальный макет
+    layout->addLayout(topLayout);
+
+
     tableWidget = new QTableWidget(this);
     tableWidget->setColumnCount(6); // Например, 3 колонки: ID, Название, Статус
     tableWidget->setHorizontalHeaderLabels(QStringList() << "Наименование" << "Серийный номер" << "Версия FW" << "Модель" << "Проектная документация" << "Дата последнего ТО");
@@ -67,3 +81,11 @@ QString TableAgvShow::formatDateFromMilliseconds(const QString& millisecondsStr)
     return dateTime.toString("hh:mm  dd.MM.yyyy");
 }
 
+
+void TableAgvShow::onAddAGVClicked(){
+
+    AGVAddDialog addAGV(this);
+    if (addAGV.exec() == QDialog::Accepted) {
+
+    }
+}

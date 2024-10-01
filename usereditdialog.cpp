@@ -26,9 +26,13 @@ UserEditDialog::UserEditDialog(const UserItem &user, QWidget *parent)
     connect(deleteButton, &QPushButton::clicked, this, &UserEditDialog::deleteUser);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->addWidget(new QLabel("Имя:", this));
     layout->addWidget(nameEdit);
+    layout->addWidget(new QLabel("Фамилия:", this));
     layout->addWidget(surnameEdit);
+    layout->addWidget(new QLabel("Логин:", this));
     layout->addWidget(loginEdit);
+    layout->addWidget(new QLabel("Пароль:", this));
     layout->addWidget(passEdit);
     layout->addWidget(saveButton);
     layout->addWidget(deleteButton);
@@ -36,7 +40,7 @@ UserEditDialog::UserEditDialog(const UserItem &user, QWidget *parent)
     setLayout(layout);
     setStyleSheet("background-color: #B0E0E6;");
 
-    resize(400, 280);
+    resize(400, 300);
 }
 
 UserItem UserEditDialog::getUser() const {
