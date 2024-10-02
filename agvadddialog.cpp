@@ -23,7 +23,7 @@ AGVAddDialog::AGVAddDialog(QWidget *parent) : QDialog(parent)
     projectDocumentationEdit = new QLineEdit();
     projectDocumentationEdit->setStyleSheet("background-color: white;");
 
-    saveButton = new QPushButton("Добавить пользователя", this);
+    saveButton = new QPushButton("Добавить AGV", this);
     saveButton->setStyleSheet(" background-color: #4CAF50; color: white;");
     connect(saveButton, &QPushButton::clicked, this, &AGVAddDialog::addAGV);
 

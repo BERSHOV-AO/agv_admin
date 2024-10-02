@@ -38,6 +38,7 @@ public:
     bool updateUser(const QString &login, const QString &newName, const QString &newSurname, const QString &newPass);
     bool saveUserItem(QString name, QString surname, QString login, QString pass);
     bool deleteUser(const QString &login, const QString &name, const QString &surname);
+    bool deleteAgv(const QString &serialNumber);
     QList<AgvItem> fetchAGVs();
     QList<UserItem> fetchUsers();
     QList<LogItem> fetchLogs();

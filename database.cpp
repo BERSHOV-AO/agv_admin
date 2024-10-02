@@ -349,4 +349,23 @@ bool DataBase::deleteUser(const QString &login, const QString &name, const QStri
     return true; // Возвращаем true, если все прошло успешно
 }
 
+bool DataBase::deleteAgv(const QString &serialNumber) {
+    QSqlQuery query;
+
+    // Подготовка SQL-запроса
+    query.prepare("DELETE FROM " TABLE_AGV " WHERE serialNumber = :serialNumber");
+
+    // Привязка параметра
+    query.bindValue(":serialNumber", serialNumber);
+
+    // Выполнение запроса
+    if (!query.exec()) {
+        qDebug() << "Error: Unable to delete AGV"; //<< query.lastError().text(); // Выводим текст ошибки
+        return false; // Возвращаем false в случае ошибки
+    }
+
+    return true; // Возвращаем true, если все прошло успешно
+}
+
+
 

@@ -84,9 +84,12 @@ void TableAgvShow::onCellDoubleClicked(int row, int column) {
     AgvItem selectedAGV(name, serialNumber, versionFW, model, ePlan, dataLastTO);
 
 
+    TableToOneAgvShowDialog tableToOneAgvShowDialog(selectedAGV, this);
+       tableToOneAgvShowDialog.resize(900, 600);
+       tableToOneAgvShowDialog.exec();
 
     // Открываем диалог для редактирования
-    AGVEditDialog editDialog(selectedAGV, this);
+////    AGVEditDialog editDialog(selectedAGV, this);
 
     // connect(&editDialog, &UserEditDialog::userDeleted, this, &UsersTableShowAndEditing::updateTable);
     // Подключаем сигнал для удаления пользователя
@@ -99,7 +102,7 @@ void TableAgvShow::onCellDoubleClicked(int row, int column) {
     //   //         }
     //        });
 
-    if (editDialog.exec() == QDialog::Accepted) {
+////    if (editDialog.exec() == QDialog::Accepted) {
 //        AgvItem updatedUser = editDialog.getUser();
 
 //        // Обновляем данные в таблице
@@ -114,7 +117,7 @@ void TableAgvShow::onCellDoubleClicked(int row, int column) {
 //            qDebug() << "Failed to update user.";
 //        }
     }
-}
+////}
 
 
 void TableAgvShow::onAddAGVClicked(){

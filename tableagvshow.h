@@ -13,6 +13,7 @@
 #include "agvadddialog.h"
 #include "agveditdialog.h"
 #include "agvitem.h"
+#include "tabletooneagvshowdialog.h"
 
 class TableAgvShow : public QWidget
 {

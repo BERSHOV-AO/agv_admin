@@ -17,11 +17,11 @@ UserEditDialog::UserEditDialog(const UserItem &user, QWidget *parent)
     passEdit->setStyleSheet("background-color: white;");
     // passEdit->setEchoMode(QLineEdit::Password);
 
-    QPushButton *saveButton = new QPushButton("Сохранить", this);
+    QPushButton *saveButton = new QPushButton("Сохранить изменения", this);
     saveButton->setStyleSheet(" background-color: #4CAF50; color: white;");
     connect(saveButton, &QPushButton::clicked, this, &UserEditDialog::saveData);
 
-    deleteButton = new QPushButton("Удалить", this);
+    deleteButton = new QPushButton("Удалить пользователя", this);
     deleteButton->setStyleSheet("background-color: red; color: white;");
     connect(deleteButton, &QPushButton::clicked, this, &UserEditDialog::deleteUser);
 
