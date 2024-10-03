@@ -12,6 +12,7 @@
 #include <QDir>
 #include <QDateTime>
 #include "database.h"
+#include <modelagvitem.h>
 
 #define ADD_AGV_STRING  "Добавление AGV в базу данных"
 
@@ -35,6 +36,7 @@ private:
 
     QComboBox *documentationComboBox;
     QComboBox *fwVersionComboBox;
+    QComboBox *modelComboBox;
 
     qint64 getCurrentMillisecondsSinceEpoch();
 };

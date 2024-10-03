@@ -65,8 +65,6 @@ void TableAgvShow::loadData() {
     }
 }
 
-
-
 void TableAgvShow::onCellDoubleClicked(int row, int column) {
     if (row < 0) return; // Проверка на корректность строки
 
@@ -82,7 +80,6 @@ void TableAgvShow::onCellDoubleClicked(int row, int column) {
 //            const QString &model, const QString &ePlan, const QString &dataLastTo);
 
     AgvItem selectedAGV(name, serialNumber, versionFW, model, ePlan, dataLastTO);
-
 
     TableToOneAgvShowDialog tableToOneAgvShowDialog(selectedAGV, this);
        tableToOneAgvShowDialog.resize(900, 600);
@@ -140,10 +137,8 @@ QString TableAgvShow::formatDateFromMilliseconds(const QString& millisecondsStr)
 
     // Преобразуем миллисекунды в секунды
     qint64 seconds = milliseconds / 1000;
-
     // Создаем объект QDateTime из секунд
     QDateTime dateTime = QDateTime::fromSecsSinceEpoch(seconds);
-
     // Форматируем дату и время в строку "ЧЧ:MM dd.MM.yyyy"
     return dateTime.toString("hh:mm  dd.MM.yyyy");
 }

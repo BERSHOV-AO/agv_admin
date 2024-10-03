@@ -20,13 +20,16 @@ SOURCES += \
     agvadddialog.cpp \
     agveditdialog.cpp \
     agvitem.cpp \
+    agvtoitem.cpp \
     database.cpp \
     logitem.cpp \
     main.cpp \
     mainwindow.cpp \
+    modelagvitem.cpp \
     tableagvshow.cpp \
     tablelogagvshow.cpp \
     tabletooneagvshowdialog.cpp \
+    toitem.cpp \
     useradddialog.cpp \
     usereditdialog.cpp \
     useritem.cpp \
@@ -37,12 +40,15 @@ HEADERS += \
     agvadddialog.h \
     agveditdialog.h \
     agvitem.h \
+    agvtoitem.h \
     database.h \
     logitem.h \
     mainwindow.h \
+    modelagvitem.h \
     tableagvshow.h \
     tablelogagvshow.h \
     tabletooneagvshowdialog.h \
+    toitem.h \
     useradddialog.h \
     usereditdialog.h \
     useritem.h \

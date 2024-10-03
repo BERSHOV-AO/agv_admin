@@ -9,6 +9,7 @@
 #include <QHeaderView>
 #include <QPushButton>
 #include <QDateTime>
+#include <QMessageBox>
 #include "database.h"
 #include "agveditdialog.h"
 #include "agvitem.h"

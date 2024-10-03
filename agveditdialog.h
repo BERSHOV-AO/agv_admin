@@ -41,6 +41,7 @@ private:
 
     QComboBox *documentationComboBox;
     QComboBox *fwVersionComboBox;
+    QComboBox *modelComboBox;
 
     qint64 getCurrentMillisecondsSinceEpoch();
 };

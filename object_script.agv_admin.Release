@@ -2,13 +2,16 @@ release/addagvwidget.o
 release/agvadddialog.o
 release/agveditdialog.o
 release/agvitem.o
+release/agvtoitem.o
 release/database.o
 release/logitem.o
 release/main.o
 release/mainwindow.o
+release/modelagvitem.o
 release/tableagvshow.o
 release/tablelogagvshow.o
 release/tabletooneagvshowdialog.o
+release/toitem.o
 release/useradddialog.o
 release/usereditdialog.o
 release/useritem.o

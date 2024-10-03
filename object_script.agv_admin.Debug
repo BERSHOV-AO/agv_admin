@@ -2,13 +2,16 @@ debug/addagvwidget.o
 debug/agvadddialog.o
 debug/agveditdialog.o
 debug/agvitem.o
+debug/agvtoitem.o
 debug/database.o
 debug/logitem.o
 debug/main.o
 debug/mainwindow.o
+debug/modelagvitem.o
 debug/tableagvshow.o
 debug/tablelogagvshow.o
 debug/tabletooneagvshowdialog.o
+debug/toitem.o
 debug/useradddialog.o
 debug/usereditdialog.o
 debug/useritem.o

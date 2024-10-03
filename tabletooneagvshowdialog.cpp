@@ -2,7 +2,7 @@
 
 TableToOneAgvShowDialog::TableToOneAgvShowDialog(const AgvItem &agv, QWidget *parent) : QDialog(parent), agv(agv)
 {
-
+    setWindowTitle(QString("AGV s/n: %1").arg(agv.getSerialNumber()));
 
     db = new DataBase();
     db->connectToDataBase();
@@ -28,7 +28,6 @@ TableToOneAgvShowDialog::TableToOneAgvShowDialog(const AgvItem &agv, QWidget *pa
 
     // loadData();
 
-
     // Создаем горизонтальный layout для кнопок
     QHBoxLayout *buttonLayout = new QHBoxLayout();
     buttonLayout->addWidget(deleteButton);
@@ -42,7 +41,6 @@ TableToOneAgvShowDialog::TableToOneAgvShowDialog(const AgvItem &agv, QWidget *pa
     setLayout(layout);
 }
 
-
 void TableToOneAgvShowDialog::oneEditAGVClicked() {
     AGVEditDialog editDialog(agv, this);
 
@@ -53,13 +51,22 @@ void TableToOneAgvShowDialog::oneEditAGVClicked() {
 
 void TableToOneAgvShowDialog::oneDeleteAGVClicked() {
 
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Подтверждение удаления",
+                                  QString("Вы точно хотите удалить AGV с серийным номером %1?").arg(agv.getSerialNumber()),
+                                  QMessageBox::Yes | QMessageBox::No);
 
-    // Здесь вы можете добавить код для удаления пользователя из БД
-    if (db->deleteAgv(agv.getSerialNumber())) { // Предполагается, что у вас есть метод deleteUser в классе db
-        qDebug() << "User deleted successfully.";
-        // emit userDeleted(); // Сигнал для уведомления о том, что пользователь был удален
-        accept(); // Закрываем диалог
+    // Проверяем, выбрал ли пользователь "Да"
+    if (reply == QMessageBox::Yes) {
+        // Здесь вы можете добавить код для удаления AGV из БД
+        if (db->deleteAgv(agv.getSerialNumber())) { // Предполагается, что у вас есть метод deleteAgv в классе db
+            qDebug() << "AGV deleted successfully.";
+            // emit agvDeleted(); // Сигнал для уведомления о том, что AGV был удален
+            accept(); // Закрываем диалог
+        } else {
+            qDebug() << "Failed to delete AGV.";
+        }
     } else {
-        qDebug() << "Failed to delete user.";
+        qDebug() << "AGV deletion canceled.";
     }
 }

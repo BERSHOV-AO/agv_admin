@@ -8,6 +8,7 @@
 #include <QVBoxLayout>
 #include <QDebug>
 #include <QLabel>
+#include <QMessageBox>
 #include "useritem.h"
 #include "database.h"
 

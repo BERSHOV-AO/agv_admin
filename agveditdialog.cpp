@@ -16,8 +16,8 @@ AGVEditDialog::AGVEditDialog(const AgvItem &agv, QWidget *parent) : QDialog(pare
     //    fwVersionEdit = new QLineEdit();
     //    fwVersionEdit->setStyleSheet("background-color: white;");
 
-    modelEdit = new QLineEdit(agv.getModel(), this);
-    modelEdit->setStyleSheet("background-color: white;");
+//    modelEdit = new QLineEdit(agv.getModel(), this);
+//    modelEdit->setStyleSheet("background-color: white;");
 
     //    projectDocumentationEdit = new QLineEdit();
     //    projectDocumentationEdit->setStyleSheet("background-color: white;");
@@ -35,6 +35,16 @@ AGVEditDialog::AGVEditDialog(const AgvItem &agv, QWidget *parent) : QDialog(pare
     fwVersionComboBox->setStyleSheet("QComboBox { background-color: white; }");
     //  fwVersionComboBox->setFixedSize(370, 30);
     fwVersionComboBox->addItems(directoriesFW);
+
+    //---------------------combo box model---------------------------
+    modelComboBox = new QComboBox(this);
+    QList<ModelAgvItem> models = db->fetchModels();
+    QStringList modelList;
+    for (const ModelAgvItem& model : models) {
+        modelList.append(model.getModel()); // Добавляем модель в QStringList
+    }
+    modelComboBox->addItems(modelList);
+    modelComboBox->setStyleSheet("QComboBox { background-color: white; }");
 
     //---------------------combo box sPlan---------------------------
     documentationComboBox = new QComboBox(this);
@@ -57,7 +67,7 @@ AGVEditDialog::AGVEditDialog(const AgvItem &agv, QWidget *parent) : QDialog(pare
     layout->addWidget(new QLabel("Версия FW:", this));
     layout->addWidget(fwVersionComboBox);
     layout->addWidget(new QLabel("Модель:", this));
-    layout->addWidget(modelEdit);
+    layout->addWidget(modelComboBox);
     layout->addWidget(new QLabel("Поектная документация:", this));
     layout->addWidget(documentationComboBox);
     layout->addWidget(saveButton);
@@ -82,7 +92,8 @@ AgvItem AGVEditDialog::getAGV(){
     return AgvItem(nameEdit->text(),
                    serilaNumberEdit->text(),
                    fwVersionComboBox->currentText(),
-                   modelEdit->text(),
+                   //modelEdit->text(),
+                   modelComboBox->currentText(),
                    documentationComboBox->currentText(),
                    QString::number(getCurrentMillisecondsSinceEpoch()));
 }

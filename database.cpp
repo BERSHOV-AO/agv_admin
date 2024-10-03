@@ -20,7 +20,6 @@ DataBase::DataBase(QObject *parent) : QObject(parent)
 
 }
 
-
 void DataBase::connectToDataBase()
 {
     /* Перед подключением к базе данных производим проверку на её существование.
@@ -125,6 +124,25 @@ bool DataBase::createTable()
                                                               "model TEXT "
                                                               ");";
 
+    QString strCreateTableAgv_1100_st = "CREATE TABLE " TABLE_AGV_1100_ST " ("
+                                                                          "nameTo TEXT, "
+                                                                          "frequencyTo TEXT "
+                                                                          ");";
+
+    QString strCreateTableAgv_3000_st = "CREATE TABLE " TABLE_AGV_3000_ST " ("
+                                                                          "nameTo TEXT, "
+                                                                          "frequencyTo TEXT "
+                                                                          ");";
+
+    QString strCreateTableAgv_1100_2p = "CREATE TABLE " TABLE_AGV_1100_2P " ("
+                                                                          "nameTo TEXT, "
+                                                                          "frequencyTo TEXT "
+                                                                          ");";
+
+    QString strCreateTableAgv_1100_2t = "CREATE TABLE " TABLE_AGV_1100_2T " ("
+                                                                          "nameTo TEXT, "
+                                                                          "frequencyTo TEXT "
+                                                                          ");";
     if (!query.exec(strCreateTableUsers))
     {
         return false;
@@ -146,6 +164,27 @@ bool DataBase::createTable()
     }
 
     if (!query.exec(strCreateTableModel))
+    {
+        return false;
+    }
+
+    //~~~~~~~~~~~~~~~~~~~TABLE TO AGV~~~~~~~~~~~~~~~~~~
+    if (!query.exec(strCreateTableAgv_1100_st))
+    {
+        return false;
+    }
+
+    if (!query.exec(strCreateTableAgv_3000_st))
+    {
+        return false;
+    }
+
+    if (!query.exec(strCreateTableAgv_1100_2p))
+    {
+        return false;
+    }
+
+    if (!query.exec(strCreateTableAgv_1100_2t))
     {
         return false;
     }
@@ -176,7 +215,6 @@ QList<AgvItem> DataBase::fetchAGVs() {
                     );
         agvs.append(agv);
     }
-
     return agvs;
 }
 
@@ -192,10 +230,10 @@ QList<UserItem> DataBase::fetchUsers() {
 
     while (query.next()) {
         UserItem user(query.value(0).toString(),
-                    query.value(1).toString(),
-                    query.value(2).toString(),
-                    query.value(3).toString()
-                    );
+                      query.value(1).toString(),
+                      query.value(2).toString(),
+                      query.value(3).toString()
+                      );
         users.append(user);
     }
 
@@ -227,7 +265,70 @@ QList<LogItem> DataBase::fetchLogs() {
     return logs;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------
+QList<ModelAgvItem> DataBase::fetchModels() {
+    QList<ModelAgvItem> models;
+
+    QSqlQuery query("SELECT model FROM " TABLE_MODEL);
+
+    if (!query.exec()) {
+        qWarning() << "Ошибка выполнения запроса:";
+        return models;
+    }
+
+    while (query.next()) {
+        ModelAgvItem model(query.value(0).toString());
+        models.append(model);
+    }
+    return models;
+}
+
+
+
+QList<TOItem> DataBase::fetchTO(const QString nameTableTO) {
+    QList<TOItem> toAGVs;
+
+    QSqlQuery query("SELECT nameTo, frequencyTo FROM " + nameTableTO);
+
+    if (!query.exec()) {
+        qWarning() << "Ошибка выполнения запроса:";
+        return toAGVs;
+    }
+
+    while (query.next()) {
+        TOItem toAGV(query.value(0).toString(),
+                     query.value(1).toString()
+                     );
+        toAGVs.append(toAGV);
+    }
+    return toAGVs;
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~save~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+bool DataBase::saveAgvTOItem(QString nameTo, QString serialNumberAGV, QString frequencyOfTo, QString statusTo, QString dataTo)
+{
+    // Подготавливаем SQL-запрос
+    QSqlQuery query(db);
+    query.prepare("INSERT INTO " TABLE_AGV_TO " (nameTo, serialNumberAGV, frequencyOfTo, statusTo, dataTo) "
+                                           "VALUES (:nameTo, :serialNumberAGV, :frequencyOfTo, :statusTo, :dataTo)");
+
+    // Устанавливаем значения параметров
+    query.bindValue(":nameTo", nameTo);
+    query.bindValue(":serialNumberAGV", serialNumberAGV);
+    query.bindValue(":frequencyOfTo", frequencyOfTo);
+    query.bindValue(":statusTo", statusTo);
+    query.bindValue(":dataTo", dataTo);
+
+    // Выполняем запрос
+    if (!query.exec()) {
+        qDebug() << "Ошибка выполнения запроса:"; //<< query.lastError().text();
+        return false;
+    }
+
+    return true; // Успешное выполнение
+}
+
 
 bool DataBase::saveAgvItem(QString name, QString serialNumber, QString versionFW, QString model, QString ePlan, QString dataLastTo)
 {
@@ -253,6 +354,7 @@ bool DataBase::saveAgvItem(QString name, QString serialNumber, QString versionFW
 
     return true; // Успешное выполнение
 }
+
 
 //tabelNum - табельный номер
 //--------------------------------
@@ -289,7 +391,7 @@ bool DataBase::saveUserItem(QString name, QString surname, QString login, QStrin
     // Подготавливаем SQL-запрос
     QSqlQuery query(db);
     query.prepare("INSERT INTO " TABLE_USERS " (name, surname, login, pass) "
-                   "VALUES (:name, :surname, :login, :pass)");
+                                             "VALUES (:name, :surname, :login, :pass)");
 
     // Устанавливаем значения параметров
     query.bindValue(":name", name);

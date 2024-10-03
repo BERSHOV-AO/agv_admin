@@ -58,20 +58,27 @@ void UserEditDialog::saveData() {
 
 //    qDebug() << "saveData user";
 //    // Здесь вы можете добавить код для сохранения данных в БД
-
-
 //    accept();
 //}
-
 //bool DataBase::deleteUser(const QString &login, const QString &name, const QString &surname) {
 
 void UserEditDialog::deleteUser() {
-    // Здесь вы можете добавить код для удаления пользователя из БД
-    if (db->deleteUser(user.getLogin(),user.getName(),user.getSurname())) { // Предполагается, что у вас есть метод deleteUser в классе db
-        qDebug() << "User deleted successfully.";
-        emit userDeleted(); // Сигнал для уведомления о том, что пользователь был удален
-        accept(); // Закрываем диалог
+
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Подтверждение удаления",
+                                  QString("Вы точно хотите удалить пользователя с табельным номером с %1?").arg(user.getLogin()),
+                                  QMessageBox::Yes | QMessageBox::No);
+
+    // Проверяем, выбрал ли пользователь "Да"
+    if (reply == QMessageBox::Yes) {
+        // Здесь вы можете добавить код для удаления AGV из БД
+        if (db->deleteUser(user.getLogin(),user.getName(),user.getSurname())) { // Предполагается, что у вас есть метод deleteUser в классе db
+            qDebug() << "User deleted successfully.";
+            accept(); // Закрываем диалог
+        } else {
+            qDebug() << "Failed to delete AGV.";
+        }
     } else {
-        qDebug() << "Failed to delete user.";
+        qDebug() << "AGV deletion canceled.";
     }
 }

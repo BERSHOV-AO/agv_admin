@@ -14,14 +14,14 @@ AGVAddDialog::AGVAddDialog(QWidget *parent) : QDialog(parent)
     serilaNumberEdit = new QLineEdit();
     serilaNumberEdit->setStyleSheet("background-color: white;");
 
-    fwVersionEdit = new QLineEdit();
-    fwVersionEdit->setStyleSheet("background-color: white;");
+    //    fwVersionEdit = new QLineEdit();
+    //    fwVersionEdit->setStyleSheet("background-color: white;");
 
     modelEdit = new QLineEdit();
     modelEdit->setStyleSheet("background-color: white;");
 
-    projectDocumentationEdit = new QLineEdit();
-    projectDocumentationEdit->setStyleSheet("background-color: white;");
+    //    projectDocumentationEdit = new QLineEdit();
+    //    projectDocumentationEdit->setStyleSheet("background-color: white;");
 
     saveButton = new QPushButton("Добавить AGV", this);
     saveButton->setStyleSheet(" background-color: #4CAF50; color: white;");
@@ -36,6 +36,16 @@ AGVAddDialog::AGVAddDialog(QWidget *parent) : QDialog(parent)
     fwVersionComboBox->setStyleSheet("QComboBox { background-color: white; }");
     //  fwVersionComboBox->setFixedSize(370, 30);
     fwVersionComboBox->addItems(directoriesFW);
+
+    //---------------------combo box model---------------------------
+    modelComboBox = new QComboBox(this);
+    QList<ModelAgvItem> models = db->fetchModels();
+    QStringList modelList;
+    for (const ModelAgvItem& model : models) {
+        modelList.append(model.getModel()); // Добавляем модель в QStringList
+    }
+    modelComboBox->addItems(modelList);
+    modelComboBox->setStyleSheet("QComboBox { background-color: white; }");
 
     //---------------------combo box sPlan---------------------------
     documentationComboBox = new QComboBox(this);
@@ -58,7 +68,7 @@ AGVAddDialog::AGVAddDialog(QWidget *parent) : QDialog(parent)
     layout->addWidget(new QLabel("Версия FW:", this));
     layout->addWidget(fwVersionComboBox);
     layout->addWidget(new QLabel("Модель:", this));
-    layout->addWidget(modelEdit);
+    layout->addWidget(modelComboBox);
     layout->addWidget(new QLabel("Поектная документация:", this));
     layout->addWidget(documentationComboBox);
     layout->addWidget(saveButton);
@@ -75,7 +85,7 @@ void AGVAddDialog::addAGV() {
     QString name = nameEdit->text();
     QString serialNumber = serilaNumberEdit->text();
     QString fwVersion = fwVersionComboBox->currentText();
-    QString model = modelEdit->text();
+    QString model = modelComboBox->currentText();
     QString documentation = documentationComboBox->currentText();
     QString dataLastTo = QString::number(getCurrentMillisecondsSinceEpoch());
 
@@ -86,6 +96,10 @@ void AGVAddDialog::addAGV() {
 
     } else {
         db->saveAgvItem(name, serialNumber, fwVersion, model, documentation, dataLastTo);
+        QList<TOItem> tos = db->fetchTO(model);
+        foreach(TOItem toItem , tos) {
+
+        }
         qDebug() << "Сохранено AGV:" << name << serialNumber << fwVersion << model << documentation;
         db->saveLogItem("3", "Admin", NULL, serialNumber, ADD_AGV_STRING, QString::number(getCurrentMillisecondsSinceEpoch()));
         nameEdit->clear();
