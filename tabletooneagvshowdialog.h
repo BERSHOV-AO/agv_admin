@@ -13,6 +13,10 @@
 #include "database.h"
 #include "agveditdialog.h"
 #include "agvitem.h"
+#include "agvtoitem.h"
+#include <QBrush>
+
+
 
 
 class TableToOneAgvShowDialog : public QDialog
@@ -30,7 +34,9 @@ private:
     QPushButton *editButton;
     AgvItem agv;
 
-
+    void loadData();
+    QString formatDateFromMilliseconds(const QString& millisecondsStr);
+    QString addDaysToMilliseconds(const QString& millisecondsStr, const QString& daysStr);
 
 private slots:
     void oneEditAGVClicked();

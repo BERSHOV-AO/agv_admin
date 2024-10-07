@@ -282,8 +282,6 @@ QList<ModelAgvItem> DataBase::fetchModels() {
     return models;
 }
 
-
-
 QList<TOItem> DataBase::fetchTO(const QString nameTableTO) {
     QList<TOItem> toAGVs;
 
@@ -303,6 +301,32 @@ QList<TOItem> DataBase::fetchTO(const QString nameTableTO) {
     return toAGVs;
 }
 
+QList<AGVTOItem> DataBase::fetchToOneAgv(const QString serialNumAGV) {
+    QList<AGVTOItem> agvToItems;
+
+    // Подготовка SQL-запроса с использованием параметра для предотвращения SQL-инъекций
+    QSqlQuery query;
+    query.prepare("SELECT nameTo, serialNumberAGV, frequencyOfTo, statusTo, dataTo FROM " TABLE_AGV_TO " WHERE serialNumberAGV = :serialNumAGV");
+    query.bindValue(":serialNumAGV", serialNumAGV);
+
+    if (!query.exec()) {
+        qWarning() << "Ошибка выполнения запроса:"; //<< query.lastError();
+        return agvToItems;
+    }
+
+    while (query.next()) {
+        AGVTOItem agvToItem(
+                    query.value(0).toString(), // nameTo
+                    query.value(1).toString(), // serialNumberAGV
+                    query.value(2).toString(), // frequencyOfTo
+                    query.value(3).toString(), // statusTo
+                    query.value(4).toString()  // dataTo
+                    );
+        agvToItems.append(agvToItem);
+    }
+    return agvToItems;
+}
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~save~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -311,7 +335,7 @@ bool DataBase::saveAgvTOItem(QString nameTo, QString serialNumberAGV, QString fr
     // Подготавливаем SQL-запрос
     QSqlQuery query(db);
     query.prepare("INSERT INTO " TABLE_AGV_TO " (nameTo, serialNumberAGV, frequencyOfTo, statusTo, dataTo) "
-                                           "VALUES (:nameTo, :serialNumberAGV, :frequencyOfTo, :statusTo, :dataTo)");
+                                              "VALUES (:nameTo, :serialNumberAGV, :frequencyOfTo, :statusTo, :dataTo)");
 
     // Устанавливаем значения параметров
     query.bindValue(":nameTo", nameTo);

@@ -35,7 +35,7 @@ UserAddDialog::UserAddDialog(QWidget *parent) : QDialog(parent)
     layout->addWidget(nameEdit);
     layout->addWidget(new QLabel("Фамилия:", this));
     layout->addWidget(surnameEdit);
-    layout->addWidget(new QLabel("Логин:", this));
+    layout->addWidget(new QLabel("Логин/Табельный номер:", this));
     layout->addWidget(loginEdit);
     layout->addWidget(new QLabel("Пароль:", this));
     layout->addWidget(passEdit);

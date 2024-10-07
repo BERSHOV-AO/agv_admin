@@ -1,5 +1,11 @@
 #include "agvadddialog.h"
 
+/**
+ * statusTo - 1 ----> ТО выполнено
+ * statusTo - 0 ----> TO не выполнено
+ * statusTo - 2 ----> Через ~ N дней нужно выполнить TO
+ */
+
 AGVAddDialog::AGVAddDialog(QWidget *parent) : QDialog(parent)
 {
 
@@ -98,7 +104,7 @@ void AGVAddDialog::addAGV() {
         db->saveAgvItem(name, serialNumber, fwVersion, model, documentation, dataLastTo);
         QList<TOItem> tos = db->fetchTO(model);
         foreach(TOItem toItem , tos) {
-
+            db->saveAgvTOItem(toItem.getNameTo(),serialNumber,toItem.getFrequencyTo(),"1", QString::number(getCurrentMillisecondsSinceEpoch()));
         }
         qDebug() << "Сохранено AGV:" << name << serialNumber << fwVersion << model << documentation;
         db->saveLogItem("3", "Admin", NULL, serialNumber, ADD_AGV_STRING, QString::number(getCurrentMillisecondsSinceEpoch()));

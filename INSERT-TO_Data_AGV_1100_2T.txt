@@ -1,4 +1,4 @@
-INSERT INTO to_data_agv_1100_2t (nameTo, frequencyTo) VALUES 
+INSERT INTO AGV_1100_2T (nameTo, frequencyTo) VALUES 
 ('Корпус - очистка от загрязнений', '30'),
 ('Корпус - контроль резьбовых соединений, протяжка', '30'),
 ('Позиционирующие ролики - проверить на наличие люфтов', '30'),

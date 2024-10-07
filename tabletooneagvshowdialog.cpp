@@ -1,5 +1,11 @@
 #include "tabletooneagvshowdialog.h"
 
+/**
+ * statusTo - 1 ----> ТО выполнено
+ * statusTo - 0 ----> TO не выполнено
+ * statusTo - 2 ----> Через ~ N дней нужно выполнить TO
+ */
+
 TableToOneAgvShowDialog::TableToOneAgvShowDialog(const AgvItem &agv, QWidget *parent) : QDialog(parent), agv(agv)
 {
     setWindowTitle(QString("AGV s/n: %1").arg(agv.getSerialNumber()));
@@ -19,14 +25,13 @@ TableToOneAgvShowDialog::TableToOneAgvShowDialog(const AgvItem &agv, QWidget *pa
     tableWidget = new QTableWidget(this);
     tableWidget->setColumnCount(3); // Например, 3 колонки: ID, Название, Статус
     tableWidget->setHorizontalHeaderLabels(QStringList() << "Деталь/Наименование работ" << "Дата последнего обслуживания" << "Дата следующего обслуживания");
-    tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section { background-color: #4CAF50; color: white; }");
+    tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section { background-color: #4986cf; color: white; }");
+//        addAGVButton->setStyleSheet("background-color: #4986cf; color: white; font-size: 16px; font-family: Arial; font-weight: bold;");
 
-    tableWidget->setColumnWidth(0, 250);
-    tableWidget->setColumnWidth(1, 250);
-    tableWidget->setColumnWidth(2, 370);
-    tableWidget->setColumnWidth(3, 250);
-
-    // loadData();
+    tableWidget->setColumnWidth(0, 750);
+    tableWidget->setColumnWidth(1, 200);
+    tableWidget->setColumnWidth(2, 200);
+    loadData();
 
     // Создаем горизонтальный layout для кнопок
     QHBoxLayout *buttonLayout = new QHBoxLayout();
@@ -39,6 +44,53 @@ TableToOneAgvShowDialog::TableToOneAgvShowDialog(const AgvItem &agv, QWidget *pa
     layout->addLayout(buttonLayout);
 
     setLayout(layout);
+}
+
+void TableToOneAgvShowDialog::loadData() {
+    // Получаем список AGV из базы данных
+    // DataBase db; // Предположим, у вас есть экземпляр класса DataBase
+
+    QList<AGVTOItem> tosOneAgv = db->fetchToOneAgv(agv.getSerialNumber()); // Получаем данные
+
+    // Очищаем таблицу перед загрузкой новых данных
+    tableWidget->setRowCount(0);
+
+    // Заполняем таблицу данными из списка agvs
+    for (const AGVTOItem &to : tosOneAgv) {
+        int rowCount = tableWidget->rowCount();
+        tableWidget->insertRow(rowCount); // Добавляем новую строку
+
+        tableWidget->setItem(rowCount, 0, new QTableWidgetItem(to.getNameTo()));
+        tableWidget->setItem(rowCount, 1, new QTableWidgetItem(formatDateFromMilliseconds(to.getDataTo())));
+        tableWidget->setItem(rowCount, 2, new QTableWidgetItem(addDaysToMilliseconds(to.getDataTo(), to.getFrequencyOfTo())));
+
+        if (to.getStatusTo() == "1") {
+            for (int col = 0; col < tableWidget->columnCount(); ++col) {
+                QTableWidgetItem *item = tableWidget->item(rowCount, col);
+                if (item) {
+                    item->setBackground(QBrush(QColor(144, 238, 144))); // Устанавливаем зеленый фон
+                }
+            }
+        }
+
+        if (to.getStatusTo() == "0") {
+            for (int col = 0; col < tableWidget->columnCount(); ++col) {
+                QTableWidgetItem *item = tableWidget->item(rowCount, col);
+                if (item) {
+                    item->setBackground(QBrush(QColor(255, 182, 193))); // Светло-красный фон
+                }
+            }
+        }
+
+        if (to.getStatusTo() == "2") {
+            for (int col = 0; col < tableWidget->columnCount(); ++col) {
+                QTableWidgetItem *item = tableWidget->item(rowCount, col);
+                if (item) {
+                    item->setBackground(QBrush(Qt::yellow)); // Устанавливаем зеленый фон
+                }
+            }
+        }
+    }
 }
 
 void TableToOneAgvShowDialog::oneEditAGVClicked() {
@@ -69,4 +121,58 @@ void TableToOneAgvShowDialog::oneDeleteAGVClicked() {
     } else {
         qDebug() << "AGV deletion canceled.";
     }
+}
+
+QString TableToOneAgvShowDialog::formatDateFromMilliseconds(const QString& millisecondsStr) {
+    // Преобразуем строку в qint64
+    bool ok;
+    qint64 milliseconds = millisecondsStr.toLongLong(&ok);
+
+    // Проверяем, успешно ли прошло преобразование
+    if (!ok) {
+        return QString(); // Возвращаем пустую строку в случае ошибки
+    }
+
+    // Преобразуем миллисекунды в секунды
+    qint64 seconds = milliseconds / 1000;
+    // Создаем объект QDateTime из секунд
+    QDateTime dateTime = QDateTime::fromSecsSinceEpoch(seconds);
+    // Форматируем дату и время в строку "ЧЧ:MM dd.MM.yyyy"
+    return dateTime.toString("hh:mm  dd.MM.yyyy");
+}
+
+
+QString TableToOneAgvShowDialog::addDaysToMilliseconds(const QString& millisecondsStr, const QString& daysStr) {
+    // Преобразуем строку миллисекунд в qint64
+    bool ok;
+    qint64 milliseconds = millisecondsStr.toLongLong(&ok);
+
+    // Проверяем, успешно ли прошло преобразование
+    if (!ok) {
+        return QString(); // Возвращаем пустую строку в случае ошибки
+    }
+
+    // Извлекаем число дней из строки
+    QString daysNumberStr = daysStr.split(" ")[0]; // Получаем число до пробела
+    qint64 days = daysNumberStr.toLongLong(&ok);
+
+    // Проверяем, успешно ли прошло преобразование
+    if (!ok) {
+        return QString(); // Возвращаем пустую строку в случае ошибки
+    }
+
+    // Преобразуем дни в миллисекунды
+    qint64 millisecondsToAdd = days * 24 * 60 * 60 * 1000; // 1 день = 24 часа * 60 минут * 60 секунд * 1000 миллисекунд
+
+    // Добавляем миллисекунды
+    milliseconds += millisecondsToAdd;
+
+    // Преобразуем миллисекунды в секунды
+    qint64 seconds = milliseconds / 1000;
+
+    // Создаем объект QDateTime из секунд
+    QDateTime dateTime = QDateTime::fromSecsSinceEpoch(seconds);
+
+    // Форматируем дату и время в строку "ЧЧ:MM dd.MM.yyyy"
+    return dateTime.toString("hh:mm  dd.MM.yyyy");
 }

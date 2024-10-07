@@ -13,6 +13,7 @@
 #include "logitem.h"
 #include "modelagvitem.h"
 #include "toitem.h"
+#include "agvtoitem.h"
 
 /* Директивы имен таблицы, полей таблицы и базы данных */
 #define DATABASE_NAME            "agv_db.db"
@@ -62,6 +63,7 @@ public:
     QList<UserItem> fetchUsers();
     QList<LogItem> fetchLogs();
     QList<ModelAgvItem> fetchModels();
+    QList<AGVTOItem> fetchToOneAgv(const QString serialNumAGV);
     QList<TOItem> fetchTO(const QString nameTableTO);
 
     explicit DataBase(QObject *parent = nullptr);

@@ -13,8 +13,14 @@ TableAgvShow::TableAgvShow(QWidget *parent) : QWidget(parent)
     addAGVButton->setFixedSize(250, 40);
     connect(addAGVButton, &QPushButton::clicked, this, &TableAgvShow::onAddAGVClicked);
 
+    modeEditAGV = new QPushButton("Редактор моделей AGV", this);
+    modeEditAGV->setStyleSheet("background-color: #4986cf; color: white; font-size: 16px; font-family: Arial; font-weight: bold;");
+    modeEditAGV->setFixedSize(250, 40);
+   // connect(addAGVButton, &QPushButton::clicked, this, &TableAgvShow::onAddAGVClicked);
+
     // Spacer для отталкивания кнопки к правому краю
     topLayout->addSpacerItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
+    topLayout->addWidget(modeEditAGV);
     topLayout->addWidget(addAGVButton);
     // Добавляем горизонтальный макет в основной вертикальный макет
     layout->addLayout(topLayout);
@@ -82,7 +88,7 @@ void TableAgvShow::onCellDoubleClicked(int row, int column) {
     AgvItem selectedAGV(name, serialNumber, versionFW, model, ePlan, dataLastTO);
 
     TableToOneAgvShowDialog tableToOneAgvShowDialog(selectedAGV, this);
-       tableToOneAgvShowDialog.resize(900, 600);
+       tableToOneAgvShowDialog.resize(1200, 700);
        tableToOneAgvShowDialog.exec();
 
     // Открываем диалог для редактирования

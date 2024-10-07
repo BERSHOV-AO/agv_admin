@@ -23,6 +23,7 @@ public:
     QVBoxLayout *layout;
     QTableWidget *tableWidget;
     QPushButton *addAGVButton;
+    QPushButton *modeEditAGV;
     DataBase *db;
 
     void loadData();
