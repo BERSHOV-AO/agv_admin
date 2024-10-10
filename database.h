@@ -53,11 +53,13 @@ public:
     bool saveLogItem(QString typeLog, QString tabelNum, QString timeOpenApp, QString serialNumberAgv, QString nameTO, QString timeToAgv);
     bool saveAgvTOItem(QString nameTo, QString serialNumberAGV, QString frequencyOfTo, QString statusTo, QString dataTo);
     bool saveUserItem(QString name, QString surname, QString login, QString pass);
+    bool saveModelItem(QString model);
     //~~~~~~~~~update~~~~~~~~~~~
     bool updateUser(const QString &login, const QString &newName, const QString &newSurname, const QString &newPass);
     //~~~~~~~~~delete~~~~~~~~~~~
     bool deleteUser(const QString &login, const QString &name, const QString &surname);
     bool deleteAgv(const QString &serialNumber);
+    bool deleteAllToOneAgv(const QString serialNumAGV);
     //~~~~~~~~~fetch~~~~~~~~~~~
     QList<AgvItem> fetchAGVs();
     QList<UserItem> fetchUsers();

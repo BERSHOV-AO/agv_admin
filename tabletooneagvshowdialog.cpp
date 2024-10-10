@@ -26,7 +26,7 @@ TableToOneAgvShowDialog::TableToOneAgvShowDialog(const AgvItem &agv, QWidget *pa
     tableWidget->setColumnCount(3); // Например, 3 колонки: ID, Название, Статус
     tableWidget->setHorizontalHeaderLabels(QStringList() << "Деталь/Наименование работ" << "Дата последнего обслуживания" << "Дата следующего обслуживания");
     tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section { background-color: #4986cf; color: white; }");
-//        addAGVButton->setStyleSheet("background-color: #4986cf; color: white; font-size: 16px; font-family: Arial; font-weight: bold;");
+    //        addAGVButton->setStyleSheet("background-color: #4986cf; color: white; font-size: 16px; font-family: Arial; font-weight: bold;");
 
     tableWidget->setColumnWidth(0, 750);
     tableWidget->setColumnWidth(1, 200);
@@ -110,11 +110,21 @@ void TableToOneAgvShowDialog::oneDeleteAGVClicked() {
 
     // Проверяем, выбрал ли пользователь "Да"
     if (reply == QMessageBox::Yes) {
-        // Здесь вы можете добавить код для удаления AGV из БД
-        if (db->deleteAgv(agv.getSerialNumber())) { // Предполагается, что у вас есть метод deleteAgv в классе db
+        // Получаем серийный номер AGV
+        QString serialNumber = agv.getSerialNumber();
+
+        // Сначала удаляем сам AGV
+        if (db->deleteAgv(serialNumber)) {
             qDebug() << "AGV deleted successfully.";
-            // emit agvDeleted(); // Сигнал для уведомления о том, что AGV был удален
-            accept(); // Закрываем диалог
+
+            // Теперь удаляем все записи, связанные с данным AGV
+            if (db->deleteAllToOneAgv(serialNumber)) {
+                qDebug() << "All records related to AGV deleted successfully.";
+                // emit agvDeleted(); // Сигнал для уведомления о том, что AGV был удален
+                accept(); // Закрываем диалог
+            } else {
+                qDebug() << "Failed to delete related records for AGV.";
+            }
         } else {
             qDebug() << "Failed to delete AGV.";
         }

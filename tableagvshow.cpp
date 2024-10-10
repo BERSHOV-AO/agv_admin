@@ -16,7 +16,7 @@ TableAgvShow::TableAgvShow(QWidget *parent) : QWidget(parent)
     modeEditAGV = new QPushButton("Редактор моделей AGV", this);
     modeEditAGV->setStyleSheet("background-color: #4986cf; color: white; font-size: 16px; font-family: Arial; font-weight: bold;");
     modeEditAGV->setFixedSize(250, 40);
-   // connect(addAGVButton, &QPushButton::clicked, this, &TableAgvShow::onAddAGVClicked);
+    connect(modeEditAGV, &QPushButton::clicked, this, &TableAgvShow::onRedactorModelClicked);
 
     // Spacer для отталкивания кнопки к правому краю
     topLayout->addSpacerItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
@@ -82,17 +82,17 @@ void TableAgvShow::onCellDoubleClicked(int row, int column) {
     QString ePlan = tableWidget->item(row, 4)->text();
     QString dataLastTO = tableWidget->item(row, 5)->text();
 
-//    AgvItem(const QString &name, const QString &serialNumber, const QString &versionFW,
-//            const QString &model, const QString &ePlan, const QString &dataLastTo);
+    //    AgvItem(const QString &name, const QString &serialNumber, const QString &versionFW,
+    //            const QString &model, const QString &ePlan, const QString &dataLastTo);
 
     AgvItem selectedAGV(name, serialNumber, versionFW, model, ePlan, dataLastTO);
 
     TableToOneAgvShowDialog tableToOneAgvShowDialog(selectedAGV, this);
-       tableToOneAgvShowDialog.resize(1200, 700);
-       tableToOneAgvShowDialog.exec();
+    tableToOneAgvShowDialog.resize(1200, 700);
+    tableToOneAgvShowDialog.exec();
 
     // Открываем диалог для редактирования
-////    AGVEditDialog editDialog(selectedAGV, this);
+    ////    AGVEditDialog editDialog(selectedAGV, this);
 
     // connect(&editDialog, &UserEditDialog::userDeleted, this, &UsersTableShowAndEditing::updateTable);
     // Подключаем сигнал для удаления пользователя
@@ -105,21 +105,21 @@ void TableAgvShow::onCellDoubleClicked(int row, int column) {
     //   //         }
     //        });
 
-////    if (editDialog.exec() == QDialog::Accepted) {
-//        AgvItem updatedUser = editDialog.getUser();
+    ////    if (editDialog.exec() == QDialog::Accepted) {
+    //        AgvItem updatedUser = editDialog.getUser();
 
-//        // Обновляем данные в таблице
-//        tableWidget->item(row, 0)->setText(updatedUser.getName());
-//        tableWidget->item(row, 1)->setText(updatedUser.getSurname());
-//        tableWidget->item(row, 2)->setText(updatedUser.getLogin());
-//        tableWidget->item(row, 3)->setText(updatedUser.getPass());
+    //        // Обновляем данные в таблице
+    //        tableWidget->item(row, 0)->setText(updatedUser.getName());
+    //        tableWidget->item(row, 1)->setText(updatedUser.getSurname());
+    //        tableWidget->item(row, 2)->setText(updatedUser.getLogin());
+    //        tableWidget->item(row, 3)->setText(updatedUser.getPass());
 
-//        if (db->updateUser(login, updatedUser.getName(), updatedUser.getSurname(), updatedUser.getPass())) {
-//            qDebug() << "User updated successfully.";
-//        } else {
-//            qDebug() << "Failed to update user.";
-//        }
-    }
+    //        if (db->updateUser(login, updatedUser.getName(), updatedUser.getSurname(), updatedUser.getPass())) {
+    //            qDebug() << "User updated successfully.";
+    //        } else {
+    //            qDebug() << "Failed to update user.";
+    //        }
+}
 ////}
 
 
@@ -127,6 +127,14 @@ void TableAgvShow::onAddAGVClicked(){
 
     AGVAddDialog addAGV(this);
     if (addAGV.exec() == QDialog::Accepted) {
+
+    }
+}
+
+void TableAgvShow::onRedactorModelClicked(){
+
+    ModelRedactorDialog redactorModel(this);
+    if (redactorModel.exec() == QDialog::Accepted) {
 
     }
 }

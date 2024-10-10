@@ -7,7 +7,9 @@ release/database.o
 release/logitem.o
 release/main.o
 release/mainwindow.o
+release/modeladddialog.o
 release/modelagvitem.o
+release/modelredactordialog.o
 release/tableagvshow.o
 release/tablelogagvshow.o
 release/tabletooneagvshowdialog.o
@@ -21,6 +23,7 @@ release/moc_agvadddialog.o
 release/moc_agveditdialog.o
 release/moc_database.o
 release/moc_mainwindow.o
+release/moc_modeladddialog.o
 release/moc_tableagvshow.o
 release/moc_tablelogagvshow.o
 release/moc_tabletooneagvshowdialog.o

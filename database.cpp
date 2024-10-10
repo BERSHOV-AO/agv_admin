@@ -330,6 +330,25 @@ QList<AGVTOItem> DataBase::fetchToOneAgv(const QString serialNumAGV) {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~save~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+bool DataBase::saveModelItem(QString model)
+{
+    // Подготавливаем SQL-запрос
+    QSqlQuery query(db);
+    query.prepare("INSERT INTO " TABLE_MODEL " (model) "
+                                             "VALUES (:model)");
+
+    // Устанавливаем значения параметров
+    query.bindValue(":model", model);
+
+    // Выполняем запрос
+    if (!query.exec()) {
+        qDebug() << "Ошибка выполнения запроса:";
+        return false;
+    }
+
+    return true; // Успешное выполнение
+}
+
 bool DataBase::saveAgvTOItem(QString nameTo, QString serialNumberAGV, QString frequencyOfTo, QString statusTo, QString dataTo)
 {
     // Подготавливаем SQL-запрос
@@ -455,6 +474,8 @@ bool DataBase::updateUser(const QString &login, const QString &newName, const QS
     return true; // Возвращаем true, если все прошло успешно
 }
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~delete~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 bool DataBase::deleteUser(const QString &login, const QString &name, const QString &surname) {
     QSqlQuery query;
 
@@ -493,5 +514,21 @@ bool DataBase::deleteAgv(const QString &serialNumber) {
     return true; // Возвращаем true, если все прошло успешно
 }
 
+
+bool DataBase::deleteAllToOneAgv(const QString serialNumAGV) {
+    // Создаем SQL-запрос для удаления всех строк с заданным serialNumAGV
+    QSqlQuery query;
+    query.prepare("DELETE FROM " TABLE_AGV_TO " WHERE serialNumberAGV = :serialNumberAGV");
+    query.bindValue(":serialNumberAGV", serialNumAGV);
+
+    // Выполняем запрос
+    if (!query.exec()) {
+        // Если произошла ошибка, выводим ее в отладочный лог
+        qDebug() << "Error deleting records:";//<< query.lastError().text();
+        return false; // Возвращаем false в случае ошибки
+    }
+
+    return true; // Возвращаем true, если удаление прошло успешно
+}
 
 

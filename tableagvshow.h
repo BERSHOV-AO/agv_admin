@@ -14,6 +14,7 @@
 #include "agveditdialog.h"
 #include "agvitem.h"
 #include "tabletooneagvshowdialog.h"
+#include "modelredactordialog.h"
 
 class TableAgvShow : public QWidget
 {
@@ -32,6 +33,7 @@ public:
 private slots:
     void onCellDoubleClicked(int row, int column);
     void onAddAGVClicked();
+    void onRedactorModelClicked();
 
 signals:
 

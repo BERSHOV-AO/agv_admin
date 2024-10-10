@@ -31,13 +31,25 @@ MainWindow::MainWindow(QWidget *parent)
 
     usersButton = new QPushButton("Пользователи");
 //    addAGVButton = new QPushButton("Добавить AGV");
-    listAGVButton = new QPushButton("Список AGV");
+    listAGVButton = new QPushButton("AGV");
     logButton = new QPushButton("Логи приложения");
 
-    usersButton->setStyleSheet("background-color: white;");
- //   addAGVButton->setStyleSheet("background-color: white;");
-    listAGVButton->setStyleSheet("background-color: white;");
-    logButton->setStyleSheet("background-color: white;");
+    int fixedHeight = 30; // Задайте нужное значение высоты
+    usersButton->setFixedHeight(fixedHeight);
+    listAGVButton->setFixedHeight(fixedHeight);
+    logButton->setFixedHeight(fixedHeight);
+
+    // Увеличиваем текст на кнопках
+    //QString buttonStyle = "font-size: 14px; color: white; background-color: #4986cf; font-weight: bold;"; // Задайте нужный размер шрифта
+     QString buttonStyle = "font-size: 14px; color: #1b1b1b; background-color: white; font-weight: bold;";
+    usersButton->setStyleSheet(buttonStyle);
+    listAGVButton->setStyleSheet(buttonStyle);
+    logButton->setStyleSheet(buttonStyle);
+
+//    usersButton->setStyleSheet("background-color: white;");
+// //   addAGVButton->setStyleSheet("background-color: white;");
+//    listAGVButton->setStyleSheet("background-color: white;");
+//    logButton->setStyleSheet("background-color: white;");
 
     // Подключаем кнопки к слоту переключения
 

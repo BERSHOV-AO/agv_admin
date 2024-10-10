@@ -25,7 +25,9 @@ SOURCES += \
     logitem.cpp \
     main.cpp \
     mainwindow.cpp \
+    modeladddialog.cpp \
     modelagvitem.cpp \
+    modelredactordialog.cpp \
     tableagvshow.cpp \
     tablelogagvshow.cpp \
     tabletooneagvshowdialog.cpp \
@@ -44,7 +46,9 @@ HEADERS += \
     database.h \
     logitem.h \
     mainwindow.h \
+    modeladddialog.h \
     modelagvitem.h \
+    modelredactordialog.h \
     tableagvshow.h \
     tablelogagvshow.h \
     tabletooneagvshowdialog.h \

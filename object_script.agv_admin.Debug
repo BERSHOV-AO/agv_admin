@@ -7,7 +7,9 @@ debug/database.o
 debug/logitem.o
 debug/main.o
 debug/mainwindow.o
+debug/modeladddialog.o
 debug/modelagvitem.o
+debug/modelredactordialog.o
 debug/tableagvshow.o
 debug/tablelogagvshow.o
 debug/tabletooneagvshowdialog.o
@@ -21,6 +23,7 @@ debug/moc_agvadddialog.o
 debug/moc_agveditdialog.o
 debug/moc_database.o
 debug/moc_mainwindow.o
+debug/moc_modeladddialog.o
 debug/moc_tableagvshow.o
 debug/moc_tablelogagvshow.o
 debug/moc_tabletooneagvshowdialog.o
