@@ -12,7 +12,7 @@ UsersTableShowAndEditing::UsersTableShowAndEditing(QWidget *parent) : QWidget(pa
 
     addUserButton = new QPushButton("Добавить пользователя", this);
     addUserButton->setStyleSheet("background-color: #4986cf; color: white; font-size: 16px; font-family: Arial; font-weight: bold;");
-    addUserButton->setFixedSize(250, 40);
+    addUserButton->setFixedSize(250, 35);
     connect(addUserButton, &QPushButton::clicked, this, &UsersTableShowAndEditing::onAddUserClicked);
 
     // Spacer для отталкивания кнопки к правому краю
@@ -85,17 +85,6 @@ void UsersTableShowAndEditing::onCellDoubleClicked(int row, int column) {
 
     // Открываем диалог для редактирования
     UserEditDialog editDialog(selectedUser, this);
-
-    // connect(&editDialog, &UserEditDialog::userDeleted, this, &UsersTableShowAndEditing::updateTable);
-    // Подключаем сигнал для удаления пользователя
-    //        connect(&editDialog, &UserEditDialog::userDeleted, this, [this, row]() {
-    //          //  if (db->deleteUser(login)) { // Предполагается, что у вас есть метод deleteUser в DataBase
-    //                tableWidget->removeRow(row); // Удаляем строку из таблицы
-    //     //           qDebug() << "User deleted successfully.";
-    //  //          } else {
-    //    //            qDebug() << "Failed to delete user.";
-    //   //         }
-    //        });
 
     if (editDialog.exec() == QDialog::Accepted) {
         UserItem updatedUser = editDialog.getUser();

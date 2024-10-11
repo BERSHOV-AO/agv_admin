@@ -6,9 +6,9 @@ MainWindow::MainWindow(QWidget *parent)
     stackedWidget = new QStackedWidget(this);
 
     usersWidget = createUsresWidget();
-//    addAGVWidget = createAddAGVWidget();
     listAGVWidget = createListAGVWidget();
     logWidget = createLogWidget();
+    modelWidget = createModelWidget();
 
 
     titleLabel = new QLabel("Администрирование AGV");
@@ -25,31 +25,29 @@ MainWindow::MainWindow(QWidget *parent)
     line->setStyleSheet("background-color: white;"); // Устанавливаем цвет
 
     stackedWidget->addWidget(usersWidget);
- //   stackedWidget->addWidget(addAGVWidget);
     stackedWidget->addWidget(listAGVWidget);
+    stackedWidget->addWidget(modelWidget);
     stackedWidget->addWidget(logWidget);
 
     usersButton = new QPushButton("Пользователи");
-//    addAGVButton = new QPushButton("Добавить AGV");
     listAGVButton = new QPushButton("AGV");
+    modelButton = new QPushButton("Редактор моделей AGV");
     logButton = new QPushButton("Логи приложения");
 
     int fixedHeight = 30; // Задайте нужное значение высоты
     usersButton->setFixedHeight(fixedHeight);
     listAGVButton->setFixedHeight(fixedHeight);
     logButton->setFixedHeight(fixedHeight);
+    modelButton->setFixedHeight(fixedHeight);
 
     // Увеличиваем текст на кнопках
     //QString buttonStyle = "font-size: 14px; color: white; background-color: #4986cf; font-weight: bold;"; // Задайте нужный размер шрифта
-     QString buttonStyle = "font-size: 14px; color: #1b1b1b; background-color: white; font-weight: bold;";
+    QString buttonStyle = "font-size: 14px; color: #1b1b1b; background-color: white; font-weight: bold;";
     usersButton->setStyleSheet(buttonStyle);
     listAGVButton->setStyleSheet(buttonStyle);
     logButton->setStyleSheet(buttonStyle);
+    modelButton->setStyleSheet(buttonStyle);
 
-//    usersButton->setStyleSheet("background-color: white;");
-// //   addAGVButton->setStyleSheet("background-color: white;");
-//    listAGVButton->setStyleSheet("background-color: white;");
-//    logButton->setStyleSheet("background-color: white;");
 
     // Подключаем кнопки к слоту переключения
 
@@ -58,20 +56,17 @@ MainWindow::MainWindow(QWidget *parent)
         stackedWidget->setCurrentIndex(0); // Индекс 0 - виджет добавления AGV
     });
 
-//    connect(usersTableShowAndEditing, &UsersTableShowAndEditing::dataUsersUpdated, this,[this]() {
-//        updateUsersData();
-//        stackedWidget->setCurrentIndex(0); // Индекс 0 - виджет добавления AGV
-//    });
-//    connect(addAGVButton, &QPushButton::clicked, this, [this]() {
-//        stackedWidget->setCurrentIndex(1); // Индекс 1 - виджет добавления AGV
-//    });
     connect(listAGVButton, &QPushButton::clicked, this, [this]() {
         updateListAGVData();
         stackedWidget->setCurrentIndex(1); // Индекс 2 - виджет списка AGV
     });
+    connect(modelButton, &QPushButton::clicked, this, [this]() {
+        updateModelData();
+        stackedWidget->setCurrentIndex(2); // Индекс 3 - виджет списка AGV
+    });
     connect(logButton, &QPushButton::clicked, this, [this]() {
         updateLogData();
-        stackedWidget->setCurrentIndex(2); // Индекс 3 - виджет лога
+        stackedWidget->setCurrentIndex(3); // Индекс 4 - виджет лога
     });
 
     stackedWidget->setCurrentIndex(1);
@@ -106,10 +101,27 @@ QHBoxLayout* MainWindow::createButtonLayout() {
     // Создаем горизонтальный layout для кнопок
     QHBoxLayout *buttonLayout = new QHBoxLayout;
     buttonLayout->addWidget(usersButton);
- //   buttonLayout->addWidget(addAGVButton);
     buttonLayout->addWidget(listAGVButton);
+    buttonLayout->addWidget(modelButton);
     buttonLayout->addWidget(logButton);
     return buttonLayout;
+}
+
+QWidget* MainWindow::createModelWidget() {
+
+    QWidget *widget = new QWidget;
+    QVBoxLayout *layout = new QVBoxLayout;
+    widget->setStyleSheet("background-color: lightgray;");
+
+    layout->addWidget(new QLabel("Модели AGV"));
+
+    // Создаем и добавляем таблицу Users
+    ModelRedactorWidget *modelRedactorWidget = new ModelRedactorWidget();
+    layout->addWidget(modelRedactorWidget);
+
+    widget->setLayout(layout);
+
+    return widget;
 }
 
 QWidget* MainWindow::createUsresWidget() {
@@ -121,7 +133,7 @@ QWidget* MainWindow::createUsresWidget() {
     layout->addWidget(new QLabel("Пользователи"));
 
     // Создаем и добавляем таблицу Users
-   UsersTableShowAndEditing *usersTableShowAndEditing = new UsersTableShowAndEditing();
+    UsersTableShowAndEditing *usersTableShowAndEditing = new UsersTableShowAndEditing();
     layout->addWidget(usersTableShowAndEditing);
 
     widget->setLayout(layout);
@@ -188,9 +200,14 @@ void MainWindow::updateListAGVData() {
     replaceWidgetAt(1, createListAGVWidget());
 }
 
+void MainWindow::updateModelData() {
+
+    replaceWidgetAt(2, createModelWidget());
+}
+
 void MainWindow::updateLogData() {
 
-    replaceWidgetAt(2, createLogWidget());
+    replaceWidgetAt(3, createLogWidget());
 }
 
 

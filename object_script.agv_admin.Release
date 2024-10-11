@@ -12,6 +12,7 @@ release/modelagvitem.o
 release/modelredactordialog.o
 release/tableagvshow.o
 release/tablelogagvshow.o
+release/tableselectedmodelshowdialog.o
 release/tabletooneagvshowdialog.o
 release/toitem.o
 release/useradddialog.o
@@ -26,6 +27,7 @@ release/moc_mainwindow.o
 release/moc_modeladddialog.o
 release/moc_tableagvshow.o
 release/moc_tablelogagvshow.o
+release/moc_tableselectedmodelshowdialog.o
 release/moc_tabletooneagvshowdialog.o
 release/moc_useradddialog.o
 release/moc_usereditdialog.o

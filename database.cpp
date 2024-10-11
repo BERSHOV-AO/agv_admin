@@ -192,6 +192,21 @@ bool DataBase::createTable()
     return true;
 }
 
+//------------------------------------------------------------create---------------------------------------------------------------
+
+bool DataBase::createNewModelTable(const QString tableName) {
+    QSqlQuery query;
+
+    QString strCreateTableNewModel = "CREATE TABLE " + tableName + " ("
+                                                                   "model TEXT "
+                                                                   ");";
+    if (!query.exec(strCreateTableNewModel))
+    {
+        return false;
+    }
+
+    return true;
+}
 
 //-------------------------------------------------------------fetch----------------------------------------------------------------
 QList<AgvItem> DataBase::fetchAGVs() {

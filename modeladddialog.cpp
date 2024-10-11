@@ -28,8 +28,7 @@ ModelAddDialog::ModelAddDialog(QWidget *parent) : QDialog(parent)
     setLayout(layout);
     setStyleSheet("background-color: #B0E0E6;");
 
-    resize(200, 150);
-
+    resize(300, 150);
 }
 
 void ModelAddDialog::addModel() {
@@ -43,6 +42,7 @@ void ModelAddDialog::addModel() {
 
     } else {
         db->saveModelItem(model);
+        db->createNewModelTable(model);
         qDebug() << "Сохранена модель:";
         accept();
     }

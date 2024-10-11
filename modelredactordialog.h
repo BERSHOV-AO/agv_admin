@@ -5,6 +5,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QWidget>
 #include <QDebug>
 #include <QMessageBox>
 #include <QComboBox>
@@ -17,11 +18,10 @@
 #include "modelagvitem.h"
 #include "modeladddialog.h"
 
-
-class ModelRedactorDialog : public QDialog
+class ModelRedactorWidget : public QWidget
 {
 public:
-    ModelRedactorDialog(QWidget *parent = nullptr);
+    ModelRedactorWidget(QWidget *parent = nullptr);
 
 private:
 
@@ -34,6 +34,7 @@ private:
 
 private slots:
     void onAddModelClicked();
+    void onCellDoubleClicked(int row, int column);
 
 };
 

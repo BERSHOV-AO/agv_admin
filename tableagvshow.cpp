@@ -10,21 +10,14 @@ TableAgvShow::TableAgvShow(QWidget *parent) : QWidget(parent)
 
     addAGVButton = new QPushButton("Добавить AGV", this);
     addAGVButton->setStyleSheet("background-color: #4986cf; color: white; font-size: 16px; font-family: Arial; font-weight: bold;");
-    addAGVButton->setFixedSize(250, 40);
+    addAGVButton->setFixedSize(250, 35);
     connect(addAGVButton, &QPushButton::clicked, this, &TableAgvShow::onAddAGVClicked);
-
-    modeEditAGV = new QPushButton("Редактор моделей AGV", this);
-    modeEditAGV->setStyleSheet("background-color: #4986cf; color: white; font-size: 16px; font-family: Arial; font-weight: bold;");
-    modeEditAGV->setFixedSize(250, 40);
-    connect(modeEditAGV, &QPushButton::clicked, this, &TableAgvShow::onRedactorModelClicked);
 
     // Spacer для отталкивания кнопки к правому краю
     topLayout->addSpacerItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
-    topLayout->addWidget(modeEditAGV);
     topLayout->addWidget(addAGVButton);
     // Добавляем горизонтальный макет в основной вертикальный макет
     layout->addLayout(topLayout);
-
 
     tableWidget = new QTableWidget(this);
     tableWidget->setColumnCount(6); // Например, 3 колонки: ID, Название, Статус
@@ -82,59 +75,17 @@ void TableAgvShow::onCellDoubleClicked(int row, int column) {
     QString ePlan = tableWidget->item(row, 4)->text();
     QString dataLastTO = tableWidget->item(row, 5)->text();
 
-    //    AgvItem(const QString &name, const QString &serialNumber, const QString &versionFW,
-    //            const QString &model, const QString &ePlan, const QString &dataLastTo);
-
     AgvItem selectedAGV(name, serialNumber, versionFW, model, ePlan, dataLastTO);
 
     TableToOneAgvShowDialog tableToOneAgvShowDialog(selectedAGV, this);
     tableToOneAgvShowDialog.resize(1200, 700);
     tableToOneAgvShowDialog.exec();
-
-    // Открываем диалог для редактирования
-    ////    AGVEditDialog editDialog(selectedAGV, this);
-
-    // connect(&editDialog, &UserEditDialog::userDeleted, this, &UsersTableShowAndEditing::updateTable);
-    // Подключаем сигнал для удаления пользователя
-    //        connect(&editDialog, &UserEditDialog::userDeleted, this, [this, row]() {
-    //          //  if (db->deleteUser(login)) { // Предполагается, что у вас есть метод deleteUser в DataBase
-    //                tableWidget->removeRow(row); // Удаляем строку из таблицы
-    //     //           qDebug() << "User deleted successfully.";
-    //  //          } else {
-    //    //            qDebug() << "Failed to delete user.";
-    //   //         }
-    //        });
-
-    ////    if (editDialog.exec() == QDialog::Accepted) {
-    //        AgvItem updatedUser = editDialog.getUser();
-
-    //        // Обновляем данные в таблице
-    //        tableWidget->item(row, 0)->setText(updatedUser.getName());
-    //        tableWidget->item(row, 1)->setText(updatedUser.getSurname());
-    //        tableWidget->item(row, 2)->setText(updatedUser.getLogin());
-    //        tableWidget->item(row, 3)->setText(updatedUser.getPass());
-
-    //        if (db->updateUser(login, updatedUser.getName(), updatedUser.getSurname(), updatedUser.getPass())) {
-    //            qDebug() << "User updated successfully.";
-    //        } else {
-    //            qDebug() << "Failed to update user.";
-    //        }
 }
-////}
-
 
 void TableAgvShow::onAddAGVClicked(){
 
     AGVAddDialog addAGV(this);
     if (addAGV.exec() == QDialog::Accepted) {
-
-    }
-}
-
-void TableAgvShow::onRedactorModelClicked(){
-
-    ModelRedactorDialog redactorModel(this);
-    if (redactorModel.exec() == QDialog::Accepted) {
 
     }
 }

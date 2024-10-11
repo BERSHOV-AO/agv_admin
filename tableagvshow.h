@@ -33,8 +33,6 @@ public:
 private slots:
     void onCellDoubleClicked(int row, int column);
     void onAddAGVClicked();
-    void onRedactorModelClicked();
-
 signals:
 
 };

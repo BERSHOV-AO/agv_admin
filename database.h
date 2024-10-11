@@ -48,6 +48,8 @@ public:
     bool createTable();                                                                   // Создание базы таблицы в базе данных
     bool closeDataBase();
 
+    //~~~~~~~~create~~~~~~~~~~
+    bool createNewModelTable(const QString tableName);
     //~~~~~~~~~save~~~~~~~~~~~
     bool saveAgvItem(QString name, QString serialNumber, QString versionFW, QString model, QString ePlan, QString dataLastTo);
     bool saveLogItem(QString typeLog, QString tabelNum, QString timeOpenApp, QString serialNumberAgv, QString nameTO, QString timeToAgv);

@@ -82,7 +82,7 @@ AddAGVWidget::AddAGVWidget(QWidget *parent) : QWidget(parent)
                 "   background-color: lightgray;" // Цвет фона при наведении
                 "}"
                 );
-    saveButton->setFixedSize(300, 40); // Ширина 300 пикселей, высота 35 пикселей
+    saveButton->setFixedSize(300, 35); // Ширина 300 пикселей, высота 35 пикселей
 
     // Создаем горизонтальный layout для центрирования кнопки
     QHBoxLayout *buttonLayout = new QHBoxLayout();
