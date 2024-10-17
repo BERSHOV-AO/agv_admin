@@ -15,7 +15,6 @@ UserEditDialog::UserEditDialog(const UserItem &user, QWidget *parent)
     loginEdit->setStyleSheet("background-color: white;");
     passEdit = new QLineEdit(user.getPass(), this);
     passEdit->setStyleSheet("background-color: white;");
-    // passEdit->setEchoMode(QLineEdit::Password);
 
     QPushButton *saveButton = new QPushButton("Сохранить изменения", this);
     saveButton->setStyleSheet(" background-color: #4CAF50; color: white;");
@@ -53,14 +52,6 @@ void UserEditDialog::saveData() {
     // Здесь вы можете добавить код для сохранения данных в БД
     accept();
 }
-
-//void UserEditDialog::deleteUser() {
-
-//    qDebug() << "saveData user";
-//    // Здесь вы можете добавить код для сохранения данных в БД
-//    accept();
-//}
-//bool DataBase::deleteUser(const QString &login, const QString &name, const QString &surname) {
 
 void UserEditDialog::deleteUser() {
 

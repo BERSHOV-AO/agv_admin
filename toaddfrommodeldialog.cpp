@@ -6,7 +6,6 @@ ToAddFromModelDialog::ToAddFromModelDialog(
     nameTableModel(nameTableModel)
 {
 
-    // setWindowTitle("Добавление ТО для модели ");
     setWindowTitle(QString("Добавление ТО для модели: %1").arg(nameTableModel));
 
     db = new DataBase();
@@ -33,18 +32,14 @@ ToAddFromModelDialog::ToAddFromModelDialog(
     layout->addWidget(frequencyTo);
     layout->addWidget(saveButton);
 
-
     // Устанавливаем основной layout для диалога
     setLayout(layout);
     setStyleSheet("background-color: #B0E0E6;");
 
     resize(450, 200);
-
 }
 
 void ToAddFromModelDialog::addTo(){
-
-
     QString nameToStr = nameTo->text();
     QString frequencyToStr= frequencyTo->text();
 

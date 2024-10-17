@@ -23,8 +23,6 @@ TableLogAgvShow::TableLogAgvShow(QWidget *parent) : QWidget(parent)
 }
 
 void TableLogAgvShow::loadData() {
-    // Получаем список AGV из базы данных
-    // DataBase db; // Предположим, у вас есть экземпляр класса DataBase
 
     QList<LogItem> logs = db->fetchLogs(); // Получаем данные
 

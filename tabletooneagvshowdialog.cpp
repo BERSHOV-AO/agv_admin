@@ -26,7 +26,6 @@ TableToOneAgvShowDialog::TableToOneAgvShowDialog(const AgvItem &agv, QWidget *pa
     tableWidget->setColumnCount(3); // Например, 3 колонки: ID, Название, Статус
     tableWidget->setHorizontalHeaderLabels(QStringList() << "Деталь/Наименование работ" << "Дата последнего обслуживания" << "Дата следующего обслуживания");
     tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section { background-color: #4986cf; color: white; }");
-    //        addAGVButton->setStyleSheet("background-color: #4986cf; color: white; font-size: 16px; font-family: Arial; font-weight: bold;");
 
     tableWidget->setColumnWidth(0, 750);
     tableWidget->setColumnWidth(1, 200);
@@ -47,8 +46,6 @@ TableToOneAgvShowDialog::TableToOneAgvShowDialog(const AgvItem &agv, QWidget *pa
 }
 
 void TableToOneAgvShowDialog::loadData() {
-    // Получаем список AGV из базы данных
-    // DataBase db; // Предположим, у вас есть экземпляр класса DataBase
 
     QList<AGVTOItem> tosOneAgv = db->fetchToOneAgv(agv.getSerialNumber()); // Получаем данные
 
@@ -97,7 +94,6 @@ void TableToOneAgvShowDialog::oneEditAGVClicked() {
     AGVEditDialog editDialog(agv, this);
 
     if (editDialog.exec() == QDialog::Accepted) {
-        //        AgvItem updatedUser = editDialog.getUser()
     }
 }
 
@@ -121,7 +117,7 @@ void TableToOneAgvShowDialog::oneDeleteAGVClicked() {
             if (db->deleteAllToOneAgv(serialNumber)) {
                 qDebug() << "All records related to AGV deleted successfully.";
                 // emit agvDeleted(); // Сигнал для уведомления о том, что AGV был удален
-                accept(); // Закрываем диалог
+                accept();
             } else {
                 qDebug() << "Failed to delete related records for AGV.";
             }
@@ -140,7 +136,7 @@ QString TableToOneAgvShowDialog::formatDateFromMilliseconds(const QString& milli
 
     // Проверяем, успешно ли прошло преобразование
     if (!ok) {
-        return QString(); // Возвращаем пустую строку в случае ошибки
+        return QString();
     }
 
     // Преобразуем миллисекунды в секунды
@@ -159,16 +155,14 @@ QString TableToOneAgvShowDialog::addDaysToMilliseconds(const QString& millisecon
 
     // Проверяем, успешно ли прошло преобразование
     if (!ok) {
-        return QString(); // Возвращаем пустую строку в случае ошибки
+        return QString();
     }
 
-    // Извлекаем число дней из строки
-    QString daysNumberStr = daysStr.split(" ")[0]; // Получаем число до пробела
+    QString daysNumberStr = daysStr.split(" ")[0];
     qint64 days = daysNumberStr.toLongLong(&ok);
 
-    // Проверяем, успешно ли прошло преобразование
     if (!ok) {
-        return QString(); // Возвращаем пустую строку в случае ошибки
+        return QString();
     }
 
     // Преобразуем дни в миллисекунды

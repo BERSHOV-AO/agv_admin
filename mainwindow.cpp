@@ -10,7 +10,6 @@ MainWindow::MainWindow(QWidget *parent)
     logWidget = createLogWidget();
     modelWidget = createModelWidget();
 
-
     titleLabel = new QLabel("Администрирование AGV");
     titleLabel->setStyleSheet("font-size: 28px; color: white; font-weight: bold;");
 
@@ -41,13 +40,11 @@ MainWindow::MainWindow(QWidget *parent)
     modelButton->setFixedHeight(fixedHeight);
 
     // Увеличиваем текст на кнопках
-    //QString buttonStyle = "font-size: 14px; color: white; background-color: #4986cf; font-weight: bold;"; // Задайте нужный размер шрифта
     QString buttonStyle = "font-size: 14px; color: #1b1b1b; background-color: white; font-weight: bold;";
     usersButton->setStyleSheet(buttonStyle);
     listAGVButton->setStyleSheet(buttonStyle);
     logButton->setStyleSheet(buttonStyle);
     modelButton->setStyleSheet(buttonStyle);
-
 
     // Подключаем кнопки к слоту переключения
 

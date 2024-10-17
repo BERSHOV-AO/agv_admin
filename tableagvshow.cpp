@@ -42,8 +42,6 @@ TableAgvShow::TableAgvShow(QWidget *parent) : QWidget(parent)
 }
 
 void TableAgvShow::loadData() {
-    // Получаем список AGV из базы данных
-    // DataBase db; // Предположим, у вас есть экземпляр класса DataBase
 
     QList<AgvItem> agvs = db->fetchAGVs(); // Получаем данные
 

@@ -57,16 +57,13 @@ void TableSelectedModelShowDialog::loadData() {
     }
 }
 
-
 void TableSelectedModelShowDialog::oneAddModelClicked() {
-        ToAddFromModelDialog toAddFromModel(nameTableModel, this);
+    ToAddFromModelDialog toAddFromModel(nameTableModel, this);
 
-        if (toAddFromModel.exec() == QDialog::Accepted) {
-            //        AgvItem updatedUser = editDialog.getUser()
-        }
+    if (toAddFromModel.exec() == QDialog::Accepted) {
+        //        AgvItem updatedUser = editDialog.getUser()
+    }
 }
-
-
 
 void TableSelectedModelShowDialog::oneDeleteAGVClicked() {
     QMessageBox::StandardButton reply;

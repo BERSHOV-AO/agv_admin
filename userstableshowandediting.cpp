@@ -60,7 +60,6 @@ void UsersTableShowAndEditing::loadData() {
     }
 }
 
-
 void UsersTableShowAndEditing::onAddUserClicked() {
 
     UserAddDialog addDialog(this);
@@ -68,7 +67,6 @@ void UsersTableShowAndEditing::onAddUserClicked() {
 
     }
 }
-
 
 void UsersTableShowAndEditing::onCellDoubleClicked(int row, int column) {
     if (row < 0) return; // Проверка на корректность строки
@@ -80,8 +78,6 @@ void UsersTableShowAndEditing::onCellDoubleClicked(int row, int column) {
     QString pass = tableWidget->item(row, 3)->text();
 
     UserItem selectedUser(name, surname, login, pass);
-
-
 
     // Открываем диалог для редактирования
     UserEditDialog editDialog(selectedUser, this);

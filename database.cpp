@@ -1,20 +1,5 @@
 #include "database.h"
 
-/*
-INSERT INTO TABLE_AGV (name, serialNumber, versionFW, model, ePlan, dataLastTo)
-VALUES ('AGV1', '123456', '1.0', 'ModelX', 'ePlan1', '2023-10-01');
-
-*******************************************************************************
-*******************************************************************************
-
-INSERT INTO TABLE_AGV (name, serialNumber, versionFW, model, ePlan, dataLastTo)
-VALUES
-    ('AGV1', 'SN123456', '1.0', 'ModelX', 'ePlan1', '2023-10-01'),
-    ('AGV2', 'SN123457', '1.1', 'ModelY', 'ePlan2', '2023-10-02'),
-    ('AGV3', 'SN123458', '1.2', 'ModelZ', 'ePlan3', '2023-10-03');
-
-*/
-
 DataBase::DataBase(QObject *parent) : QObject(parent)
 {
 
@@ -263,7 +248,7 @@ QList<LogItem> DataBase::fetchLogs() {
 
     if (!query.exec()) {
         qWarning() << "Ошибка выполнения запроса:";
-        return logs; // Возвращаем пустой список в случае ошибки
+        return logs;
     }
 
     while (query.next()) {
@@ -326,7 +311,7 @@ QList<AGVTOItem> DataBase::fetchToOneAgv(const QString serialNumAGV) {
     query.bindValue(":serialNumAGV", serialNumAGV);
 
     if (!query.exec()) {
-        qWarning() << "Ошибка выполнения запроса:"; //<< query.lastError();
+        qWarning() << "Ошибка выполнения запроса:";
         return agvToItems;
     }
 
@@ -345,11 +330,6 @@ QList<AGVTOItem> DataBase::fetchToOneAgv(const QString serialNumAGV) {
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~save~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-//bool DataBase::saveTOForSelectModel(const QString nameTableModel, const QString nameTo, const QString frequencyTo) {
-//    // Подготавливаем SQL-запрос
-//    QSqlQuery query(db);
-//}
-
 bool DataBase::saveTOForSelectModel(const QString nameTableModel, const QString nameTo, const QString frequencyTo) {
     // Подготавливаем SQL-запрос
     QSqlQuery query(db);
@@ -366,7 +346,7 @@ bool DataBase::saveTOForSelectModel(const QString nameTableModel, const QString 
 
     // Выполняем запрос и проверяем успешность выполнения
     if (!query.exec()) {
-        qDebug() << "Ошибка при сохранении данных:"; //<< query.lastError().text();
+        qDebug() << "Ошибка при сохранении данных:";
         return false;
     }
 
@@ -410,7 +390,7 @@ bool DataBase::saveAgvTOItem(QString nameTo, QString serialNumberAGV, QString fr
 
     // Выполняем запрос
     if (!query.exec()) {
-        qDebug() << "Ошибка выполнения запроса:"; //<< query.lastError().text();
+        qDebug() << "Ошибка выполнения запроса:";
         return false;
     }
 
@@ -436,7 +416,7 @@ bool DataBase::saveAgvItem(QString name, QString serialNumber, QString versionFW
 
     // Выполняем запрос
     if (!query.exec()) {
-        qDebug() << "Ошибка выполнения запроса:"; //<< query.lastError().text();
+        qDebug() << "Ошибка выполнения запроса:";
         return false;
     }
 
@@ -489,7 +469,7 @@ bool DataBase::saveUserItem(QString name, QString surname, QString login, QStrin
 
     // Выполняем запрос
     if (!query.exec()) {
-        qDebug() << "Ошибка выполнения запроса:"; //<< query.lastError().text();
+        qDebug() << "Ошибка выполнения запроса:";
         return false;
     }
 
@@ -512,7 +492,7 @@ bool DataBase::updateUser(const QString &login, const QString &newName, const QS
 
     // Выполнение запроса
     if (!query.exec()) {
-        qDebug() << "Error: Unable to update user"; //<< query.lastError().text();
+        qDebug() << "Error: Unable to update user";
         return false; // Возвращаем false в случае ошибки
     }
 
@@ -534,7 +514,7 @@ bool DataBase::deleteUser(const QString &login, const QString &name, const QStri
 
     // Выполнение запроса
     if (!query.exec()) {
-        qDebug() << "Error: Unable to delete user"; //<< query.lastError().text();
+        qDebug() << "Error: Unable to delete user";
         return false; // Возвращаем false в случае ошибки
     }
 
@@ -552,7 +532,7 @@ bool DataBase::deleteAgv(const QString &serialNumber) {
 
     // Выполнение запроса
     if (!query.exec()) {
-        qDebug() << "Error: Unable to delete AGV"; //<< query.lastError().text(); // Выводим текст ошибки
+        qDebug() << "Error: Unable to delete AGV";
         return false; // Возвращаем false в случае ошибки
     }
 
@@ -586,7 +566,7 @@ bool DataBase::dropTable(const QString &tableName) {
 
     // Выполнение запроса
     if (!query.exec()) {
-        qDebug() << "Error: Unable to drop table"; //<< tableName << query.lastError().text(); // Выводим текст ошибки
+        qDebug() << "Error: Unable to drop table";
         return false; // Возвращаем false в случае ошибки
     }
 
@@ -602,7 +582,7 @@ bool DataBase::deleteModel(const QString &model) {
     // Выполняем запрос
     if (!query.exec()) {
         // Если произошла ошибка, выводим ее в отладочный лог
-        qDebug() << "Error deleting records:";//<< query.lastError().text();
+        qDebug() << "Error deleting records:";
         return false; // Возвращаем false в случае ошибки
     }
 

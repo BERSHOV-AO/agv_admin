@@ -20,14 +20,8 @@ AGVAddDialog::AGVAddDialog(QWidget *parent) : QDialog(parent)
     serilaNumberEdit = new QLineEdit();
     serilaNumberEdit->setStyleSheet("background-color: white;");
 
-    //    fwVersionEdit = new QLineEdit();
-    //    fwVersionEdit->setStyleSheet("background-color: white;");
-
     modelEdit = new QLineEdit();
     modelEdit->setStyleSheet("background-color: white;");
-
-    //    projectDocumentationEdit = new QLineEdit();
-    //    projectDocumentationEdit->setStyleSheet("background-color: white;");
 
     saveButton = new QPushButton("Добавить AGV", this);
     saveButton->setStyleSheet(" background-color: #4CAF50; color: white;");
@@ -35,8 +29,6 @@ AGVAddDialog::AGVAddDialog(QWidget *parent) : QDialog(parent)
 
     //---------------------combo box FW---------------------------
     fwVersionComboBox = new QComboBox(this);
-    // fwVersionComboBox->setFixedSize(300, 30);
-    // Получаем список директорий
     QDir dirFW("C:/wamp64/www/host/fw");
     QStringList directoriesFW = dirFW.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
     fwVersionComboBox->setStyleSheet("QComboBox { background-color: white; }");

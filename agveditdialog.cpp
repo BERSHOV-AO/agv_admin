@@ -13,23 +13,12 @@ AGVEditDialog::AGVEditDialog(const AgvItem &agv, QWidget *parent) : QDialog(pare
     serilaNumberEdit = new QLineEdit(agv.getSerialNumber(), this);
     serilaNumberEdit->setStyleSheet("background-color: white;");
 
-    //    fwVersionEdit = new QLineEdit();
-    //    fwVersionEdit->setStyleSheet("background-color: white;");
-
-//    modelEdit = new QLineEdit(agv.getModel(), this);
-//    modelEdit->setStyleSheet("background-color: white;");
-
-    //    projectDocumentationEdit = new QLineEdit();
-    //    projectDocumentationEdit->setStyleSheet("background-color: white;");
-
     saveButton = new QPushButton("Сохранить изменения", this);
     saveButton->setStyleSheet(" background-color: #4CAF50; color: white;");
     connect(saveButton, &QPushButton::clicked, this, &AGVEditDialog::saveData);
 
     //---------------------combo box FW---------------------------
     fwVersionComboBox = new QComboBox(this);
-    // fwVersionComboBox->setFixedSize(300, 30);
-    // Получаем список директорий
     QDir dirFW("C:/wamp64/www/host/fw");
     QStringList directoriesFW = dirFW.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
     fwVersionComboBox->setStyleSheet("QComboBox { background-color: white; }");

@@ -40,14 +40,10 @@ ModelRedactorWidget::ModelRedactorWidget(QWidget *parent) : QWidget(parent)
     setLayout(layout);
 }
 
-
 void ModelRedactorWidget::loadData() {
-    // Получаем список AGV из базы данных
-    // DataBase db; // Предположим, у вас есть экземпляр класса DataBase
 
-    QList<ModelAgvItem> models = db->fetchModels(); // Получаем данные
+    QList<ModelAgvItem> models = db->fetchModels();
 
-    // Очищаем таблицу перед загрузкой новых данных
     tableWidget->setRowCount(0);
 
     // Заполняем таблицу данными из списка agvs
@@ -59,18 +55,11 @@ void ModelRedactorWidget::loadData() {
     }
 }
 
-
 void ModelRedactorWidget::onCellDoubleClicked(int row, int column) {
     if (row < 0) return; // Проверка на корректность строки
 
     // Получаем данные выбранного пользователя
     QString model = tableWidget->item(row, 0)->text();
-//    QString serialNumber = tableWidget->item(row, 1)->text();
-//    QString versionFW = tableWidget->item(row, 2)->text();
-//    QString model = tableWidget->item(row, 3)->text();
-//    QString ePlan = tableWidget->item(row, 4)->text();
-//    QString dataLastTO = tableWidget->item(row, 5)->text();
-//    AgvItem selectedAGV(name, serialNumber, versionFW, model, ePlan, dataLastTO);
 
     TableSelectedModelShowDialog tableSelectedModelShowDialog(model, this);
     tableSelectedModelShowDialog.resize(1200, 700);

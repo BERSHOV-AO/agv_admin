@@ -23,7 +23,6 @@ ModelAddDialog::ModelAddDialog(QWidget *parent) : QDialog(parent)
     layout->addWidget(modelEdit);
     layout->addWidget(saveButton);
 
-
     // Устанавливаем основной layout для диалога
     setLayout(layout);
     setStyleSheet("background-color: #B0E0E6;");

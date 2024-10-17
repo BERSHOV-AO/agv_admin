@@ -17,9 +17,9 @@ AddAGVWidget::AddAGVWidget(QWidget *parent) : QWidget(parent)
     QHBoxLayout *titleLayout = new QHBoxLayout();
     titleLayout->addStretch(); // добавляем отступ слева
     titleLayout->addWidget(titleLabel); // добавляем заголовок
-    titleLayout->addStretch(); // добавляем отступ справа
+    titleLayout->addStretch();
 
-    layout->addLayout(titleLayout); // добавляем горизонтальный layout с заголовком в основной
+    layout->addLayout(titleLayout);
 
     formLayout = new QFormLayout;
 

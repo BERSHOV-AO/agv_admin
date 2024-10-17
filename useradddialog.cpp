@@ -8,7 +8,6 @@ UserAddDialog::UserAddDialog(QWidget *parent) : QDialog(parent)
     db = new DataBase();
     db->connectToDataBase();
 
-
     nameEdit = new QLineEdit();
     nameEdit->setStyleSheet("background-color: white;");
 
