@@ -14,6 +14,7 @@ debug/tableagvshow.o
 debug/tablelogagvshow.o
 debug/tableselectedmodelshowdialog.o
 debug/tabletooneagvshowdialog.o
+debug/toaddfrommodeldialog.o
 debug/toitem.o
 debug/useradddialog.o
 debug/usereditdialog.o

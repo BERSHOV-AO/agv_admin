@@ -30,11 +30,6 @@
 #define TABLE_AGV_3000_ST        "AGV_1100_2P"
 #define TABLE_AGV_1100_2P        "AGV_1100_2T"
 #define TABLE_AGV_1100_2T        "AGV_3000_ST"
-
-//#define TABLE_AGV_1100_ST        "to_data_agv_1100_st"
-//#define TABLE_AGV_3000_ST        "to_data_agv_3000_st"
-//#define TABLE_AGV_1100_2P        "to_data_agv_1100_2p"
-//#define TABLE_AGV_1100_2T        "to_data_agv_1100_2t"
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 class DataBase : public QObject
@@ -56,12 +51,16 @@ public:
     bool saveAgvTOItem(QString nameTo, QString serialNumberAGV, QString frequencyOfTo, QString statusTo, QString dataTo);
     bool saveUserItem(QString name, QString surname, QString login, QString pass);
     bool saveModelItem(QString model);
+    bool saveTOForSelectModel(const QString nameTableModel, const QString nameTo, const QString frequencyTo);
     //~~~~~~~~~update~~~~~~~~~~~
     bool updateUser(const QString &login, const QString &newName, const QString &newSurname, const QString &newPass);
     //~~~~~~~~~delete~~~~~~~~~~~
+    bool dropTable(const QString &tableName);
     bool deleteUser(const QString &login, const QString &name, const QString &surname);
     bool deleteAgv(const QString &serialNumber);
     bool deleteAllToOneAgv(const QString serialNumAGV);
+    bool deleteModel(const QString &model);
+
     //~~~~~~~~~fetch~~~~~~~~~~~
     QList<AgvItem> fetchAGVs();
     QList<UserItem> fetchUsers();

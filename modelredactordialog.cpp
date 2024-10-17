@@ -32,7 +32,7 @@ ModelRedactorWidget::ModelRedactorWidget(QWidget *parent) : QWidget(parent)
 
     tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
 
-    //    connect(tableWidget, &QTableWidget::cellDoubleClicked, this, &UsersTableShowAndEditing::onCellDoubleClicked);
+    connect(tableWidget, &QTableWidget::cellDoubleClicked, this, &ModelRedactorWidget::onCellDoubleClicked);
 
     loadData();
 
@@ -60,27 +60,24 @@ void ModelRedactorWidget::loadData() {
 }
 
 
-//void ModelRedactorWidget::onCellDoubleClicked(int row, int column) {
-//    if (row < 0) return; // Проверка на корректность строки
+void ModelRedactorWidget::onCellDoubleClicked(int row, int column) {
+    if (row < 0) return; // Проверка на корректность строки
 
-//    // Получаем данные выбранного пользователя
-//    QString model = tableWidget->item(row, 0)->text();
-////    QString serialNumber = tableWidget->item(row, 1)->text();
-////    QString versionFW = tableWidget->item(row, 2)->text();
-////    QString model = tableWidget->item(row, 3)->text();
-////    QString ePlan = tableWidget->item(row, 4)->text();
-////    QString dataLastTO = tableWidget->item(row, 5)->text();
+    // Получаем данные выбранного пользователя
+    QString model = tableWidget->item(row, 0)->text();
+//    QString serialNumber = tableWidget->item(row, 1)->text();
+//    QString versionFW = tableWidget->item(row, 2)->text();
+//    QString model = tableWidget->item(row, 3)->text();
+//    QString ePlan = tableWidget->item(row, 4)->text();
+//    QString dataLastTO = tableWidget->item(row, 5)->text();
+//    AgvItem selectedAGV(name, serialNumber, versionFW, model, ePlan, dataLastTO);
 
-////    AgvItem selectedAGV(name, serialNumber, versionFW, model, ePlan, dataLastTO);
-
-//    TableToOneAgvShowDialog tableToOneAgvShowDialog(selectedAGV, this);
-//    tableToOneAgvShowDialog.resize(1200, 700);
-//    tableToOneAgvShowDialog.exec();
-//}
+    TableSelectedModelShowDialog tableSelectedModelShowDialog(model, this);
+    tableSelectedModelShowDialog.resize(1200, 700);
+    tableSelectedModelShowDialog.exec();
+}
 
 void ModelRedactorWidget::onAddModelClicked() {
-
-
 
     ModelAddDialog addModelDialog(this);
     if (addModelDialog.exec() == QDialog::Accepted) {

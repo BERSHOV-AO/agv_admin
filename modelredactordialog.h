@@ -17,6 +17,7 @@
 #include "database.h"
 #include "modelagvitem.h"
 #include "modeladddialog.h"
+#include "tableselectedmodelshowdialog.h"
 
 class ModelRedactorWidget : public QWidget
 {

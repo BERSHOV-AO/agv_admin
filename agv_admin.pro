@@ -32,6 +32,7 @@ SOURCES += \
     tablelogagvshow.cpp \
     tableselectedmodelshowdialog.cpp \
     tabletooneagvshowdialog.cpp \
+    toaddfrommodeldialog.cpp \
     toitem.cpp \
     useradddialog.cpp \
     usereditdialog.cpp \
@@ -54,6 +55,7 @@ HEADERS += \
     tablelogagvshow.h \
     tableselectedmodelshowdialog.h \
     tabletooneagvshowdialog.h \
+    toaddfrommodeldialog.h \
     toitem.h \
     useradddialog.h \
     usereditdialog.h \

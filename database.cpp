@@ -198,7 +198,8 @@ bool DataBase::createNewModelTable(const QString tableName) {
     QSqlQuery query;
 
     QString strCreateTableNewModel = "CREATE TABLE " + tableName + " ("
-                                                                   "model TEXT "
+                                                                   "nameTo TEXT, "
+                                                                   "frequencyTo TEXT "
                                                                    ");";
     if (!query.exec(strCreateTableNewModel))
     {
@@ -343,6 +344,35 @@ QList<AGVTOItem> DataBase::fetchToOneAgv(const QString serialNumAGV) {
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~save~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//bool DataBase::saveTOForSelectModel(const QString nameTableModel, const QString nameTo, const QString frequencyTo) {
+//    // Подготавливаем SQL-запрос
+//    QSqlQuery query(db);
+//}
+
+bool DataBase::saveTOForSelectModel(const QString nameTableModel, const QString nameTo, const QString frequencyTo) {
+    // Подготавливаем SQL-запрос
+    QSqlQuery query(db);
+
+    // Формируем SQL-запрос для вставки данных
+    QString sql = QString("INSERT INTO %1 (nameTo, frequencyTo) VALUES (:nameTo, :frequencyTo)").arg(nameTableModel);
+
+    // Подготовка запроса
+    query.prepare(sql);
+
+    // Привязываем значения к параметрам
+    query.bindValue(":nameTo", nameTo);
+    query.bindValue(":frequencyTo", frequencyTo);
+
+    // Выполняем запрос и проверяем успешность выполнения
+    if (!query.exec()) {
+        qDebug() << "Ошибка при сохранении данных:"; //<< query.lastError().text();
+        return false;
+    }
+
+    return true;
+}
+
 
 
 bool DataBase::saveModelItem(QString model)
@@ -545,5 +575,40 @@ bool DataBase::deleteAllToOneAgv(const QString serialNumAGV) {
 
     return true; // Возвращаем true, если удаление прошло успешно
 }
+
+
+bool DataBase::dropTable(const QString &tableName) {
+    QSqlQuery query;
+
+    // Подготовка SQL-запроса для удаления таблицы
+    QString sql = QString("DROP TABLE IF EXISTS %1").arg(tableName);
+    query.prepare(sql);
+
+    // Выполнение запроса
+    if (!query.exec()) {
+        qDebug() << "Error: Unable to drop table"; //<< tableName << query.lastError().text(); // Выводим текст ошибки
+        return false; // Возвращаем false в случае ошибки
+    }
+
+    return true; // Возвращаем true, если все прошло успешно
+}
+
+bool DataBase::deleteModel(const QString &model) {
+    // Создаем SQL-запрос для удаления всех строк с заданным serialNumAGV
+    QSqlQuery query;
+    query.prepare("DELETE FROM " TABLE_MODEL " WHERE model = :model");
+    query.bindValue(":model", model);
+
+    // Выполняем запрос
+    if (!query.exec()) {
+        // Если произошла ошибка, выводим ее в отладочный лог
+        qDebug() << "Error deleting records:";//<< query.lastError().text();
+        return false; // Возвращаем false в случае ошибки
+    }
+
+    return true; // Возвращаем true, если удаление прошло успешно
+}
+
+
 
 

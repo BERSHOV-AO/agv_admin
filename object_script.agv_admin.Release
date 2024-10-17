@@ -14,6 +14,7 @@ release/tableagvshow.o
 release/tablelogagvshow.o
 release/tableselectedmodelshowdialog.o
 release/tabletooneagvshowdialog.o
+release/toaddfrommodeldialog.o
 release/toitem.o
 release/useradddialog.o
 release/usereditdialog.o

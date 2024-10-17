@@ -10,6 +10,10 @@
 #include "database.h"
 #include <QBrush>
 #include <QVBoxLayout>
+#include "toitem.h"
+#include "toaddfrommodeldialog.h"
+
+//  QList<TOItem> fetchTO(const QString nameTableTO);
 
 
 class TableSelectedModelShowDialog : public QDialog
@@ -19,23 +23,22 @@ public:
     TableSelectedModelShowDialog(const QString &nameTableModel, QWidget *parent = nullptr);
 
 
-
 private:
     QVBoxLayout *layout;
     QTableWidget *tableWidget;
     DataBase *db;
 
     QPushButton *deleteButton;
-    QPushButton *editButton;
+    QPushButton *addModelButton;
     QString nameTableModel;
 
     void loadData();
-//    QString formatDateFromMilliseconds(const QString& millisecondsStr);
-//    QString addDaysToMilliseconds(const QString& millisecondsStr, const QString& daysStr);
+    //    QString formatDateFromMilliseconds(const QString& millisecondsStr);
+    //    QString addDaysToMilliseconds(const QString& millisecondsStr, const QString& daysStr);
 
 private slots:
-//    void oneEditAGVClicked();
-//    void oneDeleteAGVClicked();
+    void oneAddModelClicked();
+    void oneDeleteAGVClicked();
 };
 
 #endif // TABLESELECTEDMODELSHOWDIALOG_H
