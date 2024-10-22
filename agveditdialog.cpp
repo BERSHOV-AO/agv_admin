@@ -95,7 +95,3 @@ qint64 AGVEditDialog::getCurrentMillisecondsSinceEpoch() {
     qint64 milliseconds = currentDateTime.toMSecsSinceEpoch();
     return milliseconds;
 }
-
-
-
-

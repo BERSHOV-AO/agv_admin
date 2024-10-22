@@ -21,6 +21,7 @@ SOURCES += \
     agveditdialog.cpp \
     agvitem.cpp \
     agvtoitem.cpp \
+    custommessagebox.cpp \
     database.cpp \
     logitem.cpp \
     main.cpp \
@@ -33,6 +34,7 @@ SOURCES += \
     tableselectedmodelshowdialog.cpp \
     tabletooneagvshowdialog.cpp \
     toaddfrommodeldialog.cpp \
+    toeditdialog.cpp \
     toitem.cpp \
     useradddialog.cpp \
     usereditdialog.cpp \
@@ -45,6 +47,7 @@ HEADERS += \
     agveditdialog.h \
     agvitem.h \
     agvtoitem.h \
+    custommessagebox.h \
     database.h \
     logitem.h \
     mainwindow.h \
@@ -56,6 +59,7 @@ HEADERS += \
     tableselectedmodelshowdialog.h \
     tabletooneagvshowdialog.h \
     toaddfrommodeldialog.h \
+    toeditdialog.h \
     toitem.h \
     useradddialog.h \
     usereditdialog.h \

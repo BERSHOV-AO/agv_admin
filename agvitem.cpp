@@ -18,5 +18,3 @@ QString AgvItem::getVersionFW() const { return versionFW; }
 QString AgvItem::getModel() const { return model; }
 QString AgvItem::getEPlan() const { return ePlan; }
 QString AgvItem::getDataLastTo() const { return dataLastTo; }
-
-

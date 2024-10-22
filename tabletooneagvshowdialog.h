@@ -17,6 +17,7 @@
 #include <QBrush>
 
 
+#define DELETE_AGV_STRING  "Удаление AGV из базы данных"
 
 
 class TableToOneAgvShowDialog : public QDialog
@@ -37,6 +38,7 @@ private:
     void loadData();
     QString formatDateFromMilliseconds(const QString& millisecondsStr);
     QString addDaysToMilliseconds(const QString& millisecondsStr, const QString& daysStr);
+    qint64 getCurrentMillisecondsSinceEpoch();
 
 private slots:
     void oneEditAGVClicked();

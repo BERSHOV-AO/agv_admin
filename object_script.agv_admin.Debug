@@ -3,6 +3,7 @@ debug/agvadddialog.o
 debug/agveditdialog.o
 debug/agvitem.o
 debug/agvtoitem.o
+debug/custommessagebox.o
 debug/database.o
 debug/logitem.o
 debug/main.o
@@ -15,6 +16,7 @@ debug/tablelogagvshow.o
 debug/tableselectedmodelshowdialog.o
 debug/tabletooneagvshowdialog.o
 debug/toaddfrommodeldialog.o
+debug/toeditdialog.o
 debug/toitem.o
 debug/useradddialog.o
 debug/usereditdialog.o
@@ -23,6 +25,7 @@ debug/userstableshowandediting.o
 debug/moc_addagvwidget.o
 debug/moc_agvadddialog.o
 debug/moc_agveditdialog.o
+debug/moc_custommessagebox.o
 debug/moc_database.o
 debug/moc_mainwindow.o
 debug/moc_modeladddialog.o
@@ -30,6 +33,7 @@ debug/moc_tableagvshow.o
 debug/moc_tablelogagvshow.o
 debug/moc_tableselectedmodelshowdialog.o
 debug/moc_tabletooneagvshowdialog.o
+debug/moc_toeditdialog.o
 debug/moc_useradddialog.o
 debug/moc_usereditdialog.o
 debug/moc_userstableshowandediting.o

@@ -27,7 +27,7 @@ ModelAddDialog::ModelAddDialog(QWidget *parent) : QDialog(parent)
     setLayout(layout);
     setStyleSheet("background-color: #B0E0E6;");
 
-    resize(300, 150);
+    resize(300, 120);
 }
 
 void ModelAddDialog::addModel() {

@@ -117,6 +117,7 @@ void TableToOneAgvShowDialog::oneDeleteAGVClicked() {
             if (db->deleteAllToOneAgv(serialNumber)) {
                 qDebug() << "All records related to AGV deleted successfully.";
                 // emit agvDeleted(); // Сигнал для уведомления о том, что AGV был удален
+                db->saveLogItem("3", "Admin", NULL, serialNumber, DELETE_AGV_STRING, QString::number(getCurrentMillisecondsSinceEpoch()));
                 accept();
             } else {
                 qDebug() << "Failed to delete related records for AGV.";
@@ -179,4 +180,13 @@ QString TableToOneAgvShowDialog::addDaysToMilliseconds(const QString& millisecon
 
     // Форматируем дату и время в строку "ЧЧ:MM dd.MM.yyyy"
     return dateTime.toString("hh:mm  dd.MM.yyyy");
+}
+
+qint64 TableToOneAgvShowDialog::getCurrentMillisecondsSinceEpoch() {
+    // Получаем текущее время
+    QDateTime currentDateTime = QDateTime::currentDateTime();
+
+    // Преобразуем его в миллисекунды с начала эпохи
+    qint64 milliseconds = currentDateTime.toMSecsSinceEpoch();
+    return milliseconds;
 }

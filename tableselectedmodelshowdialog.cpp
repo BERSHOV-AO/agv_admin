@@ -14,18 +14,21 @@ TableSelectedModelShowDialog::TableSelectedModelShowDialog(
     deleteButton->setStyleSheet("background-color: red; color: white;");
     connect(deleteButton, &QPushButton::clicked, this, &TableSelectedModelShowDialog::oneDeleteAGVClicked);
 
-    addModelButton = new QPushButton("Добавить модели новое ТО", this);
+    addModelButton = new QPushButton("Добавить новое ТО", this);
     addModelButton->setStyleSheet("background-color: #4986cf; color: white;");
     connect(addModelButton, &QPushButton::clicked, this, &TableSelectedModelShowDialog::oneAddModelClicked);
 
     layout = new QVBoxLayout(this);
     tableWidget = new QTableWidget(this);
     tableWidget->setColumnCount(2); // Например, 3 колонки: ID, Название, Статус
-    tableWidget->setHorizontalHeaderLabels(QStringList() << "Деталь/Наименование работ" << "Периодичность обслуживания, количество дней"); //<< "Дата следующего обслуживания");
+    tableWidget->setHorizontalHeaderLabels(QStringList() << "Деталь/Наименование работ" << "Периодичность обслуживания, количество дней");
     tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section { background-color: #4CAF50; color: white; }");
 
     tableWidget->setColumnWidth(0, 750);
     tableWidget->setColumnWidth(1, 400);
+    tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+    connect(tableWidget, &QTableWidget::cellDoubleClicked, this, &TableSelectedModelShowDialog::onCellDoubleClicked);
     loadData();
 
     QHBoxLayout *buttonLayout = new QHBoxLayout();
@@ -36,7 +39,6 @@ TableSelectedModelShowDialog::TableSelectedModelShowDialog(
 
     // Добавляем кнопки в основной layout
     layout->addLayout(buttonLayout);
-
     setLayout(layout);
 }
 
@@ -93,3 +95,59 @@ void TableSelectedModelShowDialog::oneDeleteAGVClicked() {
         qDebug() << "AGV deletion canceled.";
     }
 }
+
+void TableSelectedModelShowDialog::onCellDoubleClicked(int row, int column) {
+    if (row < 0) return; // Проверка на корректность строки
+
+    // Получаем данные выбранного пользователя
+    QString nameTo = tableWidget->item(row, 0)->text();
+    QString frequencyTo = tableWidget->item(row, 1)->text();
+
+    TOItem toSelected(nameTo, frequencyTo);
+
+
+
+    TOEditDialog toEditDialog(toSelected,nameTableModel);
+
+    if (toEditDialog.exec() == QDialog::Accepted) {
+    }
+
+
+    //toEditDialog.resize(1200, 700);
+
+
+    // qDebug() << "nameTo: " << nameTo;
+    // TableSelectedModelShowDialog tableSelectedModelShowDialog(model, this);
+    // tableSelectedModelShowDialog.resize(1200, 700);
+    // tableSelectedModelShowDialog.exec();
+}
+
+
+// Получаем данные выбранного пользователя
+//QString name = tableWidget->item(row, 0)->text();
+//QString surname = tableWidget->item(row, 1)->text();
+//QString login = tableWidget->item(row, 2)->text();
+//QString pass = tableWidget->item(row, 3)->text();
+
+//UserItem selectedUser(name, surname, login, pass);
+
+//// Открываем диалог для редактирования
+//UserEditDialog editDialog(selectedUser, this);
+
+//if (editDialog.exec() == QDialog::Accepted) {
+//    UserItem updatedUser = editDialog.getUser();
+
+//    // Обновляем данные в таблице
+//    tableWidget->item(row, 0)->setText(updatedUser.getName());
+//    tableWidget->item(row, 1)->setText(updatedUser.getSurname());
+//    tableWidget->item(row, 2)->setText(updatedUser.getLogin());
+//    tableWidget->item(row, 3)->setText(updatedUser.getPass());
+
+//    if (db->updateUser(login, updatedUser.getName(), updatedUser.getSurname(), updatedUser.getPass())) {
+//        qDebug() << "User updated successfully.";
+//    } else {
+//        qDebug() << "Failed to update user.";
+//    }
+//}
+
+

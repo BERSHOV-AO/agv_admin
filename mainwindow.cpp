@@ -91,7 +91,6 @@ MainWindow::MainWindow(QWidget *parent)
     this->setStyleSheet("background-color: #FF1C385A;");
 
     setWindowTitle("AGV Management");
-
 }
 
 QHBoxLayout* MainWindow::createButtonLayout() {
@@ -206,7 +205,6 @@ void MainWindow::updateLogData() {
 
     replaceWidgetAt(3, createLogWidget());
 }
-
 
 void MainWindow::replaceWidgetAt(int index, QWidget* newWidget) {
     // Проверяем, что индекс валиден

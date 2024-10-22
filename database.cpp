@@ -589,6 +589,27 @@ bool DataBase::deleteModel(const QString &model) {
     return true; // Возвращаем true, если удаление прошло успешно
 }
 
+bool DataBase::deleteTOFromSelectModelTable(const QString &nameTableModel, const QString &nameTo, const QString &frequencyTo) {
+    // Создаем SQL-запрос
+    QSqlQuery query;
+
+    // Формируем запрос на удаление
+    QString sql = QString("DELETE FROM %1 WHERE nameTo = :nameTo AND frequencyTo = :frequencyTo").arg(nameTableModel);
+
+    query.prepare(sql);
+
+    // Привязываем параметры к запросу
+    query.bindValue(":nameTo", nameTo);
+    query.bindValue(":frequencyTo", frequencyTo);
+
+    // Выполняем запрос
+    if (!query.exec()) {
+        qDebug() << "Ошибка при удалении: "; // << query.lastError().text();
+        return false; // Возвращаем false в случае ошибки
+    }
+    return true; // Возвращаем true при успешном выполнении
+}
+
 
 
 

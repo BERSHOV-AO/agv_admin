@@ -60,8 +60,8 @@ public:
     bool deleteAgv(const QString &serialNumber);
     bool deleteAllToOneAgv(const QString serialNumAGV);
     bool deleteModel(const QString &model);
-
-    //~~~~~~~~~fetch~~~~~~~~~~~
+    bool deleteTOFromSelectModelTable(const QString &nameTableModel, const QString &nameTo, const QString &frequencyTo);
+    //~~~~~~~fetch - get~~~~~~~~
     QList<AgvItem> fetchAGVs();
     QList<UserItem> fetchUsers();
     QList<LogItem> fetchLogs();

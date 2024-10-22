@@ -12,6 +12,7 @@
 #include <QVBoxLayout>
 #include "toitem.h"
 #include "toaddfrommodeldialog.h"
+#include "toeditdialog.h"
 
 //  QList<TOItem> fetchTO(const QString nameTableTO);
 
@@ -39,6 +40,7 @@ private:
 private slots:
     void oneAddModelClicked();
     void oneDeleteAGVClicked();
+    void onCellDoubleClicked(int row, int column);
 };
 
 #endif // TABLESELECTEDMODELSHOWDIALOG_H
