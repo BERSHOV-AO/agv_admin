@@ -54,6 +54,7 @@ public:
     bool saveTOForSelectModel(const QString nameTableModel, const QString nameTo, const QString frequencyTo);
     //~~~~~~~~~update~~~~~~~~~~~
     bool updateUser(const QString &login, const QString &newName, const QString &newSurname, const QString &newPass);
+    void updateTOSelectTable(const QString& tableName, const QString& oldName, const QString& oldFrequency, const QString& newName, const QString& newFrequency);
     //~~~~~~~~~delete~~~~~~~~~~~
     bool dropTable(const QString &tableName);
     bool deleteUser(const QString &login, const QString &name, const QString &surname);
@@ -61,7 +62,7 @@ public:
     bool deleteAllToOneAgv(const QString serialNumAGV);
     bool deleteModel(const QString &model);
     bool deleteTOFromSelectModelTable(const QString &nameTableModel, const QString &nameTo, const QString &frequencyTo);
-    //~~~~~~~fetch - get~~~~~~~~
+    //~~~~~~~fetch -> get~~~~~~~~
     QList<AgvItem> fetchAGVs();
     QList<UserItem> fetchUsers();
     QList<LogItem> fetchLogs();

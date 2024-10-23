@@ -41,9 +41,13 @@ TOItem TOEditDialog::getTo() const {
 
 void TOEditDialog::saveDataTo() {
 
-
+    QString nameToStr = toItem.getNameTo();
+    QString frequencyToStr = toItem.getFrequencyTo();
 
     qDebug() << "saveData to";
+
+    db->updateTOSelectTable(nameTableModel, toItem.getNameTo(), toItem.getFrequencyTo(), nameToEdit->text(), frequencyToEdit->text());
+
     // Здесь вы можете добавить код для сохранения данных в БД
     accept();
 }

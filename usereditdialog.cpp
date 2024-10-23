@@ -63,7 +63,7 @@ void UserEditDialog::deleteUser() {
     // Проверяем, выбрал ли пользователь "Да"
     if (reply == QMessageBox::Yes) {
         // Здесь вы можете добавить код для удаления AGV из БД
-        if (db->deleteUser(user.getLogin(),user.getName(),user.getSurname())) { // Предполагается, что у вас есть метод deleteUser в классе db
+        if (db->deleteUser(user.getLogin(),user.getName(),user.getSurname())) {
             qDebug() << "User deleted successfully.";
             accept(); // Закрываем диалог
         } else {

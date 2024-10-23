@@ -49,7 +49,7 @@ void TableAgvShow::loadData() {
     tableWidget->setRowCount(0);
 
     // Заполняем таблицу данными из списка agvs
-    for (const AgvItem &agv : agvs) {
+    for (AgvItem &agv : agvs) {
         int rowCount = tableWidget->rowCount();
         tableWidget->insertRow(rowCount); // Добавляем новую строку
 
@@ -59,6 +59,84 @@ void TableAgvShow::loadData() {
         tableWidget->setItem(rowCount, 3, new QTableWidgetItem(agv.getModel()));
         tableWidget->setItem(rowCount, 4, new QTableWidgetItem(agv.getEPlan()));
         tableWidget->setItem(rowCount, 5, new QTableWidgetItem(formatDateFromMilliseconds(agv.getDataLastTo())));
+
+        QList<AGVTOItem> tosSelectAgv = db->fetchToOneAgv(agv.getSerialNumber());
+
+        bool foundZero = false;
+        bool foundTwo = false;
+
+        for (const AGVTOItem &to : tosSelectAgv) {
+            if (to.getStatusTo() == "0") {
+                foundZero = true;
+                break; // Если нашли статус "0", выходим из цикла
+            }
+        }
+
+        if (foundZero) {
+            agv.setStatusReadyTo("0");
+            for (int col = 0; col < tableWidget->columnCount(); ++col) {
+                QTableWidgetItem *item = tableWidget->item(rowCount, col);
+                if (item) {
+                    item->setBackground(QBrush(QColor(255, 182, 193))); // Светло-красный фон
+                }
+            }
+        } else {
+            // Если не нашли статус "0", проверяем на статус "2"
+            for (const AGVTOItem &to : tosSelectAgv) {
+                if (to.getStatusTo() == "2") {
+                    foundTwo = true;
+                    break; // Если нашли статус "2", выходим из цикла
+                }
+            }
+
+            if (foundTwo) {
+                agv.setStatusReadyTo("2");
+                for (int col = 0; col < tableWidget->columnCount(); ++col) {
+                    QTableWidgetItem *item = tableWidget->item(rowCount, col);
+                    if (item) {
+                        item->setBackground(QBrush(Qt::yellow)); // Устанавливаем желтый фон
+                    }
+                }
+            } else {
+                // Если ни статус "0", ни статус "2" не найдены
+                agv.setStatusReadyTo("1");
+                for (int col = 0; col < tableWidget->columnCount(); ++col) {
+                    QTableWidgetItem *item = tableWidget->item(rowCount, col);
+                    if (item) {
+                        item->setBackground(QBrush(QColor(144, 238, 144))); // Устанавливаем зеленый фон
+                    }
+                }
+            }
+        }
+
+        qDebug() << agv.getSerialNumber() << " : " << agv.getStatusReadyTo();
+
+        //        if (agv.getStatusReadyTo() == "1") {
+        //            for (int col = 0; col < tableWidget->columnCount(); ++col) {
+        //                QTableWidgetItem *item = tableWidget->item(rowCount, col);
+        //                if (item) {
+        //                    item->setBackground(QBrush(QColor(144, 238, 144))); // Устанавливаем зеленый фон
+        //                }
+        //            }
+        //        }
+
+        //        if (agv.getStatusReadyTo() == "0") {
+        //            for (int col = 0; col < tableWidget->columnCount(); ++col) {
+        //                QTableWidgetItem *item = tableWidget->item(rowCount, col);
+        //                if (item) {
+        //                    item->setBackground(QBrush(QColor(255, 182, 193))); // Светло-красный фон
+        //                }
+        //            }
+        //        }
+
+        //        if (agv.getStatusReadyTo() == "2") {
+        //            for (int col = 0; col < tableWidget->columnCount(); ++col) {
+        //                QTableWidgetItem *item = tableWidget->item(rowCount, col);
+        //                if (item) {
+        //                    item->setBackground(QBrush(Qt::yellow)); // Устанавливаем зеленый фон
+        //                }
+        //            }
+        //        }
     }
 }
 

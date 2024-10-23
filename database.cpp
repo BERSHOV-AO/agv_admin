@@ -611,5 +611,36 @@ bool DataBase::deleteTOFromSelectModelTable(const QString &nameTableModel, const
 }
 
 
+void DataBase::updateTOSelectTable(const QString& tableName, const QString& oldName, const QString& oldFrequency, const QString& newName, const QString& newFrequency) {
+
+    // Формируем SQL-запрос
+    QString sql = QString("UPDATE %1 SET nameTo = :newName, frequencyTo = :newFrequency WHERE nameTo = :oldName AND frequencyTo = :oldFrequency;").arg(tableName);
+
+    QSqlQuery query;
+    query.prepare(sql);
+
+    // Привязываем параметры
+    query.bindValue(":newName", newName);
+    query.bindValue(":newFrequency", newFrequency);
+    query.bindValue(":oldName", oldName);
+    query.bindValue(":oldFrequency", oldFrequency);
+
+    // Выполняем запрос
+    if (!query.exec()) {
+        qDebug() << "Ошибка выполнения запроса:";
+    } else {
+        qDebug() << "Запись успешно обновлена.";
+    }
+}
+
+//int main(int argc, char *argv[]) {
+//    QCoreApplication a(argc, argv);
+
+//    // Пример вызова функции
+//    updateRecord("your_table_name", "old_name_value", "old_frequency_value", "new_name_value", "new_frequency_value");
+
+//    return a.exec();
+//}
+
 
 

@@ -7,7 +7,6 @@ UsersTableShowAndEditing::UsersTableShowAndEditing(QWidget *parent) : QWidget(pa
     db->connectToDataBase();
 
     layout = new QVBoxLayout(this);
-
     QHBoxLayout *topLayout = new QHBoxLayout();
 
     addUserButton = new QPushButton("Добавить пользователя", this);

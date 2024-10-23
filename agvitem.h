@@ -16,6 +16,8 @@ public:
     QString getModel() const;
     QString getEPlan() const;
     QString getDataLastTo() const;
+    QString getStatusReadyTo() const;
+    void setStatusReadyTo(QString statusTO);
 
 private:
     QString name;
@@ -24,6 +26,7 @@ private:
     QString model;
     QString ePlan;
     QString dataLastTo;
+    QString statusReadyTo;
 };
 
 #endif // AGVITEM_H
