@@ -63,7 +63,8 @@ void UsersTableShowAndEditing::onAddUserClicked() {
 
     UserAddDialog addDialog(this);
     if (addDialog.exec() == QDialog::Accepted) {
-
+        qDebug() << "update table";
+        loadData();
     }
 }
 
@@ -84,14 +85,15 @@ void UsersTableShowAndEditing::onCellDoubleClicked(int row, int column) {
     if (editDialog.exec() == QDialog::Accepted) {
         UserItem updatedUser = editDialog.getUser();
 
-        // Обновляем данные в таблице
-        tableWidget->item(row, 0)->setText(updatedUser.getName());
-        tableWidget->item(row, 1)->setText(updatedUser.getSurname());
-        tableWidget->item(row, 2)->setText(updatedUser.getLogin());
-        tableWidget->item(row, 3)->setText(updatedUser.getPass());
+        //        // Обновляем данные в таблице
+        //        tableWidget->item(row, 0)->setText(updatedUser.getName());
+        //        tableWidget->item(row, 1)->setText(updatedUser.getSurname());
+        //        tableWidget->item(row, 2)->setText(updatedUser.getLogin());
+        //        tableWidget->item(row, 3)->setText(updatedUser.getPass());
 
         if (db->updateUser(login, updatedUser.getName(), updatedUser.getSurname(), updatedUser.getPass())) {
             qDebug() << "User updated successfully.";
+            loadData();
         } else {
             qDebug() << "Failed to update user.";
         }

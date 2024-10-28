@@ -477,28 +477,6 @@ bool DataBase::saveUserItem(QString name, QString surname, QString login, QStrin
 }
 
 
-
-bool DataBase::updateUser(const QString &login, const QString &newName, const QString &newSurname, const QString &newPass) {
-    QSqlQuery query;
-
-    // Подготовка SQL-запроса
-    query.prepare("UPDATE " TABLE_USERS " SET name = :name, surname = :surname, pass = :pass WHERE login = :login");
-
-    // Привязка параметров
-    query.bindValue(":name", newName);
-    query.bindValue(":surname", newSurname);
-    query.bindValue(":pass", newPass);
-    query.bindValue(":login", login);
-
-    // Выполнение запроса
-    if (!query.exec()) {
-        qDebug() << "Error: Unable to update user";
-        return false; // Возвращаем false в случае ошибки
-    }
-
-    return true; // Возвращаем true, если все прошло успешно
-}
-
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~delete~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 bool DataBase::deleteUser(const QString &login, const QString &name, const QString &surname) {
@@ -610,8 +588,9 @@ bool DataBase::deleteTOFromSelectModelTable(const QString &nameTableModel, const
     return true; // Возвращаем true при успешном выполнении
 }
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~update~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-void DataBase::updateTOSelectTable(const QString& tableName, const QString& oldName, const QString& oldFrequency, const QString& newName, const QString& newFrequency) {
+bool DataBase::updateTOSelectTable(const QString& tableName, const QString& oldName, const QString& oldFrequency, const QString& newName, const QString& newFrequency) {
 
     // Формируем SQL-запрос
     QString sql = QString("UPDATE %1 SET nameTo = :newName, frequencyTo = :newFrequency WHERE nameTo = :oldName AND frequencyTo = :oldFrequency;").arg(tableName);
@@ -627,11 +606,100 @@ void DataBase::updateTOSelectTable(const QString& tableName, const QString& oldN
 
     // Выполняем запрос
     if (!query.exec()) {
+        return false; // Возвращаем false в случае ошибки
         qDebug() << "Ошибка выполнения запроса:";
-    } else {
-        qDebug() << "Запись успешно обновлена.";
+
+
+        //  //  } else {
+        //         return true; // Возвращаем false в случае ошибки
+        //        qDebug() << "Запись успешно обновлена.";
+        // //   }
+
     }
+
+    return true; // Возвращаем false в случае ошибки
+    qDebug() << "Запись успешно обновлена.";
+
 }
+
+bool DataBase::updateUser(const QString &login, const QString &newName, const QString &newSurname, const QString &newPass) {
+    QSqlQuery query;
+
+    // Подготовка SQL-запроса
+    query.prepare("UPDATE " TABLE_USERS " SET name = :name, surname = :surname, pass = :pass WHERE login = :login");
+
+    // Привязка параметров
+    query.bindValue(":name", newName);
+    query.bindValue(":surname", newSurname);
+    query.bindValue(":pass", newPass);
+    query.bindValue(":login", login);
+
+    // Выполнение запроса
+    if (!query.exec()) {
+        qDebug() << "Error: Unable to update user";
+        return false; // Возвращаем false в случае ошибки
+    }
+    return true; // Возвращаем true, если все прошло успешно
+}
+
+bool DataBase::updateAgv(const QString& oldName, const QString& oldSerialNumber,
+                         const QString& newName, const QString& newSerialNumber,
+                         const QString& versionFW, const QString& model,
+                         const QString& ePlan) {
+    // Подготовка SQL-запроса для обновления данных
+    QString strUpdateAgv = QString("UPDATE %1 SET name = ?, serialNumber = ?, versionFW = ?, model = ?, ePlan = ? "
+                                   "WHERE name = ? AND serialNumber = ?")
+            .arg(TABLE_AGV);
+
+    // Создание подготовленного запроса
+    QSqlQuery query;
+    query.prepare(strUpdateAgv);
+
+    // Привязываем параметры к запросу
+    query.addBindValue(newName);
+    query.addBindValue(newSerialNumber);
+    query.addBindValue(versionFW);
+    query.addBindValue(model);
+    query.addBindValue(ePlan);
+    query.addBindValue(oldName);
+    query.addBindValue(oldSerialNumber);
+
+    // Выполнение запроса и проверка успешности выполнения
+    if (!query.exec()) {
+        qDebug() << "Ошибка обновления AGV:"; //<< query.lastError().text();
+        return false;
+    }
+
+    return true;
+}
+
+
+
+//bool DataBase::updateAgv(const QString& name, const QString& serialNumber, const QString& versionFW, const QString& model, const QString& ePlan) {
+//    // Подготовка SQL-запроса для обновления данных
+//    QString strUpdateAgv = QString("UPDATE %1 SET versionFW = ?, model = ?, ePlan = ? WHERE name = ? AND serialNumber = ?")
+//            .arg(TABLE_AGV);
+
+//    // Создание подготовленного запроса
+//    QSqlQuery query;
+//    query.prepare(strUpdateAgv);
+
+//    // Привязываем параметры к запросу
+//    query.addBindValue(versionFW);
+//    query.addBindValue(model);
+//    query.addBindValue(ePlan);
+//    query.addBindValue(name);
+//    query.addBindValue(serialNumber);
+
+//    // Выполнение запроса и проверка успешности выполнения
+//    if (!query.exec()) {
+//        qDebug() << "Ошибка обновления AGV:"; //<< query.lastError().text();
+//        return false;
+//    }
+
+//    return true;
+//}
+
 
 //int main(int argc, char *argv[]) {
 //    QCoreApplication a(argc, argv);

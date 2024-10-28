@@ -11,6 +11,7 @@
 #include <QComboBox>
 #include <QDateTime>
 #include <QDir>
+#include <QMessageBox>
 #include "database.h"
 #include "agvitem.h"
 
@@ -24,7 +25,7 @@ public:
 
 private slots:
     void saveData();
-    void deleteAGV();
+//    void deleteAGV();
 
 signals:
     void AGVDeleted();

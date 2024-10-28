@@ -108,35 +108,7 @@ void TableAgvShow::loadData() {
                 }
             }
         }
-
         qDebug() << agv.getSerialNumber() << " : " << agv.getStatusReadyTo();
-
-        //        if (agv.getStatusReadyTo() == "1") {
-        //            for (int col = 0; col < tableWidget->columnCount(); ++col) {
-        //                QTableWidgetItem *item = tableWidget->item(rowCount, col);
-        //                if (item) {
-        //                    item->setBackground(QBrush(QColor(144, 238, 144))); // Устанавливаем зеленый фон
-        //                }
-        //            }
-        //        }
-
-        //        if (agv.getStatusReadyTo() == "0") {
-        //            for (int col = 0; col < tableWidget->columnCount(); ++col) {
-        //                QTableWidgetItem *item = tableWidget->item(rowCount, col);
-        //                if (item) {
-        //                    item->setBackground(QBrush(QColor(255, 182, 193))); // Светло-красный фон
-        //                }
-        //            }
-        //        }
-
-        //        if (agv.getStatusReadyTo() == "2") {
-        //            for (int col = 0; col < tableWidget->columnCount(); ++col) {
-        //                QTableWidgetItem *item = tableWidget->item(rowCount, col);
-        //                if (item) {
-        //                    item->setBackground(QBrush(Qt::yellow)); // Устанавливаем зеленый фон
-        //                }
-        //            }
-        //        }
     }
 }
 
@@ -155,14 +127,17 @@ void TableAgvShow::onCellDoubleClicked(int row, int column) {
 
     TableToOneAgvShowDialog tableToOneAgvShowDialog(selectedAGV, this);
     tableToOneAgvShowDialog.resize(1200, 700);
-    tableToOneAgvShowDialog.exec();
+    if (tableToOneAgvShowDialog.exec() == QDialog::Accepted) {
+        loadData();
+        qDebug() << "Delete agv";
+    }
 }
 
 void TableAgvShow::onAddAGVClicked(){
 
     AGVAddDialog addAGV(this);
     if (addAGV.exec() == QDialog::Accepted) {
-
+        loadData();
     }
 }
 
@@ -183,3 +158,32 @@ QString TableAgvShow::formatDateFromMilliseconds(const QString& millisecondsStr)
     // Форматируем дату и время в строку "ЧЧ:MM dd.MM.yyyy"
     return dateTime.toString("hh:mm  dd.MM.yyyy");
 }
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~old method~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//        if (agv.getStatusReadyTo() == "1") {
+//            for (int col = 0; col < tableWidget->columnCount(); ++col) {
+//                QTableWidgetItem *item = tableWidget->item(rowCount, col);
+//                if (item) {
+//                    item->setBackground(QBrush(QColor(144, 238, 144))); // Устанавливаем зеленый фон
+//                }
+//            }
+//        }
+
+//        if (agv.getStatusReadyTo() == "0") {
+//            for (int col = 0; col < tableWidget->columnCount(); ++col) {
+//                QTableWidgetItem *item = tableWidget->item(rowCount, col);
+//                if (item) {
+//                    item->setBackground(QBrush(QColor(255, 182, 193))); // Светло-красный фон
+//                }
+//            }
+//        }
+
+//        if (agv.getStatusReadyTo() == "2") {
+//            for (int col = 0; col < tableWidget->columnCount(); ++col) {
+//                QTableWidgetItem *item = tableWidget->item(rowCount, col);
+//                if (item) {
+//                    item->setBackground(QBrush(Qt::yellow)); // Устанавливаем зеленый фон
+//                }
+//            }
+//        }
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

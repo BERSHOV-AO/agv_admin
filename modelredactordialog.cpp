@@ -29,11 +29,9 @@ ModelRedactorWidget::ModelRedactorWidget(QWidget *parent) : QWidget(parent)
     tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section { background-color: #4CAF50; color: white; }");
 
     tableWidget->setColumnWidth(0, 1200);
-
     tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     connect(tableWidget, &QTableWidget::cellDoubleClicked, this, &ModelRedactorWidget::onCellDoubleClicked);
-
     loadData();
 
     layout->addWidget(tableWidget);
@@ -63,13 +61,16 @@ void ModelRedactorWidget::onCellDoubleClicked(int row, int column) {
 
     TableSelectedModelShowDialog tableSelectedModelShowDialog(model, this);
     tableSelectedModelShowDialog.resize(1200, 700);
-    tableSelectedModelShowDialog.exec();
+    if (tableSelectedModelShowDialog.exec() == QDialog::Accepted) {
+        loadData();
+    }
+    //tableSelectedModelShowDialog.exec();
 }
 
 void ModelRedactorWidget::onAddModelClicked() {
 
     ModelAddDialog addModelDialog(this);
     if (addModelDialog.exec() == QDialog::Accepted) {
-
+        loadData();
     }
 }

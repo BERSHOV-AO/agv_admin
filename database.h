@@ -43,26 +43,30 @@ public:
     bool createTable();                                                                   // Создание базы таблицы в базе данных
     bool closeDataBase();
 
-    //~~~~~~~~create~~~~~~~~~~
+    //~~~~~~~~~create~~~~~~~~~~~~
     bool createNewModelTable(const QString tableName);
-    //~~~~~~~~~save~~~~~~~~~~~
+    //~~~~~~~~~~save~~~~~~~~~~~~~
     bool saveAgvItem(QString name, QString serialNumber, QString versionFW, QString model, QString ePlan, QString dataLastTo);
     bool saveLogItem(QString typeLog, QString tabelNum, QString timeOpenApp, QString serialNumberAgv, QString nameTO, QString timeToAgv);
     bool saveAgvTOItem(QString nameTo, QString serialNumberAGV, QString frequencyOfTo, QString statusTo, QString dataTo);
     bool saveUserItem(QString name, QString surname, QString login, QString pass);
     bool saveModelItem(QString model);
     bool saveTOForSelectModel(const QString nameTableModel, const QString nameTo, const QString frequencyTo);
-    //~~~~~~~~~update~~~~~~~~~~~
+    //~~~~~~~~~~update~~~~~~~~~~~
     bool updateUser(const QString &login, const QString &newName, const QString &newSurname, const QString &newPass);
-    void updateTOSelectTable(const QString& tableName, const QString& oldName, const QString& oldFrequency, const QString& newName, const QString& newFrequency);
-    //~~~~~~~~~delete~~~~~~~~~~~
+    bool updateTOSelectTable(const QString& tableName, const QString& oldName, const QString& oldFrequency, const QString& newName, const QString& newFrequency);
+    bool updateAgv(const QString& oldName, const QString& oldSerialNumber,
+                   const QString& newName, const QString& newSerialNumber,
+                   const QString& versionFW, const QString& model,
+                   const QString& ePlan);
+    //~~~~~~~~~~delete~~~~~~~~~~~
     bool dropTable(const QString &tableName);
     bool deleteUser(const QString &login, const QString &name, const QString &surname);
     bool deleteAgv(const QString &serialNumber);
     bool deleteAllToOneAgv(const QString serialNumAGV);
     bool deleteModel(const QString &model);
     bool deleteTOFromSelectModelTable(const QString &nameTableModel, const QString &nameTo, const QString &frequencyTo);
-    //~~~~~~~fetch -> get~~~~~~~~
+    //~~~~~~~~fetch -> get~~~~~~~~
     QList<AgvItem> fetchAGVs();
     QList<UserItem> fetchUsers();
     QList<LogItem> fetchLogs();

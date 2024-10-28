@@ -94,6 +94,7 @@ void TableToOneAgvShowDialog::oneEditAGVClicked() {
     AGVEditDialog editDialog(agv, this);
     
     if (editDialog.exec() == QDialog::Accepted) {
+        accept();
     }
 }
 
