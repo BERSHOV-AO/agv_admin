@@ -25,7 +25,6 @@ public:
 
 private slots:
     void saveData();
-//    void deleteAGV();
 
 signals:
     void AGVDeleted();

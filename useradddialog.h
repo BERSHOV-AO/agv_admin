@@ -21,7 +21,6 @@ private slots:
     void addUser();
 
 private:
-   // UserItem user;
     QPushButton *saveButton;
     QLineEdit *nameEdit;
     QLineEdit *surnameEdit;

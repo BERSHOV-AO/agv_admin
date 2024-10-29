@@ -48,9 +48,15 @@ UserItem UserEditDialog::getUser() const {
 
 void UserEditDialog::saveData() {
 
-    qDebug() << "saveData user";
-    // Здесь вы можете добавить код для сохранения данных в БД
-    accept();
+    QString newName = nameEdit->text();
+    QString newSurname = surnameEdit->text();
+    QString newLogin = loginEdit->text();
+    QString newPass = passEdit->text();
+
+    if(db->updateUser(user.getLogin(), newLogin, newName, newSurname, newPass)) {
+        qDebug() << "saveData user";
+        accept();
+    }
 }
 
 void UserEditDialog::deleteUser() {

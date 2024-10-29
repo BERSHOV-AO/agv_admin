@@ -28,8 +28,6 @@ private:
 
 private slots:
     void addTo();
-
-
 };
 
 #endif // TOADDFROMMODELDIALOG_H

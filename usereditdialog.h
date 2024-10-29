@@ -26,7 +26,6 @@ private slots:
 signals:
     void userDeleted();
 
-
 private:
     UserItem user;
     QLineEdit *nameEdit;

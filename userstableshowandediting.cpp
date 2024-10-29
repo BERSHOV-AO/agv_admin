@@ -42,7 +42,7 @@ UsersTableShowAndEditing::UsersTableShowAndEditing(QWidget *parent) : QWidget(pa
 
 void UsersTableShowAndEditing::loadData() {
 
-    QList<UserItem> users = db->fetchUsers(); // Получаем данные
+    QList<UserItem> users = db->fetchUsers();
 
     // Очищаем таблицу перед загрузкой новых данных
     tableWidget->setRowCount(0);
@@ -83,20 +83,7 @@ void UsersTableShowAndEditing::onCellDoubleClicked(int row, int column) {
     UserEditDialog editDialog(selectedUser, this);
 
     if (editDialog.exec() == QDialog::Accepted) {
-        UserItem updatedUser = editDialog.getUser();
-
-        //        // Обновляем данные в таблице
-        //        tableWidget->item(row, 0)->setText(updatedUser.getName());
-        //        tableWidget->item(row, 1)->setText(updatedUser.getSurname());
-        //        tableWidget->item(row, 2)->setText(updatedUser.getLogin());
-        //        tableWidget->item(row, 3)->setText(updatedUser.getPass());
-
-        if (db->updateUser(login, updatedUser.getName(), updatedUser.getSurname(), updatedUser.getPass())) {
-            qDebug() << "User updated successfully.";
-            loadData();
-        } else {
-            qDebug() << "Failed to update user.";
-        }
+        loadData();
     }
 }
 
@@ -106,7 +93,6 @@ void UsersTableShowAndEditing::updateTable() {
 
     // Загрузите новые данные из базы данных и заполните таблицу
     // loadData(); // Предполагается, что у вас есть метод loadData для загрузки данных
-
 }
 
 

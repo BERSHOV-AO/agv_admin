@@ -47,8 +47,6 @@ void TOEditDialog::saveDataTo() {
     qDebug() << "saveData to";
 
     db->updateTOSelectTable(nameTableModel, toItem.getNameTo(), toItem.getFrequencyTo(), nameToEdit->text(), frequencyToEdit->text());
-
-    // Здесь вы можете добавить код для сохранения данных в БД
     accept();
 }
 

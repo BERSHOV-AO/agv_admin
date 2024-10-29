@@ -53,7 +53,7 @@ public:
     bool saveModelItem(QString model);
     bool saveTOForSelectModel(const QString nameTableModel, const QString nameTo, const QString frequencyTo);
     //~~~~~~~~~~update~~~~~~~~~~~
-    bool updateUser(const QString &login, const QString &newName, const QString &newSurname, const QString &newPass);
+    bool updateUser(const QString &oldLogin, const QString &newLogin, const QString &newName, const QString &newSurname, const QString &newPass);
     bool updateTOSelectTable(const QString& tableName, const QString& oldName, const QString& oldFrequency, const QString& newName, const QString& newFrequency);
     bool updateAgv(const QString& oldName, const QString& oldSerialNumber,
                    const QString& newName, const QString& newSerialNumber,

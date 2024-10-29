@@ -493,10 +493,10 @@ bool DataBase::deleteUser(const QString &login, const QString &name, const QStri
     // Выполнение запроса
     if (!query.exec()) {
         qDebug() << "Error: Unable to delete user";
-        return false; // Возвращаем false в случае ошибки
+        return false;
     }
 
-    return true; // Возвращаем true, если все прошло успешно
+    return true;
 }
 
 bool DataBase::deleteAgv(const QString &serialNumber) {
@@ -511,10 +511,10 @@ bool DataBase::deleteAgv(const QString &serialNumber) {
     // Выполнение запроса
     if (!query.exec()) {
         qDebug() << "Error: Unable to delete AGV";
-        return false; // Возвращаем false в случае ошибки
+        return false;
     }
 
-    return true; // Возвращаем true, если все прошло успешно
+    return true;
 }
 
 
@@ -527,11 +527,11 @@ bool DataBase::deleteAllToOneAgv(const QString serialNumAGV) {
     // Выполняем запрос
     if (!query.exec()) {
         // Если произошла ошибка, выводим ее в отладочный лог
-        qDebug() << "Error deleting records:";//<< query.lastError().text();
-        return false; // Возвращаем false в случае ошибки
+        qDebug() << "Error deleting records:";
+        return false;
     }
 
-    return true; // Возвращаем true, если удаление прошло успешно
+    return true;
 }
 
 
@@ -545,10 +545,10 @@ bool DataBase::dropTable(const QString &tableName) {
     // Выполнение запроса
     if (!query.exec()) {
         qDebug() << "Error: Unable to drop table";
-        return false; // Возвращаем false в случае ошибки
+        return false;
     }
 
-    return true; // Возвращаем true, если все прошло успешно
+    return true;
 }
 
 bool DataBase::deleteModel(const QString &model) {
@@ -561,10 +561,10 @@ bool DataBase::deleteModel(const QString &model) {
     if (!query.exec()) {
         // Если произошла ошибка, выводим ее в отладочный лог
         qDebug() << "Error deleting records:";
-        return false; // Возвращаем false в случае ошибки
+        return false;
     }
 
-    return true; // Возвращаем true, если удаление прошло успешно
+    return true;
 }
 
 bool DataBase::deleteTOFromSelectModelTable(const QString &nameTableModel, const QString &nameTo, const QString &frequencyTo) {
@@ -582,10 +582,10 @@ bool DataBase::deleteTOFromSelectModelTable(const QString &nameTableModel, const
 
     // Выполняем запрос
     if (!query.exec()) {
-        qDebug() << "Ошибка при удалении: "; // << query.lastError().text();
-        return false; // Возвращаем false в случае ошибки
+        qDebug() << "Ошибка при удалении: ";
+        return false;
     }
-    return true; // Возвращаем true при успешном выполнении
+    return true;
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~update~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -606,40 +606,34 @@ bool DataBase::updateTOSelectTable(const QString& tableName, const QString& oldN
 
     // Выполняем запрос
     if (!query.exec()) {
-        return false; // Возвращаем false в случае ошибки
+        return false;
         qDebug() << "Ошибка выполнения запроса:";
-
-
-        //  //  } else {
-        //         return true; // Возвращаем false в случае ошибки
-        //        qDebug() << "Запись успешно обновлена.";
-        // //   }
-
     }
 
-    return true; // Возвращаем false в случае ошибки
+    return true;
     qDebug() << "Запись успешно обновлена.";
 
 }
 
-bool DataBase::updateUser(const QString &login, const QString &newName, const QString &newSurname, const QString &newPass) {
+bool DataBase::updateUser(const QString &oldLogin, const QString &newLogin, const QString &newName, const QString &newSurname, const QString &newPass) {
     QSqlQuery query;
 
     // Подготовка SQL-запроса
-    query.prepare("UPDATE " TABLE_USERS " SET name = :name, surname = :surname, pass = :pass WHERE login = :login");
+    query.prepare("UPDATE " TABLE_USERS " SET login = :newLogin, name = :name, surname = :surname, pass = :pass WHERE login = :oldLogin");
 
     // Привязка параметров
+    query.bindValue(":newLogin", newLogin);
     query.bindValue(":name", newName);
     query.bindValue(":surname", newSurname);
     query.bindValue(":pass", newPass);
-    query.bindValue(":login", login);
+    query.bindValue(":oldLogin", oldLogin);
 
     // Выполнение запроса
     if (!query.exec()) {
         qDebug() << "Error: Unable to update user";
-        return false; // Возвращаем false в случае ошибки
+        return false;
     }
-    return true; // Возвращаем true, если все прошло успешно
+    return true;
 }
 
 bool DataBase::updateAgv(const QString& oldName, const QString& oldSerialNumber,
@@ -651,7 +645,6 @@ bool DataBase::updateAgv(const QString& oldName, const QString& oldSerialNumber,
                                    "WHERE name = ? AND serialNumber = ?")
             .arg(TABLE_AGV);
 
-    // Создание подготовленного запроса
     QSqlQuery query;
     query.prepare(strUpdateAgv);
 
@@ -666,49 +659,9 @@ bool DataBase::updateAgv(const QString& oldName, const QString& oldSerialNumber,
 
     // Выполнение запроса и проверка успешности выполнения
     if (!query.exec()) {
-        qDebug() << "Ошибка обновления AGV:"; //<< query.lastError().text();
+        qDebug() << "Ошибка обновления AGV:";
         return false;
     }
 
     return true;
 }
-
-
-
-//bool DataBase::updateAgv(const QString& name, const QString& serialNumber, const QString& versionFW, const QString& model, const QString& ePlan) {
-//    // Подготовка SQL-запроса для обновления данных
-//    QString strUpdateAgv = QString("UPDATE %1 SET versionFW = ?, model = ?, ePlan = ? WHERE name = ? AND serialNumber = ?")
-//            .arg(TABLE_AGV);
-
-//    // Создание подготовленного запроса
-//    QSqlQuery query;
-//    query.prepare(strUpdateAgv);
-
-//    // Привязываем параметры к запросу
-//    query.addBindValue(versionFW);
-//    query.addBindValue(model);
-//    query.addBindValue(ePlan);
-//    query.addBindValue(name);
-//    query.addBindValue(serialNumber);
-
-//    // Выполнение запроса и проверка успешности выполнения
-//    if (!query.exec()) {
-//        qDebug() << "Ошибка обновления AGV:"; //<< query.lastError().text();
-//        return false;
-//    }
-
-//    return true;
-//}
-
-
-//int main(int argc, char *argv[]) {
-//    QCoreApplication a(argc, argv);
-
-//    // Пример вызова функции
-//    updateRecord("your_table_name", "old_name_value", "old_frequency_value", "new_name_value", "new_frequency_value");
-
-//    return a.exec();
-//}
-
-
-

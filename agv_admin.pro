@@ -49,6 +49,7 @@ HEADERS += \
     agvtoitem.h \
     custommessagebox.h \
     database.h \
+    define_type_to.h \
     logitem.h \
     mainwindow.h \
     modeladddialog.h \

@@ -25,7 +25,6 @@ public:
 
 private:
 
-
     QStackedWidget *stackedWidget;
 
     QWidget *addAGVWidget;
@@ -54,7 +53,6 @@ private:
     void updateLogData();
     void updateModelData();
     void replaceWidgetAt(int index, QWidget* newWidget);
-
 
     QLabel *titleLabel;
     QLabel *imageLabel;

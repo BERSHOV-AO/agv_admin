@@ -64,7 +64,6 @@ void ModelRedactorWidget::onCellDoubleClicked(int row, int column) {
     if (tableSelectedModelShowDialog.exec() == QDialog::Accepted) {
         loadData();
     }
-    //tableSelectedModelShowDialog.exec();
 }
 
 void ModelRedactorWidget::onAddModelClicked() {

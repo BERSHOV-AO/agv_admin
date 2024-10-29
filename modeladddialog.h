@@ -11,8 +11,11 @@
 #include <QLabel>
 #include <QDir>
 #include <QDateTime>
+#include <QCheckBox>
+#include <QMap>
 #include "database.h"
 #include <modelagvitem.h>
+#include "define_type_to.h"
 
 class ModelAddDialog : public QDialog
 {
@@ -27,6 +30,8 @@ private:
     QPushButton *saveButton;
     QLineEdit *modelEdit;
     DataBase *db;
+    QCheckBox *defaultCheckBox;
+    QMap <QString, QString> mapDafaultTO;
 };
 
 #endif // MODELADDDIALOG_H

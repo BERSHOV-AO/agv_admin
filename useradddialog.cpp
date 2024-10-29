@@ -19,7 +19,6 @@ UserAddDialog::UserAddDialog(QWidget *parent) : QDialog(parent)
 
     passEdit = new QLineEdit();
     passEdit->setStyleSheet("background-color: white;");
-    //  passEdit->setEchoMode(QLineEdit::Password); // Скрываем ввод пароля
 
     // Кнопка для добавления пользователя
     saveButton = new QPushButton("Добавить пользователя", this);

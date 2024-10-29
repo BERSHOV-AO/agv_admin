@@ -106,22 +106,11 @@ void TableSelectedModelShowDialog::onCellDoubleClicked(int row, int column) {
 
     TOItem toSelected(nameTo, frequencyTo);
 
-
-
     TOEditDialog toEditDialog(toSelected,nameTableModel, this);
 
     if (toEditDialog.exec() == QDialog::Accepted) {
         loadData();
     }
-
-
-    //toEditDialog.resize(1200, 700);
-
-
-    // qDebug() << "nameTo: " << nameTo;
-    // TableSelectedModelShowDialog tableSelectedModelShowDialog(model, this);
-    // tableSelectedModelShowDialog.resize(1200, 700);
-    // tableSelectedModelShowDialog.exec();
 }
 
 

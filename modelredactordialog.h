@@ -30,7 +30,6 @@ private:
     QTableWidget *tableWidget;
     QPushButton *addModelButton;
     DataBase *db;
-
     void loadData();
 
 private slots:

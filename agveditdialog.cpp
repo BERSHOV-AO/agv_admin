@@ -68,39 +68,6 @@ AGVEditDialog::AGVEditDialog(const AgvItem &agv, QWidget *parent) : QDialog(pare
     resize(400, 350);
 }
 
-
-//QString name = nameEdit->text();
-//QString serialNumber = serilaNumberEdit->text();
-//QString fwVersion = fwVersionComboBox->currentText();
-//QString model = modelComboBox->currentText();
-//QString documentation = documentationComboBox->currentText();
-//QString dataLastTo = QString::number(getCurrentMillisecondsSinceEpoch());
-
-//if(name.isEmpty() || serialNumber.isEmpty() || fwVersion.isEmpty() || model.isEmpty() || documentation.isEmpty() || dataLastTo.isEmpty()) {
-
-//    qDebug() << "Не все поля заполнены!";
-//    QMessageBox::warning(this, "Предупреждение", "Не все поля заполнены!");
-
-//} else {
-//    db->saveAgvItem(name, serialNumber, fwVersion, model, documentation, dataLastTo);
-//    QList<TOItem> tos = db->fetchTO(model);
-//    foreach(TOItem toItem , tos) {
-//        db->saveAgvTOItem(toItem.getNameTo(),serialNumber,toItem.getFrequencyTo(),"1", QString::number(getCurrentMillisecondsSinceEpoch()));
-//    }
-//    qDebug() << "Сохранено AGV:" << name << serialNumber << fwVersion << model << documentation;
-//    db->saveLogItem("3", "Admin", NULL, serialNumber, ADD_AGV_STRING, QString::number(getCurrentMillisecondsSinceEpoch()));
-//    nameEdit->clear();
-//    serilaNumberEdit->clear();
-//    modelEdit->clear();
-//    accept();
-//}
-
-
-//bool DataBase::updateAgv(const QString& oldName, const QString& oldSerialNumber,
-//                         const QString& newName, const QString& newSerialNumber,
-//                         const QString& versionFW, const QString& model,
-//                         const QString& ePlan) {
-
 void AGVEditDialog::saveData() {
 
     QString name = nameEdit->text();

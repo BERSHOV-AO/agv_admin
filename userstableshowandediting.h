@@ -25,12 +25,9 @@ public:
     void loadData();
     void updateTable();
 
-
 private slots:
     void onCellDoubleClicked(int row, int column);
     void onAddUserClicked();
-
-signals:
 
 };
 

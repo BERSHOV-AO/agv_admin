@@ -14,8 +14,6 @@
 #include "toaddfrommodeldialog.h"
 #include "toeditdialog.h"
 
-//  QList<TOItem> fetchTO(const QString nameTableTO);
-
 
 class TableSelectedModelShowDialog : public QDialog
 {
@@ -34,8 +32,6 @@ private:
     QString nameTableModel;
 
     void loadData();
-    //    QString formatDateFromMilliseconds(const QString& millisecondsStr);
-    //    QString addDaysToMilliseconds(const QString& millisecondsStr, const QString& daysStr);
 
 private slots:
     void oneAddModelClicked();
