@@ -70,7 +70,7 @@ ModelAddDialog::ModelAddDialog(QWidget *parent) : QDialog(parent)
     saveButton->setStyleSheet(" background-color: #4CAF50; color: white;");
     connect(saveButton, &QPushButton::clicked, this, &ModelAddDialog::addModel);
 
-    defaultCheckBox = new QCheckBox("Создать ТО по умолчанию", this);
+    defaultCheckBox = new QCheckBox("Создать список ТО по умолчанию", this);
 
     // Создаем вертикальный layout
     QVBoxLayout *layout = new QVBoxLayout(this);

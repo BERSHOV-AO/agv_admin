@@ -15,6 +15,10 @@
 #include "tablelogagvshow.h"
 #include "userstableshowandediting.h"
 #include "usereditdialog.h"
+#include <QSqlDatabase>
+#include <QStringList>
+#include <QDebug>
+
 class MainWindow : public QWidget
 {
     Q_OBJECT

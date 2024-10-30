@@ -14,13 +14,11 @@
 #include "toaddfrommodeldialog.h"
 #include "toeditdialog.h"
 
-
 class TableSelectedModelShowDialog : public QDialog
 {
     Q_OBJECT
 public:
     TableSelectedModelShowDialog(const QString &nameTableModel, QWidget *parent = nullptr);
-
 
 private:
     QVBoxLayout *layout;

@@ -15,7 +15,6 @@
 #include "database.h"
 #include "agvitem.h"
 
-
 class AGVEditDialog : public QDialog
 {
     Q_OBJECT

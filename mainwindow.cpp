@@ -3,8 +3,12 @@
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
 {
-    stackedWidget = new QStackedWidget(this);
 
+    //~~~~~~~~~~~test drivers db~~~~~~~~~~~~~
+    qDebug() << QSqlDatabase::drivers();
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    stackedWidget = new QStackedWidget(this);
     usersWidget = createUsresWidget();
     listAGVWidget = createListAGVWidget();
     logWidget = createLogWidget();

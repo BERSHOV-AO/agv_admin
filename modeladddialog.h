@@ -15,7 +15,6 @@
 #include <QMap>
 #include "database.h"
 #include <modelagvitem.h>
-#include "define_type_to.h"
 
 class ModelAddDialog : public QDialog
 {

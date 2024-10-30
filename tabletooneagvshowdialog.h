@@ -16,9 +16,7 @@
 #include "agvtoitem.h"
 #include <QBrush>
 
-
 #define DELETE_AGV_STRING  "Удаление AGV из базы данных"
-
 
 class TableToOneAgvShowDialog : public QDialog
 {
