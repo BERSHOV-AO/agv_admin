@@ -5,64 +5,22 @@ DataBase::DataBase(QObject *parent) : QObject(parent)
 
 }
 
-void DataBase::connectToDataBase()
+bool DataBase::connectToDataBase()
 {
-    /* Перед подключением к базе данных производим проверку на её существование.
-     * В зависимости от результата производим открытие базы данных или её восстановление
-     * */
+    QSqlDatabase dbConnect = QSqlDatabase::addDatabase("QMYSQL");
+    dbConnect.setHostName(HOST_NAME);
+    dbConnect.setUserName(USER_NAME);
+    dbConnect.setDatabaseName(DATABASE_NAME);
 
-    if(!QFile(DIR_AND_NAME_DATABASE).exists())
-    {
-        restoreDataBase();
-    }
-    else
-    {
-        openDataBase();
-    }
-}
-
-/* Методы восстановления базы данных */
-bool DataBase::restoreDataBase()
-{
-    // Если база данных открылась …
-
-    if(openDataBase())
-    {
-        return (createTable()) ? true : false; // Создаем новую базу данных
-    }
-    else
-    {
+    if (!dbConnect.open()) {
+        qDebug() << "Error connecting to database: ";
         return false;
     }
-    return false;
-}
-
-/* Метод для открытия базы данных */
-bool DataBase::openDataBase()
-{
-    /* База данных открывается по заданному пути
-     * и имени базы данных, если она существует
-     * */
-
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    //db.setHostName(DATABASE_HOSTNAME);
-    db.setDatabaseName(DIR_AND_NAME_DATABASE);
-    //db.setDatabaseName("./dirDB/dbLogbook.db");
-
-    if(db.open())
-    {
-        return true;
+    db = dbConnect;
+    if(!hasTables()) {
+        createTable();
     }
-    else
-    {
-        return false;
-    }
-}
 
-/* Методы закрытия базы данных */
-bool DataBase::closeDataBase()
-{
-    db.close();
     return true;
 }
 
@@ -72,7 +30,7 @@ bool DataBase::createTable()
     QSqlQuery query;
 
     QString strCreateTableUsers = "CREATE TABLE " TABLE_USERS " ("
-
+                                                              "id INT AUTO_INCREMENT PRIMARY KEY, "
                                                               "name TEXT, "
                                                               "surname TEXT, "
                                                               "login TEXT, "
@@ -80,6 +38,7 @@ bool DataBase::createTable()
                                                               ");";
 
     QString strCreateTableLog = "CREATE TABLE " TABLE_LOG " ("
+                                                          "id INT AUTO_INCREMENT PRIMARY KEY, "
                                                           "typeLog TEXT, "
                                                           "tabelNum TEXT, "
                                                           "timeOpenApp TEXT, "
@@ -89,6 +48,7 @@ bool DataBase::createTable()
                                                           ");";
 
     QString strCreateTableAgv = "CREATE TABLE " TABLE_AGV " ("
+                                                          "id INT AUTO_INCREMENT PRIMARY KEY, "
                                                           "name TEXT, "
                                                           "serialNumber TEXT, "
                                                           "versionFW TEXT, "
@@ -98,6 +58,7 @@ bool DataBase::createTable()
                                                           ");";
 
     QString strCreateTableAgvTo = "CREATE TABLE " TABLE_AGV_TO " ("
+                                                               "id INT AUTO_INCREMENT PRIMARY KEY, "
                                                                "nameTo TEXT, "
                                                                "serialNumberAGV TEXT, "
                                                                "frequencyOfTo TEXT, "
@@ -106,28 +67,29 @@ bool DataBase::createTable()
                                                                ");";
 
     QString strCreateTableModel = "CREATE TABLE " TABLE_MODEL " ("
+                                                              "id INT AUTO_INCREMENT PRIMARY KEY, "
                                                               "model TEXT "
                                                               ");";
 
-    QString strCreateTableAgv_1100_st = "CREATE TABLE " TABLE_AGV_1100_ST " ("
-                                                                          "nameTo TEXT, "
-                                                                          "frequencyTo TEXT "
-                                                                          ");";
+//    QString strCreateTableAgv_1100_st = "CREATE TABLE " TABLE_AGV_1100_ST " ("
+//                                                                          "nameTo TEXT, "
+//                                                                          "frequencyTo TEXT "
+//                                                                          ");";
 
-    QString strCreateTableAgv_3000_st = "CREATE TABLE " TABLE_AGV_3000_ST " ("
-                                                                          "nameTo TEXT, "
-                                                                          "frequencyTo TEXT "
-                                                                          ");";
+//    QString strCreateTableAgv_3000_st = "CREATE TABLE " TABLE_AGV_3000_ST " ("
+//                                                                          "nameTo TEXT, "
+//                                                                          "frequencyTo TEXT "
+//                                                                          ");";
 
-    QString strCreateTableAgv_1100_2p = "CREATE TABLE " TABLE_AGV_1100_2P " ("
-                                                                          "nameTo TEXT, "
-                                                                          "frequencyTo TEXT "
-                                                                          ");";
+//    QString strCreateTableAgv_1100_2p = "CREATE TABLE " TABLE_AGV_1100_2P " ("
+//                                                                          "nameTo TEXT, "
+//                                                                          "frequencyTo TEXT "
+//                                                                          ");";
 
-    QString strCreateTableAgv_1100_2t = "CREATE TABLE " TABLE_AGV_1100_2T " ("
-                                                                          "nameTo TEXT, "
-                                                                          "frequencyTo TEXT "
-                                                                          ");";
+//    QString strCreateTableAgv_1100_2t = "CREATE TABLE " TABLE_AGV_1100_2T " ("
+//                                                                          "nameTo TEXT, "
+//                                                                          "frequencyTo TEXT "
+//                                                                          ");";
     if (!query.exec(strCreateTableUsers))
     {
         return false;
@@ -154,28 +116,224 @@ bool DataBase::createTable()
     }
 
     //~~~~~~~~~~~~~~~~~~~TABLE TO AGV~~~~~~~~~~~~~~~~~~
-    if (!query.exec(strCreateTableAgv_1100_st))
-    {
-        return false;
-    }
+//    if (!query.exec(strCreateTableAgv_1100_st))
+//    {
+//        return false;
+//    }
 
-    if (!query.exec(strCreateTableAgv_3000_st))
-    {
-        return false;
-    }
+//    if (!query.exec(strCreateTableAgv_3000_st))
+//    {
+//        return false;
+//    }
 
-    if (!query.exec(strCreateTableAgv_1100_2p))
-    {
-        return false;
-    }
+//    if (!query.exec(strCreateTableAgv_1100_2p))
+//    {
+//        return false;
+//    }
 
-    if (!query.exec(strCreateTableAgv_1100_2t))
-    {
-        return false;
-    }
+//    if (!query.exec(strCreateTableAgv_1100_2t))
+//    {
+//        return false;
+//    }
 
     return true;
 }
+
+bool DataBase::hasTables() {
+    if (db.isOpen()) {
+      QSqlQuery query(db);
+      if (query.exec("SELECT name FROM sqlite_master WHERE type='table'")) {
+        return query.next();
+      }
+    }
+    return false;
+  }
+
+
+
+
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+//void DataBase::connectToDataBase()
+//{
+//    /* Перед подключением к базе данных производим проверку на её существование.
+//     * В зависимости от результата производим открытие базы данных или её восстановление
+//     * */
+
+//    if(!QFile(DIR_AND_NAME_DATABASE).exists())
+//   //     if(!QFile(DATABASE_NAME).exists())
+//    {
+//        restoreDataBase();
+//    }
+//    else
+//    {
+//        openDataBase();
+//    }
+//}
+
+/* Методы восстановления базы данных */
+bool DataBase::restoreDataBase()
+{
+    // Если база данных открылась …
+
+    if(openDataBase())
+    {
+        return (createTable()) ? true : false; // Создаем новую базу данных
+    }
+    else
+    {
+        return false;
+    }
+    return false;
+}
+
+/* Метод для открытия базы данных */
+bool DataBase::openDataBase()
+{
+    //~~~~~~~~~~~~~~~~db local~~~~~~~~~~~~~~~~~~~~~~~~~
+    /* База данных открывается по заданному пути
+     * и имени базы данных, если она существует
+     * */
+        db = QSqlDatabase::addDatabase("QSQLITE");
+        db.setDatabaseName(DIR_AND_NAME_DATABASE);
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    //~~~~~~~~~~~~~remote db~~~~~~~~~~~~~~~~~~
+//    db = QSqlDatabase::addDatabase("QMYSQL");
+//    db.setHostName("localhost");
+//    //db.setDatabaseName("agv_db");
+//    db.setDatabaseName(DATABASE_NAME);
+//    db.setUserName("root");
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    if(db.open())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+/* Методы закрытия базы данных */
+bool DataBase::closeDataBase()
+{
+    db.close();
+    return true;
+}
+
+///* Метод для создания таблицы в базе данных */
+//bool DataBase::createTable()
+//{
+//    QSqlQuery query;
+
+//    QString strCreateTableUsers = "CREATE TABLE " TABLE_USERS " ("
+
+//                                                              "name TEXT, "
+//                                                              "surname TEXT, "
+//                                                              "login TEXT, "
+//                                                              "pass TEXT "
+//                                                              ");";
+
+//    QString strCreateTableLog = "CREATE TABLE " TABLE_LOG " ("
+//                                                          "typeLog TEXT, "
+//                                                          "tabelNum TEXT, "
+//                                                          "timeOpenApp TEXT, "
+//                                                          "serialNumberAgv TEXT, "
+//                                                          "nameTO TEXT, "
+//                                                          "timeToAgv TEXT "
+//                                                          ");";
+
+//    QString strCreateTableAgv = "CREATE TABLE " TABLE_AGV " ("
+//                                                          "name TEXT, "
+//                                                          "serialNumber TEXT, "
+//                                                          "versionFW TEXT, "
+//                                                          "model TEXT, "
+//                                                          "ePlan TEXT, "
+//                                                          "dataLastTo TEXT "
+//                                                          ");";
+
+//    QString strCreateTableAgvTo = "CREATE TABLE " TABLE_AGV_TO " ("
+//                                                               "nameTo TEXT, "
+//                                                               "serialNumberAGV TEXT, "
+//                                                               "frequencyOfTo TEXT, "
+//                                                               "statusTo TEXT, "
+//                                                               "dataTo TEXT "
+//                                                               ");";
+
+//    QString strCreateTableModel = "CREATE TABLE " TABLE_MODEL " ("
+//                                                              "model TEXT "
+//                                                              ");";
+
+//    QString strCreateTableAgv_1100_st = "CREATE TABLE " TABLE_AGV_1100_ST " ("
+//                                                                          "nameTo TEXT, "
+//                                                                          "frequencyTo TEXT "
+//                                                                          ");";
+
+//    QString strCreateTableAgv_3000_st = "CREATE TABLE " TABLE_AGV_3000_ST " ("
+//                                                                          "nameTo TEXT, "
+//                                                                          "frequencyTo TEXT "
+//                                                                          ");";
+
+//    QString strCreateTableAgv_1100_2p = "CREATE TABLE " TABLE_AGV_1100_2P " ("
+//                                                                          "nameTo TEXT, "
+//                                                                          "frequencyTo TEXT "
+//                                                                          ");";
+
+//    QString strCreateTableAgv_1100_2t = "CREATE TABLE " TABLE_AGV_1100_2T " ("
+//                                                                          "nameTo TEXT, "
+//                                                                          "frequencyTo TEXT "
+//                                                                          ");";
+//    if (!query.exec(strCreateTableUsers))
+//    {
+//        return false;
+//    }
+
+//    if (!query.exec(strCreateTableLog))
+//    {
+//        return false;
+//    }
+
+//    if (!query.exec(strCreateTableAgv))
+//    {
+//        return false;
+//    }
+
+//    if (!query.exec(strCreateTableAgvTo))
+//    {
+//        return false;
+//    }
+
+//    if (!query.exec(strCreateTableModel))
+//    {
+//        return false;
+//    }
+
+//    //~~~~~~~~~~~~~~~~~~~TABLE TO AGV~~~~~~~~~~~~~~~~~~
+//    if (!query.exec(strCreateTableAgv_1100_st))
+//    {
+//        return false;
+//    }
+
+//    if (!query.exec(strCreateTableAgv_3000_st))
+//    {
+//        return false;
+//    }
+
+//    if (!query.exec(strCreateTableAgv_1100_2p))
+//    {
+//        return false;
+//    }
+
+//    if (!query.exec(strCreateTableAgv_1100_2t))
+//    {
+//        return false;
+//    }
+
+//    return true;
+//}
 
 //------------------------------------------------------------create---------------------------------------------------------------
 
@@ -183,6 +341,7 @@ bool DataBase::createNewModelTable(const QString tableName) {
     QSqlQuery query;
 
     QString strCreateTableNewModel = "CREATE TABLE " + tableName + " ("
+                                                                   "id INT AUTO_INCREMENT PRIMARY KEY, "
                                                                    "nameTo TEXT, "
                                                                    "frequencyTo TEXT "
                                                                    ");";

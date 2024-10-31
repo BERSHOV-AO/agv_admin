@@ -16,7 +16,7 @@
 #include "agvtoitem.h"
 
 /* Директивы имен таблицы, полей таблицы и базы данных */
-#define DATABASE_NAME            "agv_db.db"
+//#define DATABASE_NAME            "agv_db_new.db"
 #define DIR_AND_NAME_DATABASE    "./agv_db.db"
 //#define DATABASE_HOSTNAME       "NameDataBase"                                              // имя хоста
 //#define DIR_AND_NAME_DATABASE   "./dirDB/dbLogbook.db"                                      // Dir таблицы и имя
@@ -31,16 +31,26 @@
 #define TABLE_AGV_1100_2P        "AGV_1100_2T"
 #define TABLE_AGV_1100_2T        "AGV_3000_ST"
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#define HOST_NAME       "localhost"
+#define DATABASE_NAME   "agv_db"   //test_db
+//#define DATABASE_NAME   "test_db"
+#define USER_NAME       "root"
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 class DataBase : public QObject
 {
     Q_OBJECT
 public:
-    void connectToDataBase();
+    //~~~~~~~new~~~~~~~
+    bool createTable();
+    bool hasTables();
+    //~~~~~~~~~~~~~~~~~~~~~
+    bool connectToDataBase();
     /* Внутренние методы для работы с базой данных */
     bool openDataBase();                                                                  // Открытие базы данных
     bool restoreDataBase();                                                               // Востановление базы данных
-    bool createTable();                                                                   // Создание базы таблицы в базе данных
+    //bool createTable();                                                                   // Создание базы таблицы в базе данных
     bool closeDataBase();
 
     //~~~~~~~~~create~~~~~~~~~~~~
