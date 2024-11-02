@@ -5,6 +5,22 @@ DataBase::DataBase(QObject *parent) : QObject(parent)
 
 }
 
+
+
+bool DataBase::connectToDataBaseinFerst()
+{
+    QSqlDatabase dbConnect = QSqlDatabase::addDatabase("QMYSQL");
+    dbConnect.setHostName(HOST_NAME);
+    dbConnect.setUserName(USER_NAME);
+    dbConnect.setDatabaseName(DATABASE_NAME);
+
+    if (!dbConnect.open()) {
+        qDebug() << "Error connecting to database: ";
+        return false;
+    }
+    return true;
+}
+
 bool DataBase::connectToDataBase()
 {
     QSqlDatabase dbConnect = QSqlDatabase::addDatabase("QMYSQL");

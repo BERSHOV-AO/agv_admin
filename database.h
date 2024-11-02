@@ -47,6 +47,9 @@ public:
     bool hasTables();
     //~~~~~~~~~~~~~~~~~~~~~
     bool connectToDataBase();
+
+    bool connectToDataBaseinFerst();
+
     /* Внутренние методы для работы с базой данных */
     bool openDataBase();                                                                  // Открытие базы данных
     bool restoreDataBase();                                                               // Востановление базы данных
