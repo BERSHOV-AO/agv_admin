@@ -5,8 +5,6 @@ DataBase::DataBase(QObject *parent) : QObject(parent)
 
 }
 
-
-
 bool DataBase::connectToDataBaseinFerst()
 {
     QSqlDatabase dbConnect = QSqlDatabase::addDatabase("QMYSQL");

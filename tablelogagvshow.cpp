@@ -16,6 +16,14 @@ TableLogAgvShow::TableLogAgvShow(QWidget *parent) : QWidget(parent)
     tableWidget->setColumnWidth(2, 370);
     tableWidget->setColumnWidth(3, 250);
 
+    // Устанавливаем растяжение последнего столбца
+    tableWidget->horizontalHeader()->setStretchLastSection(true);
+
+    // Устанавливаем политику растягивания для всех столбцов
+    for (int i = 0; i < tableWidget->columnCount(); ++i) {
+        tableWidget->horizontalHeader()->setSectionResizeMode(i, QHeaderView::Stretch);
+    }
+
     loadData();
 
     layout->addWidget(tableWidget);

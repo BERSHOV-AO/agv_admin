@@ -31,6 +31,14 @@ ModelRedactorWidget::ModelRedactorWidget(QWidget *parent) : QWidget(parent)
     tableWidget->setColumnWidth(0, 1200);
     tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
 
+    // Устанавливаем растяжение последнего столбца
+    tableWidget->horizontalHeader()->setStretchLastSection(true);
+
+    // Устанавливаем политику растягивания для всех столбцов
+    for (int i = 0; i < tableWidget->columnCount(); ++i) {
+        tableWidget->horizontalHeader()->setSectionResizeMode(i, QHeaderView::Stretch);
+    }
+
     connect(tableWidget, &QTableWidget::cellDoubleClicked, this, &ModelRedactorWidget::onCellDoubleClicked);
     loadData();
 
