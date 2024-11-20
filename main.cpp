@@ -17,6 +17,17 @@
 #include <QApplication>
 #include <QMessageBox>
 #include "database.h"
+#include "agvtoitem.h"
+
+#define RED_STATUS               "0"
+#define YELLOW_STATUS            "2"
+#define NUMBER_OF_DAYS_BEFORE_TO  5
+
+
+qint64 daysToMilliseconds(int days) {
+    return static_cast<qint64>(days) * 24 * 60 * 60 * 1000;
+}
+
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
@@ -30,11 +41,36 @@ int main(int argc, char *argv[]) {
         return 1; // Возвращаем 1 в случае ошибки
 
     }
+
+    //-------------------------------------------------------udate status TO-------------------------------------------------------------
+    QList<AGVTOItem> agvsAllTosList = db->getAllAgvTO();
+
+    QDateTime currentDateTime = QDateTime::currentDateTime();
+    qint64 currentDateTimeMilliseconds = currentDateTime.toMSecsSinceEpoch();
+
+    for(AGVTOItem agvTo: agvsAllTosList) {
+
+        qint64 dataToAndFrequency = agvTo.getDataTo().toLongLong() + daysToMilliseconds(agvTo.getFrequencyOfTo().toInt());
+        qint64 dataToAndFrequencyMinusNumberDaysBeforeTO = dataToAndFrequency - daysToMilliseconds(5);
+
+        if(currentDateTimeMilliseconds > dataToAndFrequency) {
+            db->updateStatusToFromAgvToTable(agvTo.getSerialNumberAGV(), agvTo.getNameTo(), RED_STATUS);
+        }
+
+        if(currentDateTimeMilliseconds < dataToAndFrequency && currentDateTimeMilliseconds > dataToAndFrequencyMinusNumberDaysBeforeTO) {
+            db->updateStatusToFromAgvToTable(agvTo.getSerialNumberAGV(), agvTo.getNameTo(), YELLOW_STATUS);
+        }
+    }
+    //-----------------------------------------------------------------------------------------------------------------------------------
+
     MainWindow window; // Создаем объект window
     window.resize(1250, 800);
     window.show();
 
     delete db; // Освобождаем память
-
     return app.exec();
 }
+
+
+
+

@@ -72,6 +72,8 @@ public:
                    const QString& newName, const QString& newSerialNumber,
                    const QString& versionFW, const QString& model,
                    const QString& ePlan);
+    bool updateStatusToFromAgvToTable(const QString& serialNumberAGV, const QString& NameTo, const QString& newStatusTo);
+
     //~~~~~~~~~~delete~~~~~~~~~~~
     bool dropTable(const QString &tableName);
     bool deleteUser(const QString &login, const QString &name, const QString &surname);
@@ -80,6 +82,7 @@ public:
     bool deleteModel(const QString &model);
     bool deleteTOFromSelectModelTable(const QString &nameTableModel, const QString &nameTo, const QString &frequencyTo);
     //~~~~~~~~fetch -> get~~~~~~~~
+    QList<AGVTOItem> getAllAgvTO();
     QList<AgvItem> fetchAGVs();
     QList<UserItem> fetchUsers();
     QList<LogItem> fetchLogs();

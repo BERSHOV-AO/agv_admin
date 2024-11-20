@@ -85,25 +85,25 @@ bool DataBase::createTable()
                                                               "model TEXT "
                                                               ");";
 
-//    QString strCreateTableAgv_1100_st = "CREATE TABLE " TABLE_AGV_1100_ST " ("
-//                                                                          "nameTo TEXT, "
-//                                                                          "frequencyTo TEXT "
-//                                                                          ");";
+    //    QString strCreateTableAgv_1100_st = "CREATE TABLE " TABLE_AGV_1100_ST " ("
+    //                                                                          "nameTo TEXT, "
+    //                                                                          "frequencyTo TEXT "
+    //                                                                          ");";
 
-//    QString strCreateTableAgv_3000_st = "CREATE TABLE " TABLE_AGV_3000_ST " ("
-//                                                                          "nameTo TEXT, "
-//                                                                          "frequencyTo TEXT "
-//                                                                          ");";
+    //    QString strCreateTableAgv_3000_st = "CREATE TABLE " TABLE_AGV_3000_ST " ("
+    //                                                                          "nameTo TEXT, "
+    //                                                                          "frequencyTo TEXT "
+    //                                                                          ");";
 
-//    QString strCreateTableAgv_1100_2p = "CREATE TABLE " TABLE_AGV_1100_2P " ("
-//                                                                          "nameTo TEXT, "
-//                                                                          "frequencyTo TEXT "
-//                                                                          ");";
+    //    QString strCreateTableAgv_1100_2p = "CREATE TABLE " TABLE_AGV_1100_2P " ("
+    //                                                                          "nameTo TEXT, "
+    //                                                                          "frequencyTo TEXT "
+    //                                                                          ");";
 
-//    QString strCreateTableAgv_1100_2t = "CREATE TABLE " TABLE_AGV_1100_2T " ("
-//                                                                          "nameTo TEXT, "
-//                                                                          "frequencyTo TEXT "
-//                                                                          ");";
+    //    QString strCreateTableAgv_1100_2t = "CREATE TABLE " TABLE_AGV_1100_2T " ("
+    //                                                                          "nameTo TEXT, "
+    //                                                                          "frequencyTo TEXT "
+    //                                                                          ");";
     if (!query.exec(strCreateTableUsers))
     {
         return false;
@@ -130,38 +130,38 @@ bool DataBase::createTable()
     }
 
     //~~~~~~~~~~~~~~~~~~~TABLE TO AGV~~~~~~~~~~~~~~~~~~
-//    if (!query.exec(strCreateTableAgv_1100_st))
-//    {
-//        return false;
-//    }
+    //    if (!query.exec(strCreateTableAgv_1100_st))
+    //    {
+    //        return false;
+    //    }
 
-//    if (!query.exec(strCreateTableAgv_3000_st))
-//    {
-//        return false;
-//    }
+    //    if (!query.exec(strCreateTableAgv_3000_st))
+    //    {
+    //        return false;
+    //    }
 
-//    if (!query.exec(strCreateTableAgv_1100_2p))
-//    {
-//        return false;
-//    }
+    //    if (!query.exec(strCreateTableAgv_1100_2p))
+    //    {
+    //        return false;
+    //    }
 
-//    if (!query.exec(strCreateTableAgv_1100_2t))
-//    {
-//        return false;
-//    }
+    //    if (!query.exec(strCreateTableAgv_1100_2t))
+    //    {
+    //        return false;
+    //    }
 
     return true;
 }
 
 bool DataBase::hasTables() {
     if (db.isOpen()) {
-      QSqlQuery query(db);
-      if (query.exec("SELECT name FROM sqlite_master WHERE type='table'")) {
-        return query.next();
-      }
+        QSqlQuery query(db);
+        if (query.exec("SELECT name FROM sqlite_master WHERE type='table'")) {
+            return query.next();
+        }
     }
     return false;
-  }
+}
 
 
 
@@ -209,16 +209,16 @@ bool DataBase::openDataBase()
     /* База данных открывается по заданному пути
      * и имени базы данных, если она существует
      * */
-        db = QSqlDatabase::addDatabase("QSQLITE");
-        db.setDatabaseName(DIR_AND_NAME_DATABASE);
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(DIR_AND_NAME_DATABASE);
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     //~~~~~~~~~~~~~remote db~~~~~~~~~~~~~~~~~~
-//    db = QSqlDatabase::addDatabase("QMYSQL");
-//    db.setHostName("localhost");
-//    //db.setDatabaseName("agv_db");
-//    db.setDatabaseName(DATABASE_NAME);
-//    db.setUserName("root");
+    //    db = QSqlDatabase::addDatabase("QMYSQL");
+    //    db.setHostName("localhost");
+    //    //db.setDatabaseName("agv_db");
+    //    db.setDatabaseName(DATABASE_NAME);
+    //    db.setUserName("root");
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     if(db.open())
@@ -499,6 +499,31 @@ QList<AGVTOItem> DataBase::fetchToOneAgv(const QString serialNumAGV) {
         agvToItems.append(agvToItem);
     }
     return agvToItems;
+}
+
+QList<AGVTOItem> DataBase::getAllAgvTO() {
+    QList<AGVTOItem> agvToList;
+
+    // SQL-запрос для выборки всех записей из таблицы AGV_TO без id
+    QString strSelectAgvTo = "SELECT nameTo, serialNumberAGV, frequencyOfTo, statusTo, dataTo FROM " TABLE_AGV_TO;
+
+    QSqlQuery query;
+    if (!query.exec(strSelectAgvTo)) {
+        qWarning() << "Ошибка выполнения запроса:";
+        return agvToList; // Возвращаем пустой список в случае ошибки
+    }
+
+    // Обработка результатов запроса
+    while (query.next()) {
+        QString nameToStr = query.value("nameTo").toString();
+        QString serialNumberAGVStr = query.value("serialNumberAGV").toString();
+        QString frequencyOfToStr = query.value("frequencyOfTo").toString();
+        QString statusToStr = query.value("statusTo").toString();
+        QString dataToStr = query.value("dataTo").toString();
+
+        agvToList.append(AGVTOItem(nameToStr, serialNumberAGVStr, frequencyOfToStr, statusToStr, dataToStr));
+    }
+    return agvToList;
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~save~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -837,4 +862,32 @@ bool DataBase::updateAgv(const QString& oldName, const QString& oldSerialNumber,
     }
 
     return true;
+}
+
+
+bool DataBase::updateStatusToFromAgvToTable(const QString& serialNumberAGV, const QString& NameTo, const QString& newStatusTo) {
+
+    // Создаем SQL-запрос для обновления статуса
+    QSqlQuery query;
+    query.prepare("UPDATE " TABLE_AGV_TO " SET statusTo = :newStatusTo WHERE serialNumberAGV = :serialNumberAGV AND nameTo = :nameTo");
+
+    // Устанавливаем параметры запроса
+    query.bindValue(":newStatusTo", newStatusTo);
+    query.bindValue(":serialNumberAGV", serialNumberAGV);
+    query.bindValue(":nameTo", NameTo);
+
+    // Выполняем запрос
+    if (!query.exec()) {
+        qDebug() << "Ошибка выполнения запроса:"; //<< query.lastError().text();
+        return false;
+    }
+
+    // Проверяем, были ли обновлены какие-либо строки
+    if (query.numRowsAffected() > 0) {
+        qDebug() << "Статус успешно обновлен.";
+        return true;
+    } else {
+        qDebug() << "Запись не найдена или статус не изменен.";
+        return false;
+    }
 }
