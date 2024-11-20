@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
     for(AGVTOItem agvTo: agvsAllTosList) {
 
         qint64 dataToAndFrequency = agvTo.getDataTo().toLongLong() + daysToMilliseconds(agvTo.getFrequencyOfTo().toInt());
-        qint64 dataToAndFrequencyMinusNumberDaysBeforeTO = dataToAndFrequency - daysToMilliseconds(5);
+        qint64 dataToAndFrequencyMinusNumberDaysBeforeTO = dataToAndFrequency - daysToMilliseconds(NUMBER_OF_DAYS_BEFORE_TO);
 
         if(currentDateTimeMilliseconds > dataToAndFrequency) {
             db->updateStatusToFromAgvToTable(agvTo.getSerialNumberAGV(), agvTo.getNameTo(), RED_STATUS);
