@@ -13,7 +13,7 @@
 #include <QDir>
 #include <QMessageBox>
 #include "database.h"
-#include "agvitem.h"
+#include "entities_headers/agvitem.h"
 
 class AGVEditDialog : public QDialog
 {

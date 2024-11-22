@@ -12,7 +12,7 @@
 #include <QDir>
 #include <QDateTime>
 #include "database.h"
-#include <modelagvitem.h>
+#include "entities_headers/modelagvitem.h"
 
 class ToAddFromModelDialog : public QDialog
 {

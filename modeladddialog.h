@@ -14,7 +14,7 @@
 #include <QCheckBox>
 #include <QMap>
 #include "database.h"
-#include <modelagvitem.h>
+#include "entities_headers/modelagvitem.h"
 
 class ModelAddDialog : public QDialog
 {

@@ -16,18 +16,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    entities_sources/agvitem.cpp \
+    entities_sources/agvtoitem.cpp \
+    entities_sources/modelagvitem.cpp \
+    entities_sources/logitem.cpp \
+    entities_sources/useritem.cpp \
     addagvwidget.cpp \
     agvadddialog.cpp \
     agveditdialog.cpp \
-    agvitem.cpp \
-    agvtoitem.cpp \
     custommessagebox.cpp \
-    database.cpp \
-    logitem.cpp \
+    database.cpp \   
     main.cpp \
     mainwindow.cpp \
-    modeladddialog.cpp \
-    modelagvitem.cpp \
+    modeladddialog.cpp \   
     modelredactordialog.cpp \
     tableagvshow.cpp \
     tablelogagvshow.cpp \
@@ -37,22 +38,22 @@ SOURCES += \
     toeditdialog.cpp \
     toitem.cpp \
     useradddialog.cpp \
-    usereditdialog.cpp \
-    useritem.cpp \
+    usereditdialog.cpp \   
     userstableshowandediting.cpp
 
 HEADERS += \
+    entities_headers/useritem.h \
+    entities_headers/agvitem.h \
+    entities_headers/agvtoitem.h \
+    entities_headers/logitem.h \
+    entities_headers/modelagvitem.h \
     addagvwidget.h \
     agvadddialog.h \
-    agveditdialog.h \
-    agvitem.h \
-    agvtoitem.h \
+    agveditdialog.h \      
     custommessagebox.h \
-    database.h \
-    logitem.h \
+    database.h \   
     mainwindow.h \
     modeladddialog.h \
-    modelagvitem.h \
     modelredactordialog.h \
     tableagvshow.h \
     tablelogagvshow.h \
@@ -62,8 +63,7 @@ HEADERS += \
     toeditdialog.h \
     toitem.h \
     useradddialog.h \
-    usereditdialog.h \
-    useritem.h \
+    usereditdialog.h \   
     userstableshowandediting.h
 
 # Default rules for deployment.

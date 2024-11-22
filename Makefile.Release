@@ -50,18 +50,19 @@ OBJECTS_DIR   = release
 
 ####### Files
 
-SOURCES       = addagvwidget.cpp \
+SOURCES       = entities_sources\agvitem.cpp \
+		entities_sources\agvtoitem.cpp \
+		entities_sources\modelagvitem.cpp \
+		entities_sources\logitem.cpp \
+		entities_sources\useritem.cpp \
+		addagvwidget.cpp \
 		agvadddialog.cpp \
 		agveditdialog.cpp \
-		agvitem.cpp \
-		agvtoitem.cpp \
 		custommessagebox.cpp \
 		database.cpp \
-		logitem.cpp \
 		main.cpp \
 		mainwindow.cpp \
 		modeladddialog.cpp \
-		modelagvitem.cpp \
 		modelredactordialog.cpp \
 		tableagvshow.cpp \
 		tablelogagvshow.cpp \
@@ -72,7 +73,6 @@ SOURCES       = addagvwidget.cpp \
 		toitem.cpp \
 		useradddialog.cpp \
 		usereditdialog.cpp \
-		useritem.cpp \
 		userstableshowandediting.cpp release\moc_addagvwidget.cpp \
 		release\moc_agvadddialog.cpp \
 		release\moc_agveditdialog.cpp \
@@ -88,18 +88,19 @@ SOURCES       = addagvwidget.cpp \
 		release\moc_useradddialog.cpp \
 		release\moc_usereditdialog.cpp \
 		release\moc_userstableshowandediting.cpp
-OBJECTS       = release/addagvwidget.o \
+OBJECTS       = release/agvitem.o \
+		release/agvtoitem.o \
+		release/modelagvitem.o \
+		release/logitem.o \
+		release/useritem.o \
+		release/addagvwidget.o \
 		release/agvadddialog.o \
 		release/agveditdialog.o \
-		release/agvitem.o \
-		release/agvtoitem.o \
 		release/custommessagebox.o \
 		release/database.o \
-		release/logitem.o \
 		release/main.o \
 		release/mainwindow.o \
 		release/modeladddialog.o \
-		release/modelagvitem.o \
 		release/modelredactordialog.o \
 		release/tableagvshow.o \
 		release/tablelogagvshow.o \
@@ -110,7 +111,6 @@ OBJECTS       = release/addagvwidget.o \
 		release/toitem.o \
 		release/useradddialog.o \
 		release/usereditdialog.o \
-		release/useritem.o \
 		release/userstableshowandediting.o \
 		release/moc_addagvwidget.o \
 		release/moc_agvadddialog.o \
@@ -128,17 +128,18 @@ OBJECTS       = release/addagvwidget.o \
 		release/moc_usereditdialog.o \
 		release/moc_userstableshowandediting.o
 
-DIST          =  addagvwidget.h \
+DIST          =  entities_headers\useritem.h \
+		entities_headers\agvitem.h \
+		entities_headers\agvtoitem.h \
+		entities_headers\logitem.h \
+		entities_headers\modelagvitem.h \
+		addagvwidget.h \
 		agvadddialog.h \
 		agveditdialog.h \
-		agvitem.h \
-		agvtoitem.h \
 		custommessagebox.h \
 		database.h \
-		logitem.h \
 		mainwindow.h \
 		modeladddialog.h \
-		modelagvitem.h \
 		modelredactordialog.h \
 		tableagvshow.h \
 		tablelogagvshow.h \
@@ -149,19 +150,19 @@ DIST          =  addagvwidget.h \
 		toitem.h \
 		useradddialog.h \
 		usereditdialog.h \
-		useritem.h \
-		userstableshowandediting.h addagvwidget.cpp \
+		userstableshowandediting.h entities_sources\agvitem.cpp \
+		entities_sources\agvtoitem.cpp \
+		entities_sources\modelagvitem.cpp \
+		entities_sources\logitem.cpp \
+		entities_sources\useritem.cpp \
+		addagvwidget.cpp \
 		agvadddialog.cpp \
 		agveditdialog.cpp \
-		agvitem.cpp \
-		agvtoitem.cpp \
 		custommessagebox.cpp \
 		database.cpp \
-		logitem.cpp \
 		main.cpp \
 		mainwindow.cpp \
 		modeladddialog.cpp \
-		modelagvitem.cpp \
 		modelredactordialog.cpp \
 		tableagvshow.cpp \
 		tablelogagvshow.cpp \
@@ -172,7 +173,6 @@ DIST          =  addagvwidget.h \
 		toitem.cpp \
 		useradddialog.cpp \
 		usereditdialog.cpp \
-		useritem.cpp \
 		userstableshowandediting.cpp
 QMAKE_TARGET  = agv_admin
 DESTDIR        = release\ #avoid trailing-slash linebreak
@@ -193,10 +193,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) agv_admin.zip $(SOURCES) $(DIST) agv_admin.pro ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\spec_pre.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\qdevice.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\device_config.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\sanitize.conf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\gcc-base.conf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\g++-base.conf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\angle.conf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\win32\windows_vulkan_sdk.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\windows-vulkan.conf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\g++-win32.conf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\windows-desktop.conf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\qconfig.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3danimation.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dextras.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3drender.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axbase.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axserver.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_core.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_core_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_dbus.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designer.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_edid_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gamepad.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gui.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_help.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_help_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_location.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_location_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_network.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_network_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_nfc.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_opengl.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioning.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioningquick.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioningquick_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qml.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlmodels.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlmodels_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlworkerscript.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickshapes_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_repparser.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_repparser_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scxml.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scxml_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sensors.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialport.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sql.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_svg.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_testlib.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_texttospeech.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uitools.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_vulkan_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_websockets.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_widgets.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_winextras.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xml.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_zlib_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\qt_functions.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\qt_config.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\win32-g++\qmake.conf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\spec_post.prf .qmake.stash ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\exclusive_builds.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\toolchain.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\default_pre.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\win32\default_pre.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\resolve_config.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\exclusive_builds_post.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\default_post.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\build_pass.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\qml_debug.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\precompile_header.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\warn_on.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\qt.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\resources_functions.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\resources.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\moc.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\win32\opengl.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\uic.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\qmake_use.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\file_copies.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\win32\windows.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\testcase_targets.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\exceptions.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\yacc.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\lex.prf agv_admin.pro ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\Qt5Widgets.prl ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\Qt5Gui.prl ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\Qt5Sql.prl ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\Qt5Core.prl ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\qtmain.prl    ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\data\dummy.cpp addagvwidget.h agvadddialog.h agveditdialog.h agvitem.h agvtoitem.h custommessagebox.h database.h logitem.h mainwindow.h modeladddialog.h modelagvitem.h modelredactordialog.h tableagvshow.h tablelogagvshow.h tableselectedmodelshowdialog.h tabletooneagvshowdialog.h toaddfrommodeldialog.h toeditdialog.h toitem.h useradddialog.h usereditdialog.h useritem.h userstableshowandediting.h  addagvwidget.cpp agvadddialog.cpp agveditdialog.cpp agvitem.cpp agvtoitem.cpp custommessagebox.cpp database.cpp logitem.cpp main.cpp mainwindow.cpp modeladddialog.cpp modelagvitem.cpp modelredactordialog.cpp tableagvshow.cpp tablelogagvshow.cpp tableselectedmodelshowdialog.cpp tabletooneagvshowdialog.cpp toaddfrommodeldialog.cpp toeditdialog.cpp toitem.cpp useradddialog.cpp usereditdialog.cpp useritem.cpp userstableshowandediting.cpp     
+	$(ZIP) agv_admin.zip $(SOURCES) $(DIST) agv_admin.pro ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\spec_pre.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\qdevice.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\device_config.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\sanitize.conf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\gcc-base.conf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\g++-base.conf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\angle.conf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\win32\windows_vulkan_sdk.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\windows-vulkan.conf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\g++-win32.conf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\common\windows-desktop.conf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\qconfig.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3danimation.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dextras.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3drender.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axbase.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axserver.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_core.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_core_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_dbus.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designer.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_edid_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gamepad.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gui.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_help.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_help_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_location.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_location_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_network.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_network_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_nfc.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_opengl.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioning.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioningquick.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioningquick_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qml.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlmodels.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlmodels_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlworkerscript.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickshapes_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_repparser.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_repparser_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scxml.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scxml_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sensors.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialport.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sql.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_svg.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_testlib.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_texttospeech.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uitools.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_vulkan_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_websockets.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_widgets.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_winextras.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xml.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\modules\qt_lib_zlib_private.pri ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\qt_functions.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\qt_config.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\win32-g++\qmake.conf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\spec_post.prf .qmake.stash ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\exclusive_builds.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\toolchain.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\default_pre.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\win32\default_pre.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\resolve_config.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\exclusive_builds_post.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\default_post.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\build_pass.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\qml_debug.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\precompile_header.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\warn_on.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\qt.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\resources_functions.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\resources.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\moc.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\win32\opengl.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\uic.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\qmake_use.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\file_copies.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\win32\windows.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\testcase_targets.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\exceptions.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\yacc.prf ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\lex.prf agv_admin.pro ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\Qt5Widgets.prl ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\Qt5Gui.prl ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\Qt5Sql.prl ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\Qt5Core.prl ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\qtmain.prl    ..\..\..\..\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\features\data\dummy.cpp entities_headers\useritem.h entities_headers\agvitem.h entities_headers\agvtoitem.h entities_headers\logitem.h entities_headers\modelagvitem.h addagvwidget.h agvadddialog.h agveditdialog.h custommessagebox.h database.h mainwindow.h modeladddialog.h modelredactordialog.h tableagvshow.h tablelogagvshow.h tableselectedmodelshowdialog.h tabletooneagvshowdialog.h toaddfrommodeldialog.h toeditdialog.h toitem.h useradddialog.h usereditdialog.h userstableshowandediting.h  entities_sources\agvitem.cpp entities_sources\agvtoitem.cpp entities_sources\modelagvitem.cpp entities_sources\logitem.cpp entities_sources\useritem.cpp addagvwidget.cpp agvadddialog.cpp agveditdialog.cpp custommessagebox.cpp database.cpp main.cpp mainwindow.cpp modeladddialog.cpp modelredactordialog.cpp tableagvshow.cpp tablelogagvshow.cpp tableselectedmodelshowdialog.cpp tabletooneagvshowdialog.cpp toaddfrommodeldialog.cpp toeditdialog.cpp toitem.cpp useradddialog.cpp usereditdialog.cpp userstableshowandediting.cpp     
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\addagvwidget.o release\agvadddialog.o release\agveditdialog.o release\agvitem.o release\agvtoitem.o release\custommessagebox.o release\database.o release\logitem.o release\main.o release\mainwindow.o release\modeladddialog.o release\modelagvitem.o release\modelredactordialog.o release\tableagvshow.o release\tablelogagvshow.o release\tableselectedmodelshowdialog.o release\tabletooneagvshowdialog.o release\toaddfrommodeldialog.o release\toeditdialog.o release\toitem.o release\useradddialog.o release\usereditdialog.o release\useritem.o release\userstableshowandediting.o release\moc_addagvwidget.o release\moc_agvadddialog.o release\moc_agveditdialog.o release\moc_custommessagebox.o release\moc_database.o release\moc_mainwindow.o release\moc_modeladddialog.o release\moc_tableagvshow.o release\moc_tablelogagvshow.o release\moc_tableselectedmodelshowdialog.o release\moc_tabletooneagvshowdialog.o release\moc_toeditdialog.o release\moc_useradddialog.o release\moc_usereditdialog.o release\moc_userstableshowandediting.o
+	-$(DEL_FILE) release\agvitem.o release\agvtoitem.o release\modelagvitem.o release\logitem.o release\useritem.o release\addagvwidget.o release\agvadddialog.o release\agveditdialog.o release\custommessagebox.o release\database.o release\main.o release\mainwindow.o release\modeladddialog.o release\modelredactordialog.o release\tableagvshow.o release\tablelogagvshow.o release\tableselectedmodelshowdialog.o release\tabletooneagvshowdialog.o release\toaddfrommodeldialog.o release\toeditdialog.o release\toitem.o release\useradddialog.o release\usereditdialog.o release\userstableshowandediting.o release\moc_addagvwidget.o release\moc_agvadddialog.o release\moc_agveditdialog.o release\moc_custommessagebox.o release\moc_database.o release\moc_mainwindow.o release\moc_modeladddialog.o release\moc_tableagvshow.o release\moc_tablelogagvshow.o release\moc_tableselectedmodelshowdialog.o release\moc_tabletooneagvshowdialog.o release\moc_toeditdialog.o release\moc_useradddialog.o release\moc_usereditdialog.o release\moc_userstableshowandediting.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -384,13 +384,12 @@ release/moc_addagvwidget.cpp: addagvwidget.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFile \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		release/moc_predefs.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/bin/moc.exe
 	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/Aleksey/Documents/agv_admin/release/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/Users/Aleksey/Documents/agv_admin -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include addagvwidget.h -o release\moc_addagvwidget.cpp
@@ -552,13 +551,12 @@ release/moc_agvadddialog.cpp: agvadddialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFile \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		release/moc_predefs.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/bin/moc.exe
 	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/Aleksey/Documents/agv_admin/release/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/Users/Aleksey/Documents/agv_admin -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include agvadddialog.h -o release\moc_agvadddialog.cpp
@@ -721,12 +719,11 @@ release/moc_agveditdialog.cpp: agveditdialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFile \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/agvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		release/moc_predefs.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/bin/moc.exe
 	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/Aleksey/Documents/agv_admin/release/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/Users/Aleksey/Documents/agv_admin -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include agveditdialog.h -o release\moc_agveditdialog.cpp
@@ -932,13 +929,12 @@ release/moc_database.cpp: database.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsharedpointer_impl.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		release/moc_predefs.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/bin/moc.exe
 	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/Aleksey/Documents/agv_admin/release/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/Users/Aleksey/Documents/agv_admin -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include database.h -o release\moc_database.cpp
@@ -1109,13 +1105,12 @@ release/moc_mainwindow.cpp: mainwindow.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDebug \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		agvadddialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDialog \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdialog.h \
@@ -1315,13 +1310,12 @@ release/moc_modeladddialog.cpp: modeladddialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFile \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		release/moc_predefs.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/bin/moc.exe
 	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/Aleksey/Documents/agv_admin/release/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/Users/Aleksey/Documents/agv_admin -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include modeladddialog.h -o release\moc_modeladddialog.cpp
@@ -1478,13 +1472,12 @@ release/moc_tableagvshow.cpp: tableagvshow.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDebug \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		agvadddialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDialog \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdialog.h \
@@ -1664,13 +1657,12 @@ release/moc_tablelogagvshow.cpp: tablelogagvshow.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDebug \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		release/moc_predefs.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/bin/moc.exe
 	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/Aleksey/Documents/agv_admin/release/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/Users/Aleksey/Documents/agv_admin -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include tablelogagvshow.h -o release\moc_tablelogagvshow.cpp
@@ -1822,13 +1814,12 @@ release/moc_tableselectedmodelshowdialog.cpp: tableselectedmodelshowdialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDebug \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/QBrush \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QVBoxLayout \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qboxlayout.h \
@@ -2009,13 +2000,12 @@ release/moc_tabletooneagvshowdialog.cpp: tabletooneagvshowdialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDebug \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		agveditdialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QLineEdit \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlineedit.h \
@@ -2173,13 +2163,12 @@ release/moc_toeditdialog.cpp: toeditdialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFile \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		custommessagebox.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/QPalette \
 		release/moc_predefs.h \
@@ -2313,7 +2302,7 @@ release/moc_useradddialog.cpp: useradddialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qmessagebox.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QLabel \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlabel.h \
-		useritem.h \
+		entities_headers/useritem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
 		database.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QObject \
@@ -2326,11 +2315,10 @@ release/moc_useradddialog.cpp: useradddialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFile \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/agvitem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		release/moc_predefs.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/bin/moc.exe
 	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/Aleksey/Documents/agv_admin/release/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/Users/Aleksey/Documents/agv_admin -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include useradddialog.h -o release\moc_useradddialog.cpp
@@ -2462,7 +2450,7 @@ release/moc_usereditdialog.cpp: usereditdialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlabel.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QMessageBox \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qmessagebox.h \
-		useritem.h \
+		entities_headers/useritem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
 		database.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QObject \
@@ -2475,11 +2463,10 @@ release/moc_usereditdialog.cpp: usereditdialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFile \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/agvitem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		release/moc_predefs.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/bin/moc.exe
 	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/Aleksey/Documents/agv_admin/release/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/Users/Aleksey/Documents/agv_admin -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtSql -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include usereditdialog.h -o release\moc_usereditdialog.cpp
@@ -2632,13 +2619,12 @@ release/moc_userstableshowandediting.cpp: userstableshowandediting.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDebug \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		usereditdialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDialog \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdialog.h \
@@ -2674,6 +2660,149 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 
 
 ####### Compile
+
+release/agvitem.o: entities_sources/agvitem.cpp entities_headers/agvitem.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstring.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qchar.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobal.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtcore-config.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsysinfo.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qlogging.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qflags.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qmutex.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnumeric.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qversiontagging.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbytearray.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qrefcount.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnamespace.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qarraydata.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringliteral.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringalgorithms.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringview.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringbuilder.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\agvitem.o entities_sources\agvitem.cpp
+
+release/agvtoitem.o: entities_sources/agvtoitem.cpp entities_headers/agvtoitem.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstring.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qchar.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobal.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtcore-config.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsysinfo.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qlogging.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qflags.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qmutex.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnumeric.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qversiontagging.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbytearray.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qrefcount.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnamespace.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qarraydata.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringliteral.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringalgorithms.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringview.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringbuilder.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\agvtoitem.o entities_sources\agvtoitem.cpp
+
+release/modelagvitem.o: entities_sources/modelagvitem.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\modelagvitem.o entities_sources\modelagvitem.cpp
+
+release/logitem.o: entities_sources/logitem.cpp entities_headers/logitem.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstring.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qchar.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobal.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtcore-config.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsysinfo.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qlogging.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qflags.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qmutex.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnumeric.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qversiontagging.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbytearray.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qrefcount.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnamespace.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qarraydata.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringliteral.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringalgorithms.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringview.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringbuilder.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\logitem.o entities_sources\logitem.cpp
+
+release/useritem.o: entities_sources/useritem.cpp entities_headers/useritem.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstring.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qchar.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobal.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtcore-config.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsysinfo.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qlogging.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qflags.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qmutex.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnumeric.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qversiontagging.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbytearray.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qrefcount.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnamespace.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qarraydata.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringliteral.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringalgorithms.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringview.h \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringbuilder.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\useritem.o entities_sources\useritem.cpp
 
 release/addagvwidget.o: addagvwidget.cpp addagvwidget.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QWidget \
@@ -2835,13 +2964,12 @@ release/addagvwidget.o: addagvwidget.cpp addagvwidget.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFile \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h
+		entities_headers/agvtoitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\addagvwidget.o addagvwidget.cpp
 
 release/agvadddialog.o: agvadddialog.cpp agvadddialog.h \
@@ -3001,13 +3129,12 @@ release/agvadddialog.o: agvadddialog.cpp agvadddialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFile \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h
+		entities_headers/agvtoitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\agvadddialog.o agvadddialog.cpp
 
 release/agveditdialog.o: agveditdialog.cpp agveditdialog.h \
@@ -3168,83 +3295,12 @@ release/agveditdialog.o: agveditdialog.cpp agveditdialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFile \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/agvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h
+		entities_headers/agvtoitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\agveditdialog.o agveditdialog.cpp
-
-release/agvitem.o: agvitem.cpp agvitem.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstring.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qchar.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobal.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtcore-config.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsystemdetection.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qprocessordetection.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcompilerdetection.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtypeinfo.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsysinfo.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qlogging.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qflags.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbasicatomic.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_bootstrap.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qgenericatomic.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_cxx11.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_msvc.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobalstatic.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qmutex.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnumeric.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qversiontagging.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbytearray.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qrefcount.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnamespace.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qarraydata.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringliteral.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringalgorithms.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringview.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringbuilder.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\agvitem.o agvitem.cpp
-
-release/agvtoitem.o: agvtoitem.cpp agvtoitem.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstring.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qchar.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobal.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtcore-config.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsystemdetection.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qprocessordetection.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcompilerdetection.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtypeinfo.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsysinfo.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qlogging.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qflags.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbasicatomic.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_bootstrap.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qgenericatomic.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_cxx11.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_msvc.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobalstatic.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qmutex.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnumeric.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qversiontagging.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbytearray.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qrefcount.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnamespace.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qarraydata.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringliteral.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringalgorithms.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringview.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringbuilder.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\agvtoitem.o agvtoitem.cpp
 
 release/custommessagebox.o: custommessagebox.cpp custommessagebox.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDialog \
@@ -3445,49 +3501,13 @@ release/database.o: database.cpp database.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsharedpointer_impl.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h
+		entities_headers/agvtoitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\database.o database.cpp
-
-release/logitem.o: logitem.cpp logitem.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstring.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qchar.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobal.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtcore-config.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsystemdetection.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qprocessordetection.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcompilerdetection.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtypeinfo.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsysinfo.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qlogging.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qflags.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbasicatomic.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_bootstrap.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qgenericatomic.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_cxx11.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_msvc.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobalstatic.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qmutex.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnumeric.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qversiontagging.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbytearray.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qrefcount.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnamespace.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qarraydata.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringliteral.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringalgorithms.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringview.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringbuilder.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\logitem.o logitem.cpp
 
 release/main.o: main.cpp mainwindow.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QApplication \
@@ -3655,13 +3675,12 @@ release/main.o: main.cpp mainwindow.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDebug \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		agvadddialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDialog \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdialog.h \
@@ -3865,13 +3884,12 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDebug \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		agvadddialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDialog \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdialog.h \
@@ -4069,49 +4087,13 @@ release/modeladddialog.o: modeladddialog.cpp modeladddialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFile \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h
+		entities_headers/agvtoitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\modeladddialog.o modeladddialog.cpp
-
-release/modelagvitem.o: modelagvitem.cpp modelagvitem.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstring.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qchar.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobal.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtcore-config.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsystemdetection.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qprocessordetection.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcompilerdetection.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtypeinfo.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsysinfo.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qlogging.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qflags.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbasicatomic.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_bootstrap.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qgenericatomic.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_cxx11.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_msvc.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobalstatic.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qmutex.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnumeric.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qversiontagging.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbytearray.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qrefcount.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnamespace.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qarraydata.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringliteral.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringalgorithms.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringview.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringbuilder.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\modelagvitem.o modelagvitem.cpp
 
 release/modelredactordialog.o: modelredactordialog.cpp modelredactordialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDialog \
@@ -4279,13 +4261,12 @@ release/modelredactordialog.o: modelredactordialog.cpp modelredactordialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFile \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		modeladddialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QCheckBox \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qcheckbox.h \
@@ -4450,13 +4431,12 @@ release/tableagvshow.o: tableagvshow.cpp tableagvshow.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDebug \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		agvadddialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDialog \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdialog.h \
@@ -4634,13 +4614,12 @@ release/tablelogagvshow.o: tablelogagvshow.cpp tablelogagvshow.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDebug \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h
+		entities_headers/agvtoitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\tablelogagvshow.o tablelogagvshow.cpp
 
 release/tableselectedmodelshowdialog.o: tableselectedmodelshowdialog.cpp tableselectedmodelshowdialog.h \
@@ -4790,13 +4769,12 @@ release/tableselectedmodelshowdialog.o: tableselectedmodelshowdialog.cpp tablese
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDebug \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/QBrush \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QVBoxLayout \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qboxlayout.h \
@@ -4975,13 +4953,12 @@ release/tabletooneagvshowdialog.o: tabletooneagvshowdialog.cpp tabletooneagvshow
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDebug \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		agveditdialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QLineEdit \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlineedit.h \
@@ -5156,13 +5133,12 @@ release/toaddfrommodeldialog.o: toaddfrommodeldialog.cpp toaddfrommodeldialog.h 
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFile \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h
+		entities_headers/agvtoitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\toaddfrommodeldialog.o toaddfrommodeldialog.cpp
 
 release/toeditdialog.o: toeditdialog.cpp toeditdialog.h \
@@ -5303,13 +5279,12 @@ release/toeditdialog.o: toeditdialog.cpp toeditdialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFile \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		custommessagebox.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/QPalette
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\toeditdialog.o toeditdialog.cpp
@@ -5476,7 +5451,7 @@ release/useradddialog.o: useradddialog.cpp useradddialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qmessagebox.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QLabel \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlabel.h \
-		useritem.h \
+		entities_headers/useritem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
 		database.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QObject \
@@ -5489,11 +5464,10 @@ release/useradddialog.o: useradddialog.cpp useradddialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFile \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/agvitem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h
+		entities_headers/agvtoitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\useradddialog.o useradddialog.cpp
 
 release/usereditdialog.o: usereditdialog.cpp usereditdialog.h \
@@ -5623,7 +5597,7 @@ release/usereditdialog.o: usereditdialog.cpp usereditdialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qlabel.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QMessageBox \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qmessagebox.h \
-		useritem.h \
+		entities_headers/useritem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
 		database.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QObject \
@@ -5636,47 +5610,11 @@ release/usereditdialog.o: usereditdialog.cpp usereditdialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFile \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/agvitem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h
+		entities_headers/agvtoitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\usereditdialog.o usereditdialog.cpp
-
-release/useritem.o: useritem.cpp useritem.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstring.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qchar.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobal.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtcore-config.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsystemdetection.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qprocessordetection.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcompilerdetection.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtypeinfo.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsysinfo.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qlogging.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qflags.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbasicatomic.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_bootstrap.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qgenericatomic.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_cxx11.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_msvc.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobalstatic.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qmutex.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnumeric.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qversiontagging.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbytearray.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qrefcount.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnamespace.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qarraydata.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringliteral.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringalgorithms.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringview.h \
-		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringbuilder.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\useritem.o useritem.cpp
 
 release/userstableshowandediting.o: userstableshowandediting.cpp userstableshowandediting.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QWidget \
@@ -5826,13 +5764,12 @@ release/userstableshowandediting.o: userstableshowandediting.cpp userstableshowa
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDebug \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QList \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QStringList \
-		agvitem.h \
+		entities_headers/agvitem.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QString \
-		useritem.h \
-		logitem.h \
-		modelagvitem.h \
+		entities_headers/useritem.h \
+		entities_headers/logitem.h \
 		toitem.h \
-		agvtoitem.h \
+		entities_headers/agvtoitem.h \
 		usereditdialog.h \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDialog \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qdialog.h \

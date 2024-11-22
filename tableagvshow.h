@@ -12,7 +12,7 @@
 #include "database.h"
 #include "agvadddialog.h"
 #include "agveditdialog.h"
-#include "agvitem.h"
+#include "entities_headers/agvitem.h"
 #include "tabletooneagvshowdialog.h"
 #include "modelredactordialog.h"
 

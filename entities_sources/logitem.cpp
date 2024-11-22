@@ -1,4 +1,4 @@
-#include "logitem.h"
+#include "entities_headers/logitem.h"
 
 LogItem::LogItem(const QString &typeLog,
                  const QString &tabelNum,

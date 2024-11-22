@@ -17,7 +17,7 @@
 #include <QApplication>
 #include <QMessageBox>
 #include "database.h"
-#include "agvtoitem.h"
+#include "entities_headers/agvtoitem.h"
 
 #define RED_STATUS               "0"
 #define YELLOW_STATUS            "2"

@@ -8,12 +8,12 @@
 #include <QDebug>
 #include <QList>
 #include <QStringList>
-#include "agvitem.h"
-#include "useritem.h"
-#include "logitem.h"
-#include "modelagvitem.h"
+#include "entities_headers/agvitem.h"
+#include "entities_headers/useritem.h"
+#include "entities_headers/logitem.h"
+#include "entities_headers/modelagvitem.h"
 #include "toitem.h"
-#include "agvtoitem.h"
+#include "entities_headers/agvtoitem.h"
 
 /* Директивы имен таблицы, полей таблицы и базы данных */
 //#define DATABASE_NAME            "agv_db_new.db"

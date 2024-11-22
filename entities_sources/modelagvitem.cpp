@@ -1,4 +1,4 @@
-#include "modelagvitem.h"
+#include "entities_headers/modelagvitem.h"
 
 ModelAgvItem::ModelAgvItem(const QString &model) : model(model)
 {}

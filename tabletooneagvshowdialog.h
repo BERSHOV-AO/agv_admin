@@ -12,8 +12,8 @@
 #include <QMessageBox>
 #include "database.h"
 #include "agveditdialog.h"
-#include "agvitem.h"
-#include "agvtoitem.h"
+#include "entities_headers/agvitem.h"
+#include "entities_headers/agvtoitem.h"
 #include <QBrush>
 
 #define DELETE_AGV_STRING  "Удаление AGV из базы данных"

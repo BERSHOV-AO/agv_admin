@@ -15,7 +15,7 @@
 #include <QTableWidget>
 #include <QHeaderView>
 #include "database.h"
-#include "modelagvitem.h"
+#include "entities_headers/modelagvitem.h"
 #include "modeladddialog.h"
 #include "tableselectedmodelshowdialog.h"
 

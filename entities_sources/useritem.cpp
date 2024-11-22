@@ -1,4 +1,4 @@
-#include "useritem.h"
+#include "entities_headers/useritem.h"
 
 UserItem::UserItem(const QString &name,
                    const QString &surname,

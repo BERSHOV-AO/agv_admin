@@ -9,7 +9,7 @@
 #include <QDebug>
 #include <QLabel>
 #include <QMessageBox>
-#include "useritem.h"
+#include "entities_headers/useritem.h"
 #include "database.h"
 
 class UserEditDialog : public QDialog

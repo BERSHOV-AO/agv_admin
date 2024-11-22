@@ -8,7 +8,7 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QLabel>
-#include "useritem.h"
+#include "entities_headers/useritem.h"
 #include "database.h"
 
 class UserAddDialog : public QDialog

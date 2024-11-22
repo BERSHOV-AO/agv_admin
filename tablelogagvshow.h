@@ -7,7 +7,7 @@
 #include <QHeaderView>
 #include <QDateTime>
 #include <database.h>
-#include <logitem.h>
+#include "entities_headers/logitem.h"
 
 class TableLogAgvShow : public QWidget
 {
