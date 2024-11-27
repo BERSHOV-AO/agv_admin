@@ -13,7 +13,7 @@
 //}
 
 
-#include "mainwindow.h"
+#include "main_window_tables_headers/mainwindow.h"
 #include <QApplication>
 #include <QMessageBox>
 #include "database.h"

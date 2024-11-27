@@ -21,25 +21,25 @@ SOURCES += \
     entities_sources/modelagvitem.cpp \
     entities_sources/logitem.cpp \
     entities_sources/useritem.cpp \
-    addagvwidget.cpp \
-    agvadddialog.cpp \
-    agveditdialog.cpp \
+    main_window_tables_sources/mainwindow.cpp \
+    main_window_tables_sources/userstableshowandediting.cpp \
+    main_window_tables_sources/modelredactordialog.cpp \
+    main_window_tables_sources/tablelogagvshow.cpp \
+    main_window_tables_sources/addagvwidget.cpp \
+    agv_sources/agvadddialog.cpp \
+    agv_sources/agveditdialog.cpp \
+    agv_sources/tableagvshow.cpp \
     custommessagebox.cpp \
     database.cpp \   
-    main.cpp \
-    mainwindow.cpp \
-    modeladddialog.cpp \   
-    modelredactordialog.cpp \
-    tableagvshow.cpp \
-    tablelogagvshow.cpp \
+    main.cpp \  
+    modeladddialog.cpp \         
     tableselectedmodelshowdialog.cpp \
     tabletooneagvshowdialog.cpp \
     toaddfrommodeldialog.cpp \
     toeditdialog.cpp \
     toitem.cpp \
     useradddialog.cpp \
-    usereditdialog.cpp \   
-    userstableshowandediting.cpp
+    usereditdialog.cpp
 
 HEADERS += \
     entities_headers/useritem.h \
@@ -47,24 +47,25 @@ HEADERS += \
     entities_headers/agvtoitem.h \
     entities_headers/logitem.h \
     entities_headers/modelagvitem.h \
-    addagvwidget.h \
-    agvadddialog.h \
-    agveditdialog.h \      
-    custommessagebox.h \
-    database.h \   
-    mainwindow.h \
-    modeladddialog.h \
-    modelredactordialog.h \
-    tableagvshow.h \
-    tablelogagvshow.h \
-    tableselectedmodelshowdialog.h \
+    main_window_tables_headers/mainwindow.h \
+    main_window_tables_headers/userstableshowandediting.h \
+    main_window_tables_headers/modelredactordialog.h \
+    main_window_tables_headers/tablelogagvshow.h \
+    main_window_tables_headers/addagvwidget.h \
+    agv_headers/agvadddialog.h \
+    agv_headers/agveditdialog.h \
+    agv_headers/tableagvshow.h \
     tabletooneagvshowdialog.h \
+    custommessagebox.h \
+    database.h \     
+    modeladddialog.h \        
+    tableselectedmodelshowdialog.h \   
     toaddfrommodeldialog.h \
     toeditdialog.h \
     toitem.h \
     useradddialog.h \
-    usereditdialog.h \   
-    userstableshowandediting.h
+    usereditdialog.h
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

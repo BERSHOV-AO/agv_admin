@@ -26,7 +26,7 @@ public:
     void updateTable();
 
 private slots:
-    void onCellDoubleClicked(int row, int column);
+    void onCellDoubleClicked(int row);
     void onAddUserClicked();
 
 };

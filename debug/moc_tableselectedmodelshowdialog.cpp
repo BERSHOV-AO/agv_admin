@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_TableSelectedModelShowDialog_t {
-    QByteArrayData data[7];
-    char stringdata0[100];
+    QByteArrayData data[6];
+    char stringdata0[93];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,13 +37,12 @@ QT_MOC_LITERAL(1, 29, 18), // "oneAddModelClicked"
 QT_MOC_LITERAL(2, 48, 0), // ""
 QT_MOC_LITERAL(3, 49, 19), // "oneDeleteAGVClicked"
 QT_MOC_LITERAL(4, 69, 19), // "onCellDoubleClicked"
-QT_MOC_LITERAL(5, 89, 3), // "row"
-QT_MOC_LITERAL(6, 93, 6) // "column"
+QT_MOC_LITERAL(5, 89, 3) // "row"
 
     },
     "TableSelectedModelShowDialog\0"
     "oneAddModelClicked\0\0oneDeleteAGVClicked\0"
-    "onCellDoubleClicked\0row\0column"
+    "onCellDoubleClicked\0row"
 };
 #undef QT_MOC_LITERAL
 
@@ -63,12 +62,12 @@ static const uint qt_meta_data_TableSelectedModelShowDialog[] = {
  // slots: name, argc, parameters, tag, flags
        1,    0,   29,    2, 0x08 /* Private */,
        3,    0,   30,    2, 0x08 /* Private */,
-       4,    2,   31,    2, 0x08 /* Private */,
+       4,    1,   31,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,    5,    6,
+    QMetaType::Void, QMetaType::Int,    5,
 
        0        // eod
 };
@@ -81,7 +80,7 @@ void TableSelectedModelShowDialog::qt_static_metacall(QObject *_o, QMetaObject::
         switch (_id) {
         case 0: _t->oneAddModelClicked(); break;
         case 1: _t->oneDeleteAGVClicked(); break;
-        case 2: _t->onCellDoubleClicked((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 2: _t->onCellDoubleClicked((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     }

@@ -1,4 +1,4 @@
-#include "addagvwidget.h"
+#include "main_window_tables_headers/addagvwidget.h"
 
 AddAGVWidget::AddAGVWidget(QWidget *parent) : QWidget(parent)
 {

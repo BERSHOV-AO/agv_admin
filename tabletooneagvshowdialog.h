@@ -11,7 +11,7 @@
 #include <QDateTime>
 #include <QMessageBox>
 #include "database.h"
-#include "agveditdialog.h"
+#include "agv_headers/agveditdialog.h"
 #include "entities_headers/agvitem.h"
 #include "entities_headers/agvtoitem.h"
 #include <QBrush>

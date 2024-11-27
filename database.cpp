@@ -808,9 +808,8 @@ bool DataBase::updateTOSelectTable(const QString& tableName, const QString& oldN
         qDebug() << "Ошибка выполнения запроса:";
     }
 
-    return true;
     qDebug() << "Запись успешно обновлена.";
-
+    return true;
 }
 
 bool DataBase::updateUser(const QString &oldLogin, const QString &newLogin, const QString &newName, const QString &newSurname, const QString &newPass) {

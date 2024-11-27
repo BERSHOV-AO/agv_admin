@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "main_window_tables_headers/mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
@@ -18,7 +18,10 @@ MainWindow::MainWindow(QWidget *parent)
     titleLabel->setStyleSheet("font-size: 28px; color: white; font-weight: bold;");
 
     QLabel *imageLabel = new QLabel();
-    QPixmap pixmap("C:/Users/Aleksey/Documents/agv_admin/image/logo_gaz.png");
+    QString relativePath = "image/logo_gaz.png"; // относительный путь
+    QString fullPath = QDir::currentPath() + "/" + relativePath;
+    QPixmap pixmap(fullPath);
+    // QPixmap pixmap("C:/Users/Aleksey/Documents/agv_admin/image/logo_gaz.png");
     imageLabel->setPixmap(pixmap.scaled(100, 100, Qt::KeepAspectRatio));
 
     line = new QFrame();

@@ -1,4 +1,4 @@
-#include "modelredactordialog.h"
+#include "main_window_tables_headers/modelredactordialog.h"
 
 ModelRedactorWidget::ModelRedactorWidget(QWidget *parent) : QWidget(parent)
 {
@@ -61,7 +61,7 @@ void ModelRedactorWidget::loadData() {
     }
 }
 
-void ModelRedactorWidget::onCellDoubleClicked(int row, int column) {
+void ModelRedactorWidget::onCellDoubleClicked(int row) {
     if (row < 0) return; // Проверка на корректность строки
 
     // Получаем данные выбранного пользователя

@@ -34,7 +34,7 @@ private:
 
 private slots:
     void onAddModelClicked();
-    void onCellDoubleClicked(int row, int column);
+    void onCellDoubleClicked(int row);
 
 };
 

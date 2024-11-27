@@ -1,4 +1,4 @@
-#include "userstableshowandediting.h"
+#include "main_window_tables_headers/userstableshowandediting.h"
 
 UsersTableShowAndEditing::UsersTableShowAndEditing(QWidget *parent) : QWidget(parent)
 {
@@ -76,7 +76,7 @@ void UsersTableShowAndEditing::onAddUserClicked() {
     }
 }
 
-void UsersTableShowAndEditing::onCellDoubleClicked(int row, int column) {
+void UsersTableShowAndEditing::onCellDoubleClicked(int row) {
     if (row < 0) return; // Проверка на корректность строки
 
     // Получаем данные выбранного пользователя

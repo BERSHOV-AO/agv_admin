@@ -1,4 +1,4 @@
-#include "agveditdialog.h"
+#include "agv_headers/agveditdialog.h"
 
 AGVEditDialog::AGVEditDialog(const AgvItem &agv, QWidget *parent) : QDialog(parent), agv(agv)
 {

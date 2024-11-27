@@ -10,11 +10,11 @@
 #include <QPushButton>
 #include <QComboBox>
 #include "database.h"
-#include "agvadddialog.h"
-#include "agveditdialog.h"
+#include "agv_headers/agvadddialog.h"
+#include "agv_headers/agveditdialog.h"
 #include "entities_headers/agvitem.h"
 #include "tabletooneagvshowdialog.h"
-#include "modelredactordialog.h"
+#include "main_window_tables_headers/modelredactordialog.h"
 
 class TableAgvShow : public QWidget
 {
@@ -31,7 +31,7 @@ public:
     QString formatDateFromMilliseconds(const QString& millisecondsStr);
 
 private slots:
-    void onCellDoubleClicked(int row, int column);
+    void onCellDoubleClicked(int row);
     void onAddAGVClicked();
 signals:
 

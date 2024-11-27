@@ -97,7 +97,7 @@ void TableSelectedModelShowDialog::oneDeleteAGVClicked() {
     }
 }
 
-void TableSelectedModelShowDialog::onCellDoubleClicked(int row, int column) {
+void TableSelectedModelShowDialog::onCellDoubleClicked(int row) {
     if (row < 0) return; // Проверка на корректность строки
 
     // Получаем данные выбранного пользователя

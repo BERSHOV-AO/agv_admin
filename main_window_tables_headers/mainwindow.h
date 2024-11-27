@@ -10,10 +10,11 @@
 #include <QPixmap>
 #include <QHBoxLayout>
 #include <QFrame>
-#include "tableagvshow.h"
-#include "addagvwidget.h"
-#include "tablelogagvshow.h"
-#include "userstableshowandediting.h"
+#include "agv_headers/tableagvshow.h"
+#include "main_window_tables_headers/addagvwidget.h"
+#include "main_window_tables_headers/tablelogagvshow.h"
+#include "main_window_tables_headers/userstableshowandediting.h"
+#include "main_window_tables_headers/modelredactordialog.h"
 #include "usereditdialog.h"
 #include <QSqlDatabase>
 #include <QStringList>

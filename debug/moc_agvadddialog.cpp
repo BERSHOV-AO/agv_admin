@@ -7,7 +7,7 @@
 *****************************************************************************/
 
 #include <memory>
-#include "../agvadddialog.h"
+#include "../agv_headers/agvadddialog.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)

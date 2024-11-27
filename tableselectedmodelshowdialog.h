@@ -34,7 +34,7 @@ private:
 private slots:
     void oneAddModelClicked();
     void oneDeleteAGVClicked();
-    void onCellDoubleClicked(int row, int column);
+    void onCellDoubleClicked(int row);
 };
 
 #endif // TABLESELECTEDMODELSHOWDIALOG_H

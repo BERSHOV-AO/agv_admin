@@ -1,4 +1,4 @@
-#include "tableagvshow.h"
+#include "agv_headers/tableagvshow.h"
 
 TableAgvShow::TableAgvShow(QWidget *parent) : QWidget(parent)
 {
@@ -120,7 +120,7 @@ void TableAgvShow::loadData() {
     }
 }
 
-void TableAgvShow::onCellDoubleClicked(int row, int column) {
+void TableAgvShow::onCellDoubleClicked(int row) {
     if (row < 0) return; // Проверка на корректность строки
 
     // Получаем данные выбранного пользователя

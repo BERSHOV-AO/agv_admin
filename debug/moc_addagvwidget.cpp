@@ -7,7 +7,7 @@
 *****************************************************************************/
 
 #include <memory>
-#include "../addagvwidget.h"
+#include "../main_window_tables_headers/addagvwidget.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
