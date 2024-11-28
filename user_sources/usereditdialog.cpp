@@ -1,4 +1,4 @@
-#include "usereditdialog.h"
+#include "user_headers/usereditdialog.h"
 
 UserEditDialog::UserEditDialog(const UserItem &user, QWidget *parent)
     : QDialog(parent), user(user) {

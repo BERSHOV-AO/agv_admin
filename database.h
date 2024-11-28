@@ -12,7 +12,7 @@
 #include "entities_headers/useritem.h"
 #include "entities_headers/logitem.h"
 #include "entities_headers/modelagvitem.h"
-#include "toitem.h"
+#include "entities_headers/toitem.h"
 #include "entities_headers/agvtoitem.h"
 
 /* Директивы имен таблицы, полей таблицы и базы данных */

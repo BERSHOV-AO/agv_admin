@@ -15,7 +15,7 @@
 #include "main_window_tables_headers/tablelogagvshow.h"
 #include "main_window_tables_headers/userstableshowandediting.h"
 #include "main_window_tables_headers/modelredactordialog.h"
-#include "usereditdialog.h"
+#include "user_headers/usereditdialog.h"
 #include <QSqlDatabase>
 #include <QStringList>
 #include <QDebug>

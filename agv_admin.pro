@@ -21,6 +21,7 @@ SOURCES += \
     entities_sources/modelagvitem.cpp \
     entities_sources/logitem.cpp \
     entities_sources/useritem.cpp \
+    entities_sources/toitem.cpp \
     main_window_tables_sources/mainwindow.cpp \
     main_window_tables_sources/userstableshowandediting.cpp \
     main_window_tables_sources/modelredactordialog.cpp \
@@ -29,6 +30,8 @@ SOURCES += \
     agv_sources/agvadddialog.cpp \
     agv_sources/agveditdialog.cpp \
     agv_sources/tableagvshow.cpp \
+    user_sources/useradddialog.cpp \
+    user_sources/usereditdialog.cpp \
     custommessagebox.cpp \
     database.cpp \   
     main.cpp \  
@@ -36,10 +39,8 @@ SOURCES += \
     tableselectedmodelshowdialog.cpp \
     tabletooneagvshowdialog.cpp \
     toaddfrommodeldialog.cpp \
-    toeditdialog.cpp \
-    toitem.cpp \
-    useradddialog.cpp \
-    usereditdialog.cpp
+    toeditdialog.cpp
+
 
 HEADERS += \
     entities_headers/useritem.h \
@@ -47,6 +48,7 @@ HEADERS += \
     entities_headers/agvtoitem.h \
     entities_headers/logitem.h \
     entities_headers/modelagvitem.h \
+    entities_headers/toitem.h \
     main_window_tables_headers/mainwindow.h \
     main_window_tables_headers/userstableshowandediting.h \
     main_window_tables_headers/modelredactordialog.h \
@@ -55,16 +57,15 @@ HEADERS += \
     agv_headers/agvadddialog.h \
     agv_headers/agveditdialog.h \
     agv_headers/tableagvshow.h \
+    user_headers/useradddialog.h \
+    user_headers/usereditdialog.h \
     tabletooneagvshowdialog.h \
     custommessagebox.h \
     database.h \     
     modeladddialog.h \        
     tableselectedmodelshowdialog.h \   
     toaddfrommodeldialog.h \
-    toeditdialog.h \
-    toitem.h \
-    useradddialog.h \
-    usereditdialog.h
+    toeditdialog.h
 
 
 # Default rules for deployment.

@@ -10,7 +10,7 @@
 #include "database.h"
 #include <QBrush>
 #include <QVBoxLayout>
-#include "toitem.h"
+#include "entities_headers/toitem.h"
 #include "toaddfrommodeldialog.h"
 #include "toeditdialog.h"
 

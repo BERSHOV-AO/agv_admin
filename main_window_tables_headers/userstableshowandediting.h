@@ -8,8 +8,8 @@
 #include <QPushButton>
 #include <QHBoxLayout>
 #include "database.h"
-#include "usereditdialog.h"
-#include "useradddialog.h"
+#include "user_headers/usereditdialog.h"
+#include "user_headers/useradddialog.h"
 
 class UsersTableShowAndEditing : public QWidget
 {

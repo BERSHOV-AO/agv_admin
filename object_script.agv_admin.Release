@@ -3,6 +3,7 @@ release/agvtoitem.o
 release/modelagvitem.o
 release/logitem.o
 release/useritem.o
+release/toitem.o
 release/mainwindow.o
 release/userstableshowandediting.o
 release/modelredactordialog.o
@@ -11,6 +12,8 @@ release/addagvwidget.o
 release/agvadddialog.o
 release/agveditdialog.o
 release/tableagvshow.o
+release/useradddialog.o
+release/usereditdialog.o
 release/custommessagebox.o
 release/database.o
 release/main.o
@@ -19,9 +22,6 @@ release/tableselectedmodelshowdialog.o
 release/tabletooneagvshowdialog.o
 release/toaddfrommodeldialog.o
 release/toeditdialog.o
-release/toitem.o
-release/useradddialog.o
-release/usereditdialog.o
 release/moc_mainwindow.o
 release/moc_userstableshowandediting.o
 release/moc_tablelogagvshow.o
@@ -29,11 +29,11 @@ release/moc_addagvwidget.o
 release/moc_agvadddialog.o
 release/moc_agveditdialog.o
 release/moc_tableagvshow.o
+release/moc_useradddialog.o
+release/moc_usereditdialog.o
 release/moc_tabletooneagvshowdialog.o
 release/moc_custommessagebox.o
 release/moc_database.o
 release/moc_modeladddialog.o
 release/moc_tableselectedmodelshowdialog.o
 release/moc_toeditdialog.o
-release/moc_useradddialog.o
-release/moc_usereditdialog.o
