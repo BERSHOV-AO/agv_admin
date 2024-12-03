@@ -92,16 +92,13 @@ void AGVAddDialog::addAGV() {
         QMessageBox::warning(this, "Предупреждение", "Не все поля заполнены!");
 
     } else {
-        QFuture<void> future = QtConcurrent::run([=]() {
         db.saveAgvItem(name, serialNumber, fwVersion, model, documentation, dataLastTo);
         QList<TOItem> tos = db.fetchTO(model);
         foreach(TOItem toItem , tos) {
             db.saveAgvTOItem(toItem.getNameTo(),serialNumber,toItem.getFrequencyTo(),"1", QString::number(getCurrentMillisecondsSinceEpoch()));
         }
-        db.saveLogItem("3", "Admin", NULL, serialNumber, ADD_AGV_STRING, QString::number(getCurrentMillisecondsSinceEpoch()));
-        });
         qDebug() << "Сохранено AGV:" << name << serialNumber << fwVersion << model << documentation;
-        //db.saveLogItem("3", "Admin", NULL, serialNumber, ADD_AGV_STRING, QString::number(getCurrentMillisecondsSinceEpoch()));
+        db.saveLogItem("3", "Admin", NULL, serialNumber, ADD_AGV_STRING, QString::number(getCurrentMillisecondsSinceEpoch()));
         nameEdit->clear();
         serilaNumberEdit->clear();
         modelEdit->clear();

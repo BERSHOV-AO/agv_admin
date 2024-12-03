@@ -76,14 +76,12 @@ void AGVEditDialog::saveData() {
     QString documentation = documentationComboBox->currentText();
 
     if(name.isEmpty() || serialNumber.isEmpty() || fwVersion.isEmpty() || model.isEmpty() || documentation.isEmpty()) {
+
         qDebug() << "Не все поля заполнены!";
         QMessageBox::warning(this, "Предупреждение", "Не все поля заполнены!");
 
     } else {
-        // Запускаем обновление AGV в отдельном потоке
-        QFuture<void> future = QtConcurrent::run([=]() {
-            db.updateAgv(agv.getName(), agv.getSerialNumber(), name, serialNumber, fwVersion, model, documentation);
-        });
+        db.updateAgv(agv.getName(), agv.getSerialNumber(),  name, serialNumber,  fwVersion, model, documentation);
         nameEdit->clear();
         serilaNumberEdit->clear();
         accept();
