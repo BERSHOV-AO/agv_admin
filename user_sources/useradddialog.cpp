@@ -56,12 +56,40 @@ void UserAddDialog::addUser() {
         QMessageBox::warning(this, "Предупреждение", "Не все поля заполнены!");
 
     } else {
-        db.saveUserItem(name, surname, login, pass);
-        qDebug() << "Сохранено User";
-        nameEdit->clear();
-        surnameEdit->clear();
-        loginEdit->clear();
-        passEdit->clear();
-        accept();
+
+        QThread* thread = new QThread();
+        db.moveToThread(thread);
+
+
+        //Нет ---> db singleton Подключаем сигнал завершения потока к удалению объекта базы данных
+        //connect(thread, &QThread::finished, &db, &QObject::deleteLater);
+
+        // Подключаем сигнал завершения работы базы данных к завершению потока
+        connect(&db, &DataBase::saveUserFinished, thread, &QThread::quit);
+
+        connect(thread, &QThread::started, this, [=]() {
+                    db.saveUserItem(name, surname, login, pass);
+                    emit db.saveUserFinished(); // Уведомляем о завершении
+                });
+
+                // Запускаем поток
+                thread->start();
+
+                // Очищаем поля и закрываем диалог после завершения
+                connect(thread, &QThread::finished, this, [=]() {
+                    nameEdit->clear();
+                    surnameEdit->clear();
+                    loginEdit->clear();
+                    passEdit->clear();
+                    accept();
+                });
+
+//        db.saveUserItem(name, surname, login, pass);
+//        qDebug() << "Сохранено User";
+//        nameEdit->clear();
+//        surnameEdit->clear();
+//        loginEdit->clear();
+//        passEdit->clear();
+//        accept();
     }
 }

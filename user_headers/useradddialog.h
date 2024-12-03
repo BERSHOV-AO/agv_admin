@@ -1,6 +1,7 @@
 #ifndef USERADDDIALOG_H
 #define USERADDDIALOG_H
 
+#include <QThread>
 #include <QDialog>
 #include <QLineEdit>
 #include <QPushButton>

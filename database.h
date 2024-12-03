@@ -97,7 +97,9 @@ public:
 private:
     QSqlDatabase db;
 
+
 signals:
+    void saveUserFinished();
 
 };
 
