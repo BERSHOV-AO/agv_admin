@@ -5,8 +5,7 @@ ModelRedactorWidget::ModelRedactorWidget(QWidget *parent) : QWidget(parent)
 
     setWindowTitle("Редактор моделей AGV");
 
-    db = new DataBase();
-    db->connectToDataBase();
+    db.connectToDataBase();
 
     layout = new QVBoxLayout(this);
 
@@ -48,7 +47,7 @@ ModelRedactorWidget::ModelRedactorWidget(QWidget *parent) : QWidget(parent)
 
 void ModelRedactorWidget::loadData() {
 
-    QList<ModelAgvItem> models = db->fetchModels();
+    QList<ModelAgvItem> models = db.fetchModels();
 
     tableWidget->setRowCount(0);
 

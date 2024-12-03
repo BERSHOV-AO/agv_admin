@@ -3,8 +3,7 @@
 UsersTableShowAndEditing::UsersTableShowAndEditing(QWidget *parent) : QWidget(parent)
 {
 
-    db = new DataBase();
-    db->connectToDataBase();
+    db.connectToDataBase();
 
     layout = new QVBoxLayout(this);
     QHBoxLayout *topLayout = new QHBoxLayout();
@@ -50,7 +49,7 @@ UsersTableShowAndEditing::UsersTableShowAndEditing(QWidget *parent) : QWidget(pa
 
 void UsersTableShowAndEditing::loadData() {
 
-    QList<UserItem> users = db->fetchUsers();
+    QList<UserItem> users = db.fetchUsers();
 
     // Очищаем таблицу перед загрузкой новых данных
     tableWidget->setRowCount(0);

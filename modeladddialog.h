@@ -28,7 +28,7 @@ private slots:
 private:
     QPushButton *saveButton;
     QLineEdit *modelEdit;
-    DataBase *db;
+    DataBase& db = DataBase::getInstance();
     QCheckBox *defaultCheckBox;
     QMap <QString, QString> mapDafaultTO;
 };

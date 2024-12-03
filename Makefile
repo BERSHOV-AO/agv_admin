@@ -251,6 +251,7 @@ Makefile: agv_admin.pro ../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Widgets.prl \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Gui.prl \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Sql.prl \
+		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Concurrent.prl \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Core.prl \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/qtmain.prl \
 		../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/build_pass.prf
@@ -436,6 +437,7 @@ agv_admin.pro:
 ../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Widgets.prl:
 ../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Gui.prl:
 ../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Sql.prl:
+../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Concurrent.prl:
 ../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Core.prl:
 ../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/qtmain.prl:
 ../../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/build_pass.prf:

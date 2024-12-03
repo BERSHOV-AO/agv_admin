@@ -2,8 +2,7 @@
 
 TableAgvShow::TableAgvShow(QWidget *parent) : QWidget(parent)
 {
-    db = new DataBase();
-    db->connectToDataBase();
+    db.connectToDataBase();
 
     layout = new QVBoxLayout(this);
     QHBoxLayout *topLayout = new QHBoxLayout();
@@ -51,7 +50,7 @@ TableAgvShow::TableAgvShow(QWidget *parent) : QWidget(parent)
 
 void TableAgvShow::loadData() {
 
-    QList<AgvItem> agvs = db->fetchAGVs(); // Получаем данные
+    QList<AgvItem> agvs = db.fetchAGVs(); // Получаем данные
 
     // Очищаем таблицу перед загрузкой новых данных
     tableWidget->setRowCount(0);
@@ -68,7 +67,7 @@ void TableAgvShow::loadData() {
         tableWidget->setItem(rowCount, 4, new QTableWidgetItem(agv.getEPlan()));
         tableWidget->setItem(rowCount, 5, new QTableWidgetItem(formatDateFromMilliseconds(agv.getDataLastTo())));
 
-        QList<AGVTOItem> tosSelectAgv = db->fetchToOneAgv(agv.getSerialNumber());
+        QList<AGVTOItem> tosSelectAgv = db.fetchToOneAgv(agv.getSerialNumber());
 
         bool foundZero = false;
         bool foundTwo = false;

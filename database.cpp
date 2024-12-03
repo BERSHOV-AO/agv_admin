@@ -5,6 +5,12 @@ DataBase::DataBase(QObject *parent) : QObject(parent)
 
 }
 
+DataBase& DataBase::getInstance() {
+    static DataBase instance;
+    return instance;
+}
+
+
 bool DataBase::connectToDataBaseinFerst()
 {
     QSqlDatabase dbConnect = QSqlDatabase::addDatabase("QMYSQL");
@@ -19,9 +25,39 @@ bool DataBase::connectToDataBaseinFerst()
     return true;
 }
 
-bool DataBase::connectToDataBase()
-{
-    QSqlDatabase dbConnect = QSqlDatabase::addDatabase("QMYSQL");
+//bool DataBase::connectToDataBase()
+//{
+//    QSqlDatabase dbConnect = QSqlDatabase::addDatabase("QMYSQL");
+//    dbConnect.setHostName(HOST_NAME);
+//    dbConnect.setUserName(USER_NAME);
+//    dbConnect.setDatabaseName(DATABASE_NAME);
+
+//    if (!dbConnect.open()) {
+//        qDebug() << "Error connecting to database: ";
+//        return false;
+//    }
+//    db = dbConnect;
+//    if(!hasTables()) {
+//        createTable();
+//    }
+
+//    return true;
+//}
+
+bool DataBase::connectToDataBase() {
+    // Проверяем, существует ли уже соединение с базой данных
+    if (QSqlDatabase::contains("myConnection")) {
+        db = QSqlDatabase::database("myConnection");
+        if (db.isOpen()) {
+            qDebug() << "Using existing database connection.";
+            return true; // Соединение уже открыто
+        } else {
+            qDebug() << "Existing connection found but it is not open.";
+        }
+    }
+
+    // Создаем новое соединение
+    QSqlDatabase dbConnect = QSqlDatabase::addDatabase("QMYSQL", "myConnection");
     dbConnect.setHostName(HOST_NAME);
     dbConnect.setUserName(USER_NAME);
     dbConnect.setDatabaseName(DATABASE_NAME);
@@ -30,13 +66,15 @@ bool DataBase::connectToDataBase()
         qDebug() << "Error connecting to database: ";
         return false;
     }
+
     db = dbConnect;
-    if(!hasTables()) {
+
+    if (!hasTables()) {
         createTable();
     }
-
     return true;
 }
+
 
 /* Метод для создания таблицы в базе данных */
 bool DataBase::createTable()
@@ -129,27 +167,6 @@ bool DataBase::createTable()
         return false;
     }
 
-    //~~~~~~~~~~~~~~~~~~~TABLE TO AGV~~~~~~~~~~~~~~~~~~
-    //    if (!query.exec(strCreateTableAgv_1100_st))
-    //    {
-    //        return false;
-    //    }
-
-    //    if (!query.exec(strCreateTableAgv_3000_st))
-    //    {
-    //        return false;
-    //    }
-
-    //    if (!query.exec(strCreateTableAgv_1100_2p))
-    //    {
-    //        return false;
-    //    }
-
-    //    if (!query.exec(strCreateTableAgv_1100_2t))
-    //    {
-    //        return false;
-    //    }
-
     return true;
 }
 
@@ -162,29 +179,6 @@ bool DataBase::hasTables() {
     }
     return false;
 }
-
-
-
-
-
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-//void DataBase::connectToDataBase()
-//{
-//    /* Перед подключением к базе данных производим проверку на её существование.
-//     * В зависимости от результата производим открытие базы данных или её восстановление
-//     * */
-
-//    if(!QFile(DIR_AND_NAME_DATABASE).exists())
-//   //     if(!QFile(DATABASE_NAME).exists())
-//    {
-//        restoreDataBase();
-//    }
-//    else
-//    {
-//        openDataBase();
-//    }
-//}
 
 /* Методы восстановления базы данных */
 bool DataBase::restoreDataBase()
@@ -237,117 +231,6 @@ bool DataBase::closeDataBase()
     db.close();
     return true;
 }
-
-///* Метод для создания таблицы в базе данных */
-//bool DataBase::createTable()
-//{
-//    QSqlQuery query;
-
-//    QString strCreateTableUsers = "CREATE TABLE " TABLE_USERS " ("
-
-//                                                              "name TEXT, "
-//                                                              "surname TEXT, "
-//                                                              "login TEXT, "
-//                                                              "pass TEXT "
-//                                                              ");";
-
-//    QString strCreateTableLog = "CREATE TABLE " TABLE_LOG " ("
-//                                                          "typeLog TEXT, "
-//                                                          "tabelNum TEXT, "
-//                                                          "timeOpenApp TEXT, "
-//                                                          "serialNumberAgv TEXT, "
-//                                                          "nameTO TEXT, "
-//                                                          "timeToAgv TEXT "
-//                                                          ");";
-
-//    QString strCreateTableAgv = "CREATE TABLE " TABLE_AGV " ("
-//                                                          "name TEXT, "
-//                                                          "serialNumber TEXT, "
-//                                                          "versionFW TEXT, "
-//                                                          "model TEXT, "
-//                                                          "ePlan TEXT, "
-//                                                          "dataLastTo TEXT "
-//                                                          ");";
-
-//    QString strCreateTableAgvTo = "CREATE TABLE " TABLE_AGV_TO " ("
-//                                                               "nameTo TEXT, "
-//                                                               "serialNumberAGV TEXT, "
-//                                                               "frequencyOfTo TEXT, "
-//                                                               "statusTo TEXT, "
-//                                                               "dataTo TEXT "
-//                                                               ");";
-
-//    QString strCreateTableModel = "CREATE TABLE " TABLE_MODEL " ("
-//                                                              "model TEXT "
-//                                                              ");";
-
-//    QString strCreateTableAgv_1100_st = "CREATE TABLE " TABLE_AGV_1100_ST " ("
-//                                                                          "nameTo TEXT, "
-//                                                                          "frequencyTo TEXT "
-//                                                                          ");";
-
-//    QString strCreateTableAgv_3000_st = "CREATE TABLE " TABLE_AGV_3000_ST " ("
-//                                                                          "nameTo TEXT, "
-//                                                                          "frequencyTo TEXT "
-//                                                                          ");";
-
-//    QString strCreateTableAgv_1100_2p = "CREATE TABLE " TABLE_AGV_1100_2P " ("
-//                                                                          "nameTo TEXT, "
-//                                                                          "frequencyTo TEXT "
-//                                                                          ");";
-
-//    QString strCreateTableAgv_1100_2t = "CREATE TABLE " TABLE_AGV_1100_2T " ("
-//                                                                          "nameTo TEXT, "
-//                                                                          "frequencyTo TEXT "
-//                                                                          ");";
-//    if (!query.exec(strCreateTableUsers))
-//    {
-//        return false;
-//    }
-
-//    if (!query.exec(strCreateTableLog))
-//    {
-//        return false;
-//    }
-
-//    if (!query.exec(strCreateTableAgv))
-//    {
-//        return false;
-//    }
-
-//    if (!query.exec(strCreateTableAgvTo))
-//    {
-//        return false;
-//    }
-
-//    if (!query.exec(strCreateTableModel))
-//    {
-//        return false;
-//    }
-
-//    //~~~~~~~~~~~~~~~~~~~TABLE TO AGV~~~~~~~~~~~~~~~~~~
-//    if (!query.exec(strCreateTableAgv_1100_st))
-//    {
-//        return false;
-//    }
-
-//    if (!query.exec(strCreateTableAgv_3000_st))
-//    {
-//        return false;
-//    }
-
-//    if (!query.exec(strCreateTableAgv_1100_2p))
-//    {
-//        return false;
-//    }
-
-//    if (!query.exec(strCreateTableAgv_1100_2t))
-//    {
-//        return false;
-//    }
-
-//    return true;
-//}
 
 //------------------------------------------------------------create---------------------------------------------------------------
 

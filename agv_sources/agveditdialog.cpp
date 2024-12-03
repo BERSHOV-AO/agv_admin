@@ -4,8 +4,7 @@ AGVEditDialog::AGVEditDialog(const AgvItem &agv, QWidget *parent) : QDialog(pare
 {
     setWindowTitle("Редактор AGV");
 
-    db = new DataBase();
-    db->connectToDataBase();
+    db.connectToDataBase();
 
     nameEdit = new QLineEdit(agv.getName(), this);
     nameEdit->setStyleSheet("background-color: white;");
@@ -27,7 +26,7 @@ AGVEditDialog::AGVEditDialog(const AgvItem &agv, QWidget *parent) : QDialog(pare
 
     //---------------------combo box model---------------------------
     modelComboBox = new QComboBox(this);
-    QList<ModelAgvItem> models = db->fetchModels();
+    QList<ModelAgvItem> models = db.fetchModels();
     QStringList modelList;
     for (const ModelAgvItem& model : models) {
         modelList.append(model.getModel()); // Добавляем модель в QStringList
@@ -77,12 +76,14 @@ void AGVEditDialog::saveData() {
     QString documentation = documentationComboBox->currentText();
 
     if(name.isEmpty() || serialNumber.isEmpty() || fwVersion.isEmpty() || model.isEmpty() || documentation.isEmpty()) {
-
         qDebug() << "Не все поля заполнены!";
         QMessageBox::warning(this, "Предупреждение", "Не все поля заполнены!");
 
     } else {
-        db->updateAgv(agv.getName(), agv.getSerialNumber(),  name, serialNumber,  fwVersion, model, documentation);
+        // Запускаем обновление AGV в отдельном потоке
+        QFuture<void> future = QtConcurrent::run([=]() {
+            db.updateAgv(agv.getName(), agv.getSerialNumber(), name, serialNumber, fwVersion, model, documentation);
+        });
         nameEdit->clear();
         serilaNumberEdit->clear();
         accept();

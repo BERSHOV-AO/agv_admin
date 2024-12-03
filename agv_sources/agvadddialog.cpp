@@ -10,9 +10,8 @@ AGVAddDialog::AGVAddDialog(QWidget *parent) : QDialog(parent)
 {
 
     setWindowTitle("Добавление AGV");
+    db.connectToDataBase();
 
-    db = new DataBase();
-    db->connectToDataBase();
 
     nameEdit = new QLineEdit();
     nameEdit->setStyleSheet("background-color: white;");
@@ -37,7 +36,7 @@ AGVAddDialog::AGVAddDialog(QWidget *parent) : QDialog(parent)
 
     //---------------------combo box model---------------------------
     modelComboBox = new QComboBox(this);
-    QList<ModelAgvItem> models = db->fetchModels();
+    QList<ModelAgvItem> models = db.fetchModels();
     QStringList modelList;
     for (const ModelAgvItem& model : models) {
         modelList.append(model.getModel()); // Добавляем модель в QStringList
@@ -93,13 +92,16 @@ void AGVAddDialog::addAGV() {
         QMessageBox::warning(this, "Предупреждение", "Не все поля заполнены!");
 
     } else {
-        db->saveAgvItem(name, serialNumber, fwVersion, model, documentation, dataLastTo);
-        QList<TOItem> tos = db->fetchTO(model);
+        QFuture<void> future = QtConcurrent::run([=]() {
+        db.saveAgvItem(name, serialNumber, fwVersion, model, documentation, dataLastTo);
+        QList<TOItem> tos = db.fetchTO(model);
         foreach(TOItem toItem , tos) {
-            db->saveAgvTOItem(toItem.getNameTo(),serialNumber,toItem.getFrequencyTo(),"1", QString::number(getCurrentMillisecondsSinceEpoch()));
+            db.saveAgvTOItem(toItem.getNameTo(),serialNumber,toItem.getFrequencyTo(),"1", QString::number(getCurrentMillisecondsSinceEpoch()));
         }
+        db.saveLogItem("3", "Admin", NULL, serialNumber, ADD_AGV_STRING, QString::number(getCurrentMillisecondsSinceEpoch()));
+        });
         qDebug() << "Сохранено AGV:" << name << serialNumber << fwVersion << model << documentation;
-        db->saveLogItem("3", "Admin", NULL, serialNumber, ADD_AGV_STRING, QString::number(getCurrentMillisecondsSinceEpoch()));
+        //db.saveLogItem("3", "Admin", NULL, serialNumber, ADD_AGV_STRING, QString::number(getCurrentMillisecondsSinceEpoch()));
         nameEdit->clear();
         serilaNumberEdit->clear();
         modelEdit->clear();

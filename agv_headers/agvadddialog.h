@@ -13,6 +13,8 @@
 #include <QDateTime>
 #include "database.h"
 #include "entities_headers/modelagvitem.h"
+#include <QFuture>
+#include <QtConcurrent>
 
 #define ADD_AGV_STRING  "Добавление AGV в базу данных"
 
@@ -32,7 +34,7 @@ private:
     QLineEdit *fwVersionEdit;
     QLineEdit *modelEdit;
     QLineEdit *projectDocumentationEdit;
-    DataBase *db;
+    DataBase& db = DataBase::getInstance();
 
     QComboBox *documentationComboBox;
     QComboBox *fwVersionComboBox;

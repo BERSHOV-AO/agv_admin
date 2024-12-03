@@ -8,8 +8,7 @@ ToAddFromModelDialog::ToAddFromModelDialog(
 
     setWindowTitle(QString("Добавление ТО для модели: %1").arg(nameTableModel));
 
-    db = new DataBase();
-    db->connectToDataBase();
+    db.connectToDataBase();
 
     nameTo = new QLineEdit();
     nameTo->setStyleSheet("background-color: white;");
@@ -50,7 +49,7 @@ void ToAddFromModelDialog::addTo(){
         QMessageBox::warning(this, "Предупреждение", "Не все поля заполнены!");
 
     } else {
-        db->saveTOForSelectModel(nameTableModel, nameToStr, frequencyToStr);
+        db.saveTOForSelectModel(nameTableModel, nameToStr, frequencyToStr);
         qDebug() << "Сохранена Модель";
         nameTo->clear();
         frequencyTo->clear();

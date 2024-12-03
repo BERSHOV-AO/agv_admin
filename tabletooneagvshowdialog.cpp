@@ -10,8 +10,7 @@ TableToOneAgvShowDialog::TableToOneAgvShowDialog(const AgvItem &agv, QWidget *pa
 {
     setWindowTitle(QString("AGV s/n: %1").arg(agv.getSerialNumber()));
     
-    db = new DataBase();
-    db->connectToDataBase();
+    db.connectToDataBase();
     
     deleteButton = new QPushButton("Удалить AGV", this);
     deleteButton->setStyleSheet("background-color: red; color: white;");
@@ -47,7 +46,7 @@ TableToOneAgvShowDialog::TableToOneAgvShowDialog(const AgvItem &agv, QWidget *pa
 
 void TableToOneAgvShowDialog::loadData() {
     
-    QList<AGVTOItem> tosOneAgv = db->fetchToOneAgv(agv.getSerialNumber()); // Получаем данные
+    QList<AGVTOItem> tosOneAgv = db.fetchToOneAgv(agv.getSerialNumber()); // Получаем данные
     
     // Очищаем таблицу перед загрузкой новых данных
     tableWidget->setRowCount(0);
@@ -111,14 +110,14 @@ void TableToOneAgvShowDialog::oneDeleteAGVClicked() {
         QString serialNumber = agv.getSerialNumber();
         
         // Сначала удаляем сам AGV
-        if (db->deleteAgv(serialNumber)) {
+        if (db.deleteAgv(serialNumber)) {
             qDebug() << "AGV deleted successfully.";
             
             // Теперь удаляем все записи, связанные с данным AGV
-            if (db->deleteAllToOneAgv(serialNumber)) {
+            if (db.deleteAllToOneAgv(serialNumber)) {
                 qDebug() << "All records related to AGV deleted successfully.";
                 // emit agvDeleted(); // Сигнал для уведомления о том, что AGV был удален
-                db->saveLogItem("3", "Admin", NULL, serialNumber, DELETE_AGV_STRING, QString::number(getCurrentMillisecondsSinceEpoch()));
+                db.saveLogItem("3", "Admin", NULL, serialNumber, DELETE_AGV_STRING, QString::number(getCurrentMillisecondsSinceEpoch()));
                 accept();
             } else {
                 qDebug() << "Failed to delete related records for AGV.";

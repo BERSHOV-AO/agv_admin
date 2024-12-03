@@ -2,9 +2,8 @@
 
 TableLogAgvShow::TableLogAgvShow(QWidget *parent) : QWidget(parent)
 {
-    db = new DataBase();
-    db->connectToDataBase();
 
+    db.connectToDataBase();
     layout = new QVBoxLayout(this);
     tableWidget = new QTableWidget(this);
     tableWidget->setColumnCount(4); // Например, 3 колонки: ID, Название, Статус
@@ -32,7 +31,7 @@ TableLogAgvShow::TableLogAgvShow(QWidget *parent) : QWidget(parent)
 
 void TableLogAgvShow::loadData() {
 
-    QList<LogItem> logs = db->fetchLogs(); // Получаем данные
+    QList<LogItem> logs = db.fetchLogs(); // Получаем данные
 
     // Очищаем таблицу перед загрузкой новых данных
     tableWidget->setRowCount(0);

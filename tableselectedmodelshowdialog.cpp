@@ -7,8 +7,7 @@ TableSelectedModelShowDialog::TableSelectedModelShowDialog(
 {
 
     setWindowTitle(nameTableModel);
-    db = new DataBase();
-    db->connectToDataBase();
+    db.connectToDataBase();
 
     deleteButton = new QPushButton("Удалить модель", this);
     deleteButton->setStyleSheet("background-color: red; color: white;");
@@ -44,7 +43,7 @@ TableSelectedModelShowDialog::TableSelectedModelShowDialog(
 
 void TableSelectedModelShowDialog::loadData() {
 
-    QList<TOItem> tosSelectedTable = db->fetchTO(nameTableModel); // Получаем данные
+    QList<TOItem> tosSelectedTable = db.fetchTO(nameTableModel); // Получаем данные
 
     // Очищаем таблицу перед загрузкой новых данных
     tableWidget->setRowCount(0);
@@ -77,11 +76,11 @@ void TableSelectedModelShowDialog::oneDeleteAGVClicked() {
     // Проверяем, выбрал ли пользователь "Да"
     if (reply == QMessageBox::Yes) {
         // Сначала удаляем сам AGV
-        if (db->dropTable(nameTableModel)) {
+        if (db.dropTable(nameTableModel)) {
             qDebug() << "AGV deleted successfully.";
 
             // Теперь удаляем модель
-            if (db->deleteModel(nameTableModel)) {
+            if (db.deleteModel(nameTableModel)) {
                 qDebug() << "Model deleted successfully.";
                 accept(); // Закрываем диалог
             } else {

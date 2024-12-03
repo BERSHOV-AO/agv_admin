@@ -15,6 +15,8 @@
 #include "entities_headers/agvitem.h"
 #include "tabletooneagvshowdialog.h"
 #include "main_window_tables_headers/modelredactordialog.h"
+#include <QFuture>
+#include <QtConcurrent>
 
 class TableAgvShow : public QWidget
 {
@@ -25,7 +27,7 @@ public:
     QTableWidget *tableWidget;
     QPushButton *addAGVButton;
     QPushButton *modeEditAGV;
-    DataBase *db;
+    DataBase& db = DataBase::getInstance();
 
     void loadData();
     QString formatDateFromMilliseconds(const QString& millisecondsStr);

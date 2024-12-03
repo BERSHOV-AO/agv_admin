@@ -23,7 +23,7 @@ public:
 private:
     QVBoxLayout *layout;
     QTableWidget *tableWidget;
-    DataBase *db;
+    DataBase& db = DataBase::getInstance();
 
     QPushButton *deleteButton;
     QPushButton *addModelButton;

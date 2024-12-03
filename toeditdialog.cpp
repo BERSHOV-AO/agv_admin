@@ -4,9 +4,7 @@ TOEditDialog::TOEditDialog(const TOItem &toItem, const QString &nameTableModel, 
     : QDialog(parent), toItem(toItem), nameTableModel(nameTableModel)
 {
     setWindowTitle("Редактирование ТО");
-
-    db = new DataBase();
-    db->connectToDataBase();
+    db.connectToDataBase();
 
     nameToEdit = new QLineEdit(toItem.getNameTo(), this);
     nameToEdit->setStyleSheet("background-color: white;");
@@ -46,7 +44,7 @@ void TOEditDialog::saveDataTo() {
 
     qDebug() << "saveData to";
 
-    db->updateTOSelectTable(nameTableModel, toItem.getNameTo(), toItem.getFrequencyTo(), nameToEdit->text(), frequencyToEdit->text());
+    db.updateTOSelectTable(nameTableModel, toItem.getNameTo(), toItem.getFrequencyTo(), nameToEdit->text(), frequencyToEdit->text());
     accept();
 }
 
@@ -63,7 +61,7 @@ void TOEditDialog::deleteTo() {
     // Проверяем, выбрал ли пользователь "Да"
     if (reply == QMessageBox::Yes) {
         // Здесь вы можете добавить код для удаления AGV из БД
-        if (db->deleteTOFromSelectModelTable(nameTableModel, nameToStr, frequencyToStr)) {
+        if (db.deleteTOFromSelectModelTable(nameTableModel, nameToStr, frequencyToStr)) {
             qDebug() << "TO deleted successfully.";
             accept(); // Закрываем диалог
         } else {

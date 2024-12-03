@@ -31,7 +31,7 @@ private:
     QLineEdit* frequencyToEdit;
     QPushButton* deleteButton;
     QPushButton* saveButton;
-    DataBase *db;
+    DataBase& db = DataBase::getInstance();
 };
 
 #endif // TOEDITDIALOG_H

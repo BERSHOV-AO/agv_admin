@@ -29,7 +29,7 @@ private:
     QVBoxLayout *layout;
     QTableWidget *tableWidget;
     QPushButton *addModelButton;
-    DataBase *db;
+    DataBase& db = DataBase::getInstance();
     void loadData();
 
 private slots:

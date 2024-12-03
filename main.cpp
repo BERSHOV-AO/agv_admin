@@ -32,18 +32,21 @@ qint64 daysToMilliseconds(int days) {
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
-    DataBase *db = new DataBase(); // Создаем объект db
+    DataBase& db = DataBase::getInstance();
+   // db.connectToDataBase();
 
-    if (!db->connectToDataBaseinFerst()) {
+   // DataBase *db = new DataBase(); // Создаем объект db
+
+    if (!db.connectToDataBaseinFerst()) {
 
         QMessageBox::warning(nullptr, "Предупреждение", "Запустите Wamp Server"); // Используем nullptr
-        delete db; // Освобождаем память
+       // delete db; // Освобождаем память
         return 1; // Возвращаем 1 в случае ошибки
 
     }
 
     //-------------------------------------------------------udate status TO-------------------------------------------------------------
-    QList<AGVTOItem> agvsAllTosList = db->getAllAgvTO();
+    QList<AGVTOItem> agvsAllTosList = db.getAllAgvTO();
 
     QDateTime currentDateTime = QDateTime::currentDateTime();
     qint64 currentDateTimeMilliseconds = currentDateTime.toMSecsSinceEpoch();
@@ -54,11 +57,11 @@ int main(int argc, char *argv[]) {
         qint64 dataToAndFrequencyMinusNumberDaysBeforeTO = dataToAndFrequency - daysToMilliseconds(NUMBER_OF_DAYS_BEFORE_TO);
 
         if(currentDateTimeMilliseconds > dataToAndFrequency) {
-            db->updateStatusToFromAgvToTable(agvTo.getSerialNumberAGV(), agvTo.getNameTo(), RED_STATUS);
+            db.updateStatusToFromAgvToTable(agvTo.getSerialNumberAGV(), agvTo.getNameTo(), RED_STATUS);
         }
 
         if(currentDateTimeMilliseconds < dataToAndFrequency && currentDateTimeMilliseconds > dataToAndFrequencyMinusNumberDaysBeforeTO) {
-            db->updateStatusToFromAgvToTable(agvTo.getSerialNumberAGV(), agvTo.getNameTo(), YELLOW_STATUS);
+            db.updateStatusToFromAgvToTable(agvTo.getSerialNumberAGV(), agvTo.getNameTo(), YELLOW_STATUS);
         }
     }
     //-----------------------------------------------------------------------------------------------------------------------------------
@@ -67,7 +70,7 @@ int main(int argc, char *argv[]) {
     window.resize(1250, 800);
     window.show();
 
-    delete db; // Освобождаем память
+   // delete db; // Освобождаем память
     return app.exec();
 }
 

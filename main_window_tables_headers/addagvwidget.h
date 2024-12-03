@@ -36,7 +36,7 @@ public:
     QComboBox *fwVersionComboBox;
 
     qint64 getCurrentMillisecondsSinceEpoch();
-    DataBase *db;
+    DataBase& db = DataBase::getInstance();
 
 signals:
 

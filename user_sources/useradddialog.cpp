@@ -3,11 +3,8 @@
 UserAddDialog::UserAddDialog(QWidget *parent) : QDialog(parent)
 {
 
+    db.connectToDataBase();
     setWindowTitle("Добавлениe пользователя");
-
-    db = new DataBase();
-    db->connectToDataBase();
-
     nameEdit = new QLineEdit();
     nameEdit->setStyleSheet("background-color: white;");
 
@@ -59,7 +56,7 @@ void UserAddDialog::addUser() {
         QMessageBox::warning(this, "Предупреждение", "Не все поля заполнены!");
 
     } else {
-        db->saveUserItem(name, surname, login, pass);
+        db.saveUserItem(name, surname, login, pass);
         qDebug() << "Сохранено User";
         nameEdit->clear();
         surnameEdit->clear();

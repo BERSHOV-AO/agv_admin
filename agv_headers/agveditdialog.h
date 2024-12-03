@@ -14,6 +14,8 @@
 #include <QMessageBox>
 #include "database.h"
 #include "entities_headers/agvitem.h"
+#include <QFuture>
+#include <QtConcurrent>
 
 class AGVEditDialog : public QDialog
 {
@@ -36,7 +38,7 @@ private:
     QLineEdit *fwVersionEdit;
     QLineEdit *modelEdit;
     QLineEdit *projectDocumentationEdit;
-    DataBase *db;
+    DataBase& db = DataBase::getInstance();
 
     QComboBox *documentationComboBox;
     QComboBox *fwVersionComboBox;

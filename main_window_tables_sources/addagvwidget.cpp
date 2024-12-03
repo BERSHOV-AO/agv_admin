@@ -3,9 +3,7 @@
 AddAGVWidget::AddAGVWidget(QWidget *parent) : QWidget(parent)
 {
     layout = new QVBoxLayout(this);
-    db = new DataBase();
-    db->connectToDataBase();
-
+    db.connectToDataBase();
     // Устанавливаем отступы для верхней части
     layout->setContentsMargins(0, 10, 0, 300); // Уменьшаем верхний отступ
 
@@ -107,9 +105,9 @@ AddAGVWidget::AddAGVWidget(QWidget *parent) : QWidget(parent)
             QMessageBox::warning(this, "Предупреждение", "Не все поля заполнены!");
 
         } else {
-            db->saveAgvItem(name, serialNumber, fwVersion, model, documentation, dataLastTo);
+            db.saveAgvItem(name, serialNumber, fwVersion, model, documentation, dataLastTo);
             qDebug() << "Сохранено AGV:" << name << serialNumber << fwVersion << model << documentation;
-            db->saveLogItem("3", "Admin", NULL, serialNumber, ADD_AGV_STRING, QString::number(getCurrentMillisecondsSinceEpoch()));
+            db.saveLogItem("3", "Admin", NULL, serialNumber, ADD_AGV_STRING, QString::number(getCurrentMillisecondsSinceEpoch()));
             nameLineEdit->clear();
             serialNumberLineEdit->clear();
             modelLineEdit->clear();

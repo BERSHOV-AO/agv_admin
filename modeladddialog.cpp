@@ -59,9 +59,7 @@ ModelAddDialog::ModelAddDialog(QWidget *parent) : QDialog(parent)
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     setWindowTitle("Добавление модели");
-
-    db = new DataBase();
-    db->connectToDataBase();
+    db.connectToDataBase();
 
     modelEdit = new QLineEdit();
     modelEdit->setStyleSheet("background-color: white;");
@@ -101,14 +99,14 @@ void ModelAddDialog::addModel() {
     } else {
         bool isDefaultCheckBox = defaultCheckBox->isChecked();
 
-        if(db->createNewModelTable(model)) {
-            db->saveModelItem(model);
+        if(db.createNewModelTable(model)) {
+            db.saveModelItem(model);
 
             if(isDefaultCheckBox) {
 
                 for (const auto &key : mapDafaultTO.keys()) {
 
-                    db->saveTOForSelectModel(model, key, mapDafaultTO.value(key));
+                    db.saveTOForSelectModel(model, key, mapDafaultTO.value(key));
                 }
             }
             qDebug() << "Сохранена модель:";

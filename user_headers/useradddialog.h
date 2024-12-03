@@ -27,7 +27,7 @@ private:
     QLineEdit *loginEdit;
     QLineEdit *passEdit;
     QPushButton* deleteButton;
-    DataBase *db;
+    DataBase& db = DataBase::getInstance();
 };
 
 #endif // USERADDDIALOG_H

@@ -20,7 +20,7 @@ public:
     QVBoxLayout *layout;
     QTableWidget *tableWidget;
     QPushButton *addUserButton;
-    DataBase *db;
+    DataBase& db = DataBase::getInstance();
 
     void loadData();
     void updateTable();

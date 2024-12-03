@@ -42,6 +42,8 @@ class DataBase : public QObject
 {
     Q_OBJECT
 public:
+
+    static DataBase& getInstance();
     //~~~~~~~new~~~~~~~
     bool createTable();
     bool hasTables();

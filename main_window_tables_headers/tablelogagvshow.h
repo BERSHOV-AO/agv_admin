@@ -16,7 +16,7 @@ public:
     explicit TableLogAgvShow(QWidget *parent = nullptr);
     QVBoxLayout *layout;
     QTableWidget *tableWidget;
-    DataBase *db;
+    DataBase& db = DataBase::getInstance();
 
     void loadData();
     QString formatDateFromMilliseconds(const QString& millisecondsStr);
