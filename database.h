@@ -8,6 +8,8 @@
 #include <QDebug>
 #include <QList>
 #include <QStringList>
+#include <QMutex>
+#include <QMutexLocker>
 #include "entities_headers/agvitem.h"
 #include "entities_headers/useritem.h"
 #include "entities_headers/logitem.h"
@@ -92,14 +94,22 @@ public:
     QList<AGVTOItem> fetchToOneAgv(const QString serialNumAGV);
     QList<TOItem> fetchTO(const QString nameTableTO);
 
+    QMutex mutex; // Мьютекс для защиты доступа
+
     explicit DataBase(QObject *parent = nullptr);
 
 private:
     QSqlDatabase db;
-
+    //DataBase() {} // Конструктор приватный
+    ~DataBase() {}
+    DataBase(const DataBase&) = delete; // Запрет копирования
+    DataBase& operator=(const DataBase&) = delete; // Запрет присваивани
 
 signals:
+    //------user signals-------
     void saveUserFinished();
+    void updateUserFinished();
+    void deleteUserFinished();
 
 };
 

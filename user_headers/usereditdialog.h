@@ -1,7 +1,7 @@
 #ifndef USEREDITDIALOG_H
 #define USEREDITDIALOG_H
 
-
+#include <QThread>
 #include <QDialog>
 #include <QLineEdit>
 #include <QPushButton>

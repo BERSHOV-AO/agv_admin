@@ -561,6 +561,7 @@ bool DataBase::saveUserItem(QString name, QString surname, QString login, QStrin
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~delete~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 bool DataBase::deleteUser(const QString &login, const QString &name, const QString &surname) {
+    QMutexLocker locker(&mutex);
     QSqlQuery query;
 
     // Подготовка SQL-запроса
@@ -696,6 +697,8 @@ bool DataBase::updateTOSelectTable(const QString& tableName, const QString& oldN
 }
 
 bool DataBase::updateUser(const QString &oldLogin, const QString &newLogin, const QString &newName, const QString &newSurname, const QString &newPass) {
+
+    QMutexLocker locker(&mutex);
     QSqlQuery query;
 
     // Подготовка SQL-запроса
