@@ -11,6 +11,7 @@
 #include <QMessageBox>
 #include "entities_headers/useritem.h"
 #include "database.h"
+#include "databaseworker.h"
 
 class UserEditDialog : public QDialog
 {

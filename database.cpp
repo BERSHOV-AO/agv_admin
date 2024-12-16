@@ -2,7 +2,7 @@
 
 DataBase::DataBase(QObject *parent) : QObject(parent)
 {
-
+    readIpAddress = readIpFromFile();
 }
 
 DataBase& DataBase::getInstance() {
@@ -14,12 +14,22 @@ DataBase& DataBase::getInstance() {
 bool DataBase::connectToDataBaseinFerst()
 {
     QSqlDatabase dbConnect = QSqlDatabase::addDatabase("QMYSQL");
-    dbConnect.setHostName(HOST_NAME);
-    dbConnect.setUserName(USER_NAME);
+    dbConnect.setHostName(readIpAddress);
+    if(readIpAddress == HOST_NAME) {
+        dbConnect.setUserName(USER_NAME);
+    } else {
+       dbConnect.setUserName("ale");
+    }
     dbConnect.setDatabaseName(DATABASE_NAME);
 
+
     if (!dbConnect.open()) {
-        qDebug() << "Error connecting to database: ";
+        QSqlError error = dbConnect.lastError();
+               qDebug() << "Error connecting to database: " << error.text(); // Сообщение об ошибке
+               qDebug() << "Error code: " << error.number(); // Код ошибки
+
+       //  qDebug() << dbConnect;
+       // qDebug() << "Error connecting to database: ";
         return false;
     }
     return true;
@@ -58,12 +68,19 @@ bool DataBase::connectToDataBase() {
 
     // Создаем новое соединение
     QSqlDatabase dbConnect = QSqlDatabase::addDatabase("QMYSQL", "myConnection");
-    dbConnect.setHostName(HOST_NAME);
-    dbConnect.setUserName(USER_NAME);
+    dbConnect.setHostName(readIpAddress);
+    if(readIpAddress == HOST_NAME) {
+        dbConnect.setUserName(USER_NAME);
+    } else {
+       dbConnect.setUserName("ale");
+    }
     dbConnect.setDatabaseName(DATABASE_NAME);
 
     if (!dbConnect.open()) {
-        qDebug() << "Error connecting to database: ";
+        QSqlError error = dbConnect.lastError();
+               qDebug() << "Error connecting to database: " << error.text(); // Сообщение об ошибке
+               qDebug() << "Error code: " << error.number(); // Код ошибки
+       // qDebug() << "Error connecting to database: ";
         return false;
     }
 
@@ -775,4 +792,19 @@ bool DataBase::updateStatusToFromAgvToTable(const QString& serialNumberAGV, cons
         qDebug() << "Запись не найдена или статус не изменен.";
         return false;
     }
+}
+
+
+//-----------------------------read IP---------------------------
+QString DataBase::readIpFromFile() {
+    QFile file("ip_config.txt"); // Путь к файлу
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        return "localhost"; //в случае ошибки
+    }
+
+    QTextStream in(&file);
+    QString ipAddress = in.readLine(); // Читаем первую строку файла
+
+    file.close();
+    return ipAddress; // Возвращаем считанный IP адрес
 }

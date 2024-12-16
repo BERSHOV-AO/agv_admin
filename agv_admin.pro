@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    databaseworker.cpp \
     entities_sources/agvitem.cpp \
     entities_sources/agvtoitem.cpp \
     entities_sources/modelagvitem.cpp \
@@ -30,6 +31,7 @@ SOURCES += \
     agv_sources/agvadddialog.cpp \
     agv_sources/agveditdialog.cpp \
     agv_sources/tableagvshow.cpp \
+    settingdialog.cpp \
     user_sources/useradddialog.cpp \
     user_sources/usereditdialog.cpp \
     custommessagebox.cpp \
@@ -43,6 +45,7 @@ SOURCES += \
 
 
 HEADERS += \
+    databaseworker.h \
     entities_headers/useritem.h \
     entities_headers/agvitem.h \
     entities_headers/agvtoitem.h \
@@ -57,6 +60,7 @@ HEADERS += \
     agv_headers/agvadddialog.h \
     agv_headers/agveditdialog.h \
     agv_headers/tableagvshow.h \
+    settingdialog.h \
     user_headers/useradddialog.h \
     user_headers/usereditdialog.h \
     tabletooneagvshowdialog.h \

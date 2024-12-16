@@ -1,3 +1,4 @@
+release/databaseworker.o
 release/agvitem.o
 release/agvtoitem.o
 release/modelagvitem.o
@@ -12,6 +13,7 @@ release/addagvwidget.o
 release/agvadddialog.o
 release/agveditdialog.o
 release/tableagvshow.o
+release/settingdialog.o
 release/useradddialog.o
 release/usereditdialog.o
 release/custommessagebox.o
@@ -22,6 +24,7 @@ release/tableselectedmodelshowdialog.o
 release/tabletooneagvshowdialog.o
 release/toaddfrommodeldialog.o
 release/toeditdialog.o
+release/moc_databaseworker.o
 release/moc_mainwindow.o
 release/moc_userstableshowandediting.o
 release/moc_tablelogagvshow.o
@@ -29,6 +32,7 @@ release/moc_addagvwidget.o
 release/moc_agvadddialog.o
 release/moc_agveditdialog.o
 release/moc_tableagvshow.o
+release/moc_settingdialog.o
 release/moc_useradddialog.o
 release/moc_usereditdialog.o
 release/moc_tabletooneagvshowdialog.o

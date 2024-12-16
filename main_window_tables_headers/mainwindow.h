@@ -19,6 +19,7 @@
 #include <QSqlDatabase>
 #include <QStringList>
 #include <QDebug>
+#include <settingdialog.h>
 
 class MainWindow : public QWidget
 {
@@ -43,6 +44,7 @@ private:
     QPushButton *listAGVButton;
     QPushButton *logButton;
     QPushButton *modelButton;
+    QPushButton *settingsButton;
 
     QWidget* createAddAGVWidget();
     QWidget* createListAGVWidget();
@@ -64,5 +66,8 @@ private:
     QFrame *line;
 
     QHBoxLayout* createButtonLayout();
+
+private slots:
+    void oneSettingClicked();
 };
 #endif // MAINWINDOW_H

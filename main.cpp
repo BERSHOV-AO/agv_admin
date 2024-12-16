@@ -16,6 +16,7 @@
 #include "main_window_tables_headers/mainwindow.h"
 #include <QApplication>
 #include <QMessageBox>
+#include <settingdialog.h>
 #include "database.h"
 #include "entities_headers/agvtoitem.h"
 
@@ -39,9 +40,18 @@ int main(int argc, char *argv[]) {
 
     if (!db.connectToDataBaseinFerst()) {
 
-        QMessageBox::warning(nullptr, "Предупреждение", "Запустите Wamp Server"); // Используем nullptr
-       // delete db; // Освобождаем память
-        return 1; // Возвращаем 1 в случае ошибки
+        SettingDialog settingDialog(NULL);
+
+        if (settingDialog.exec() == QDialog::Accepted) {
+           // if(!db.connectToDataBaseinFerst()) {
+            return 1;
+        } else {
+            return 1;
+        }
+
+//        QMessageBox::warning(nullptr, "Предупреждение", "Запустите Wamp Server"); // Используем nullptr
+//       // delete db; // Освобождаем память
+//        return 1; // Возвращаем 1 в случае ошибки
 
     }
 

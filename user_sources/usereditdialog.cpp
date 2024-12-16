@@ -44,6 +44,61 @@ UserItem UserEditDialog::getUser() const {
     return UserItem(nameEdit->text(), surnameEdit->text(), loginEdit->text(), passEdit->text());
 }
 
+
+//void UserEditDialog::saveData() {
+//    QString newName = nameEdit->text();
+//    QString newSurname = surnameEdit->text();
+//    QString newLogin = loginEdit->text();
+//    QString newPass = passEdit->text();
+
+//    QThread *thread = QThread::create([=]() {
+//        DatabaseWorker worker;
+//        connect(&worker, &DatabaseWorker::updateUserFinished, this, [=](bool success) {
+//            if (success) {
+//                qDebug() << "saveData user";
+//                accept();
+//            } else {
+//                qDebug() << "Failed to save user data.";
+//            }
+//            thread->quit();
+//        });
+//        worker.updateUser(user.getLogin(), newLogin, newName, newSurname, newPass);
+//    });
+
+//    thread->start();
+//}
+
+//void UserEditDialog::deleteUser() {
+//    QMessageBox::StandardButton reply;
+//    reply = QMessageBox::question(this, "Подтверждение удаления",
+//                                  QString("Вы точно хотите удалить пользователя с табельным номером %1?").arg(user.getLogin()),
+//                                  QMessageBox::Yes | QMessageBox::No);
+
+//    if (reply == QMessageBox::Yes) {
+//        QThread *thread = QThread::create([=]() {
+//            DatabaseWorker worker;
+//            connect(&worker, &DatabaseWorker::deleteUserFinished, this, [=](bool success) {
+//                if (success) {
+//                    qDebug() << "User deleted successfully.";
+//                    accept(); // Закрываем диалог
+//                } else {
+//                    qDebug() << "Failed to delete user.";
+//                }
+//                thread->quit();
+//            });
+//            worker.deleteUser(user.getLogin(), user.getName(), user.getSurname());
+//        });
+
+//        thread->start();
+//    } else {
+//        qDebug() << "User deletion canceled.";
+//    }
+//}
+
+
+
+
+///-----------------------work not thread-----------------
 void UserEditDialog::saveData() {
 
     QString newName = nameEdit->text();

@@ -10,6 +10,7 @@
 #include <QStringList>
 #include <QMutex>
 #include <QMutexLocker>
+#include <QSqlError>
 #include "entities_headers/agvitem.h"
 #include "entities_headers/useritem.h"
 #include "entities_headers/logitem.h"
@@ -35,9 +36,13 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #define HOST_NAME       "localhost"
+//#define HOST_NAME       "192.168.175.152:3306"
 #define DATABASE_NAME   "agv_db"   //test_db
 //#define DATABASE_NAME   "test_db"
 #define USER_NAME       "root"
+#define USER_NAME_ALEKSEY       "aleksey"
+#define PASS_ALEKSEY            "121286"
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 class DataBase : public QObject
@@ -104,6 +109,8 @@ private:
     ~DataBase() {}
     DataBase(const DataBase&) = delete; // Запрет копирования
     DataBase& operator=(const DataBase&) = delete; // Запрет присваивани
+    QString readIpFromFile();
+    QString readIpAddress;
 
 signals:
     //------user signals-------

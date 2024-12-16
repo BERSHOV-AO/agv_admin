@@ -39,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
     listAGVButton = new QPushButton("AGV");
     modelButton = new QPushButton("Редактор моделей AGV");
     logButton = new QPushButton("Логи приложения");
+    settingsButton = new QPushButton;
 
     int fixedHeight = 30; // Задайте нужное значение высоты
     usersButton->setFixedHeight(fixedHeight);
@@ -54,7 +55,6 @@ MainWindow::MainWindow(QWidget *parent)
     modelButton->setStyleSheet(buttonStyle);
 
     // Подключаем кнопки к слоту переключения
-
     connect(usersButton, &QPushButton::clicked, this, [this]() {
         updateUsersData();
         stackedWidget->setCurrentIndex(0); // Индекс 0 - виджет добавления AGV
@@ -85,8 +85,43 @@ MainWindow::MainWindow(QWidget *parent)
     // Добавляем спейсер после заголовка
     headerLayout->addSpacerItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
 
-    // Изображение справа
-    headerLayout->addWidget(imageLabel);
+    // Создаем вертикальный layout для изображения и кнопки
+    QVBoxLayout *imageButtonLayout = new QVBoxLayout;
+
+    // Изображение
+    imageButtonLayout->addWidget(imageLabel);
+
+    //    // Создание кнопки настроек
+    //    QPushButton *settingsButton = new QPushButton;
+    //    settingsButton->setIcon(QIcon::fromTheme("preferences-system-settings")); // Используйте иконку системы
+    //    settingsButton->setFixedSize(40, 40); // Установите размер кнопки, если необходимо
+
+    //    // Добавляем кнопку в вертикальный layout
+    //    imageButtonLayout->addWidget(settingsButton, 0, Qt::AlignCenter); // Выравнивание по центру
+    //    QPushButton *settingsButton = new QPushButton;
+    //    QPixmap pixmapetting("C:/Users/Aleksey/Documents/agv_admin/image/settings2.png"); // Укажите полный путь к изображению
+    //    settingsButton->setIcon(QIcon(pixmapetting)); // Установка иконки кнопки
+    //    settingsButton->setIconSize(QSize(40, 40)); // Установите размер иконки
+    //    settingsButton->setFixedSize(40, 40); // Установите размер кнопки, если необходимо
+
+    //    // Добавляем кнопку в вертикальный layout
+    //    imageButtonLayout->addWidget(settingsButton, 0, Qt::AlignCenter); // Выравнивание по центру
+
+
+
+    QPixmap pixmapetting("image/settings2.png"); // Относительный путь к изображению
+    settingsButton->setIcon(QIcon(pixmapetting)); // Установка иконки кнопки
+    settingsButton->setIconSize(QSize(40, 40)); // Установите размер иконки
+    settingsButton->setFixedSize(40, 40); // Установите размер кнопки, если необходимо
+
+    connect(settingsButton, &QPushButton::clicked, this, &MainWindow::oneSettingClicked);
+
+    // Добавляем кнопку в вертикальный layout
+    imageButtonLayout->addWidget(settingsButton, 0, Qt::AlignCenter); // Выравнивание по центру
+
+
+    // Добавляем вертикальный layout с изображением и кнопкой в headerLayout
+    headerLayout->addLayout(imageButtonLayout);
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->addLayout(headerLayout);    // Заголовок и изображение в одном ряду
@@ -96,6 +131,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     setLayout(mainLayout);
     this->setStyleSheet("background-color: #FF1C385A;");
+
+
 
     setWindowTitle("AGV Management");
 }
@@ -223,6 +260,13 @@ void MainWindow::replaceWidgetAt(int index, QWidget* newWidget) {
 
         // Добавляем новый виджет на ту же позицию
         stackedWidget->insertWidget(index, newWidget);
+    }
+}
+
+void MainWindow::oneSettingClicked() {
+    SettingDialog settingDialog(this);
+
+    if (settingDialog.exec() == QDialog::Accepted) {
     }
 }
 
