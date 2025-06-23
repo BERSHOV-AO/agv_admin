@@ -115,6 +115,7 @@
 #define __FLT32_HAS_INFINITY__ 1
 #define __DBL_MAX__ double(1.79769313486231570814527423731704357e+308L)
 #define _thiscall __attribute__((__thiscall__))
+#define __cpp_raw_strings 200710
 #define __INT_FAST32_MAX__ 0x7fffffff
 #define __WINNT 1
 #define __DBL_HAS_INFINITY__ 1
@@ -311,7 +312,6 @@
 #define __UINT8_C(c) c
 #define __FLT64_MAX_EXP__ 1024
 #define __INT_LEAST32_TYPE__ int
-#define __cpp_raw_strings 200710
 #define __SIZEOF_WCHAR_T__ 2
 #define __FLT128_HAS_QUIET_NAN__ 1
 #define __INT_FAST8_TYPE__ signed char
