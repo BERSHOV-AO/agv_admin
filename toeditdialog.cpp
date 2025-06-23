@@ -34,13 +34,14 @@ TOEditDialog::TOEditDialog(const TOItem &toItem, const QString &nameTableModel, 
 }
 
 TOItem TOEditDialog::getTo() const {
-    return TOItem(nameToEdit->text(), frequencyToEdit->text());
+    return TOItem(nameToEdit->text(), frequencyToEdit->text(), timeToEdit->text());
 }
 
 void TOEditDialog::saveDataTo() {
 
     QString nameToStr = toItem.getNameTo();
     QString frequencyToStr = toItem.getFrequencyTo();
+    QString timeToStr = toItem.getTimeTo();
 
     qDebug() << "saveData to";
 

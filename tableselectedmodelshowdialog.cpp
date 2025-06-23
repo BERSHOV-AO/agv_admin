@@ -19,12 +19,13 @@ TableSelectedModelShowDialog::TableSelectedModelShowDialog(
 
     layout = new QVBoxLayout(this);
     tableWidget = new QTableWidget(this);
-    tableWidget->setColumnCount(2); // Например, 3 колонки: ID, Название, Статус
-    tableWidget->setHorizontalHeaderLabels(QStringList() << "Деталь/Наименование работ" << "Периодичность обслуживания, количество дней");
+    tableWidget->setColumnCount(3); // Например, 3 колонки: ID, Название, Статус
+    tableWidget->setHorizontalHeaderLabels(QStringList() << "Деталь/Наименование работ" << "Периодичность обслуживания, количество дней" << "Время исполнения");
     tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section { background-color: #4CAF50; color: white; }");
 
     tableWidget->setColumnWidth(0, 750);
-    tableWidget->setColumnWidth(1, 400);
+    tableWidget->setColumnWidth(1, 300);
+    tableWidget->setColumnWidth(2, 250);
     tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     connect(tableWidget, &QTableWidget::cellDoubleClicked, this, &TableSelectedModelShowDialog::onCellDoubleClicked);
@@ -55,6 +56,7 @@ void TableSelectedModelShowDialog::loadData() {
 
         tableWidget->setItem(rowCount, 0, new QTableWidgetItem(to.getNameTo()));
         tableWidget->setItem(rowCount, 1, new QTableWidgetItem(to.getFrequencyTo()));
+        tableWidget->setItem(rowCount, 2, new QTableWidgetItem(to.getTimeTo()));
     }
 }
 
@@ -102,8 +104,9 @@ void TableSelectedModelShowDialog::onCellDoubleClicked(int row) {
     // Получаем данные выбранного пользователя
     QString nameTo = tableWidget->item(row, 0)->text();
     QString frequencyTo = tableWidget->item(row, 1)->text();
+    QString timeTo = tableWidget->item(row, 2)->text();
 
-    TOItem toSelected(nameTo, frequencyTo);
+    TOItem toSelected(nameTo, frequencyTo, timeTo);
 
     TOEditDialog toEditDialog(toSelected,nameTableModel, this);
 

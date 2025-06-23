@@ -257,7 +257,8 @@ bool DataBase::createNewModelTable(const QString tableName) {
     QString strCreateTableNewModel = "CREATE TABLE " + tableName + " ("
                                                                    "id INT AUTO_INCREMENT PRIMARY KEY, "
                                                                    "nameTo TEXT, "
-                                                                   "frequencyTo TEXT "
+                                                                   "frequencyTo TEXT, "
+                                                                   "timeTo TEXT "
                                                                    ");";
     if (!query.exec(strCreateTableNewModel))
     {
@@ -359,7 +360,7 @@ QList<ModelAgvItem> DataBase::fetchModels() {
 QList<TOItem> DataBase::fetchTO(const QString nameTableTO) {
     QList<TOItem> toAGVs;
 
-    QSqlQuery query("SELECT nameTo, frequencyTo FROM " + nameTableTO);
+    QSqlQuery query("SELECT nameTo, frequencyTo, timeTo FROM " + nameTableTO);
 
     if (!query.exec()) {
         qWarning() << "Ошибка выполнения запроса:";
@@ -368,8 +369,8 @@ QList<TOItem> DataBase::fetchTO(const QString nameTableTO) {
 
     while (query.next()) {
         TOItem toAGV(query.value(0).toString(),
-                     query.value(1).toString()
-                     );
+                     query.value(1).toString(),
+                     query.value(2).toString());
         toAGVs.append(toAGV);
     }
     return toAGVs;
@@ -428,12 +429,12 @@ QList<AGVTOItem> DataBase::getAllAgvTO() {
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~save~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-bool DataBase::saveTOForSelectModel(const QString nameTableModel, const QString nameTo, const QString frequencyTo) {
+bool DataBase::saveTOForSelectModel(const QString nameTableModel, const QString nameTo, const QString frequencyTo, const QString timeTo) {
     // Подготавливаем SQL-запрос
     QSqlQuery query(db);
 
     // Формируем SQL-запрос для вставки данных
-    QString sql = QString("INSERT INTO %1 (nameTo, frequencyTo) VALUES (:nameTo, :frequencyTo)").arg(nameTableModel);
+    QString sql = QString("INSERT INTO %1 (nameTo, frequencyTo, timeTo) VALUES (:nameTo, :frequencyTo, :timeTo)").arg(nameTableModel);
 
     // Подготовка запроса
     query.prepare(sql);
@@ -441,6 +442,7 @@ bool DataBase::saveTOForSelectModel(const QString nameTableModel, const QString 
     // Привязываем значения к параметрам
     query.bindValue(":nameTo", nameTo);
     query.bindValue(":frequencyTo", frequencyTo);
+    query.bindValue(":timeTo", timeTo);
 
     // Выполняем запрос и проверяем успешность выполнения
     if (!query.exec()) {

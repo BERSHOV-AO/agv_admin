@@ -67,7 +67,7 @@ void ModelRedactorWidget::onCellDoubleClicked(int row) {
     QString model = tableWidget->item(row, 0)->text();
 
     TableSelectedModelShowDialog tableSelectedModelShowDialog(model, this);
-    tableSelectedModelShowDialog.resize(1200, 700);
+    tableSelectedModelShowDialog.resize(1350, 700);
     if (tableSelectedModelShowDialog.exec() == QDialog::Accepted) {
         loadData();
     }

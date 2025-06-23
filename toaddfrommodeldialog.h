@@ -24,6 +24,7 @@ private:
     QPushButton *saveButton;
     QLineEdit *nameTo;
     QLineEdit *frequencyTo;
+    QLineEdit *timeTo;
     DataBase& db = DataBase::getInstance();
 
 private slots:

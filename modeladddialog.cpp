@@ -106,7 +106,7 @@ void ModelAddDialog::addModel() {
 
                 for (const auto &key : mapDafaultTO.keys()) {
 
-                    db.saveTOForSelectModel(model, key, mapDafaultTO.value(key));
+                    db.saveTOForSelectModel(model, key, mapDafaultTO.value(key), "77");
                 }
             }
             qDebug() << "Сохранена модель:";

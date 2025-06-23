@@ -29,6 +29,7 @@ private:
     QString nameTableModel;
     QLineEdit* nameToEdit;
     QLineEdit* frequencyToEdit;
+    QLineEdit* timeToEdit;
     QPushButton* deleteButton;
     QPushButton* saveButton;
     DataBase& db = DataBase::getInstance();

@@ -16,6 +16,9 @@ ToAddFromModelDialog::ToAddFromModelDialog(
     frequencyTo = new QLineEdit();
     frequencyTo->setStyleSheet("background-color: white;");
 
+    timeTo = new QLineEdit();
+    timeTo->setStyleSheet("background-color: white;");
+
     saveButton = new QPushButton("Добавить ТО", this);
     saveButton->setStyleSheet(" background-color: #4CAF50; color: white;");
     connect(saveButton, &QPushButton::clicked, this, &ToAddFromModelDialog::addTo);
@@ -29,6 +32,8 @@ ToAddFromModelDialog::ToAddFromModelDialog(
     layout->addWidget(nameTo);
     layout->addWidget(new QLabel("Периодичность обслуживания, количество дней:", this));
     layout->addWidget(frequencyTo);
+    layout->addWidget(new QLabel("Время исполнения:", this));
+    layout->addWidget(timeTo);
     layout->addWidget(saveButton);
 
     // Устанавливаем основной layout для диалога
@@ -41,6 +46,7 @@ ToAddFromModelDialog::ToAddFromModelDialog(
 void ToAddFromModelDialog::addTo(){
     QString nameToStr = nameTo->text();
     QString frequencyToStr= frequencyTo->text();
+    QString timeToStr = timeTo->text();
 
 
     if(nameToStr.isEmpty() || frequencyToStr.isEmpty()) {
@@ -49,7 +55,7 @@ void ToAddFromModelDialog::addTo(){
         QMessageBox::warning(this, "Предупреждение", "Не все поля заполнены!");
 
     } else {
-        db.saveTOForSelectModel(nameTableModel, nameToStr, frequencyToStr);
+        db.saveTOForSelectModel(nameTableModel, nameToStr, frequencyToStr, timeToStr);
         qDebug() << "Сохранена Модель";
         nameTo->clear();
         frequencyTo->clear();

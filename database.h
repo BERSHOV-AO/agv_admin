@@ -73,7 +73,7 @@ public:
     bool saveAgvTOItem(QString nameTo, QString serialNumberAGV, QString frequencyOfTo, QString statusTo, QString dataTo);
     bool saveUserItem(QString name, QString surname, QString login, QString pass);
     bool saveModelItem(QString model);
-    bool saveTOForSelectModel(const QString nameTableModel, const QString nameTo, const QString frequencyTo);
+    bool saveTOForSelectModel(const QString nameTableModel, const QString nameTo, const QString frequencyTo,  const QString timeTo);
     //~~~~~~~~~~update~~~~~~~~~~~
     bool updateUser(const QString &oldLogin, const QString &newLogin, const QString &newName, const QString &newSurname, const QString &newPass);
     bool updateTOSelectTable(const QString& tableName, const QString& oldName, const QString& oldFrequency, const QString& newName, const QString& newFrequency);
