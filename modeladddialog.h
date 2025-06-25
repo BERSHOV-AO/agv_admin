@@ -16,6 +16,11 @@
 #include "database.h"
 #include "entities_headers/modelagvitem.h"
 
+struct TOData {
+    QString frequency;
+    QString time;
+};
+
 class ModelAddDialog : public QDialog
 {
     Q_OBJECT
@@ -30,7 +35,8 @@ private:
     QLineEdit *modelEdit;
     DataBase& db = DataBase::getInstance();
     QCheckBox *defaultCheckBox;
-    QMap <QString, QString> mapDafaultTO;
+    // QMap <QString, QString> mapDafaultTO;
+    QMap<QString, TOData> mapDafaultTO;
 };
 
 #endif // MODELADDDIALOG_H

@@ -20,7 +20,7 @@ TableSelectedModelShowDialog::TableSelectedModelShowDialog(
     layout = new QVBoxLayout(this);
     tableWidget = new QTableWidget(this);
     tableWidget->setColumnCount(3); // Например, 3 колонки: ID, Название, Статус
-    tableWidget->setHorizontalHeaderLabels(QStringList() << "Деталь/Наименование работ" << "Периодичность обслуживания, количество дней" << "Время исполнения");
+    tableWidget->setHorizontalHeaderLabels(QStringList() << "Деталь/Наименование работ" << "Периодичность обслуживания, количество дней" << "Время исполнения, минут");
     tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section { background-color: #4CAF50; color: white; }");
 
     tableWidget->setColumnWidth(0, 750);

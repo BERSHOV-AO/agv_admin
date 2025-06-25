@@ -691,10 +691,23 @@ bool DataBase::deleteTOFromSelectModelTable(const QString &nameTableModel, const
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~update~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-bool DataBase::updateTOSelectTable(const QString& tableName, const QString& oldName, const QString& oldFrequency, const QString& newName, const QString& newFrequency) {
+bool DataBase::updateTOSelectTable(const QString& tableName,
+                                  const QString& oldName,
+                                  const QString& oldFrequency,
+                                  const QString& oldTimeTo,
+                                  const QString& newName,
+                                  const QString& newFrequency,
+                                  const QString& newTimeTo) {
 
-    // Формируем SQL-запрос
-    QString sql = QString("UPDATE %1 SET nameTo = :newName, frequencyTo = :newFrequency WHERE nameTo = :oldName AND frequencyTo = :oldFrequency;").arg(tableName);
+    QString sql = QString("UPDATE %1 SET "
+                          "nameTo = :newName, "
+                          "frequencyTo = :newFrequency, "
+                          "timeTo = :newTimeTo "
+                          "WHERE "
+                          "nameTo = :oldName "
+                          "AND frequencyTo = :oldFrequency "
+                          "AND timeTo = :oldTimeTo;")
+                          .arg(tableName);
 
     QSqlQuery query;
     query.prepare(sql);
@@ -702,13 +715,14 @@ bool DataBase::updateTOSelectTable(const QString& tableName, const QString& oldN
     // Привязываем параметры
     query.bindValue(":newName", newName);
     query.bindValue(":newFrequency", newFrequency);
+    query.bindValue(":newTimeTo", newTimeTo);
     query.bindValue(":oldName", oldName);
     query.bindValue(":oldFrequency", oldFrequency);
+    query.bindValue(":oldTimeTo", oldTimeTo);
 
-    // Выполняем запрос
     if (!query.exec()) {
+        qDebug() << "Ошибка выполнения запроса:" << query.lastError();
         return false;
-        qDebug() << "Ошибка выполнения запроса:";
     }
 
     qDebug() << "Запись успешно обновлена.";

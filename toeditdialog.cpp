@@ -10,6 +10,8 @@ TOEditDialog::TOEditDialog(const TOItem &toItem, const QString &nameTableModel, 
     nameToEdit->setStyleSheet("background-color: white;");
     frequencyToEdit = new QLineEdit(toItem.getFrequencyTo(), this);
     frequencyToEdit->setStyleSheet("background-color: white;");
+    timeToEdit = new QLineEdit(toItem.getTimeTo(), this);
+    timeToEdit->setStyleSheet("background-color: white;");
 
     QPushButton *saveButton = new QPushButton("Сохранить изменения TO", this);
     saveButton->setStyleSheet(" background-color: #4CAF50; color: white;");
@@ -24,6 +26,8 @@ TOEditDialog::TOEditDialog(const TOItem &toItem, const QString &nameTableModel, 
     layout->addWidget(nameToEdit);
     layout->addWidget(new QLabel("Периодичность обслуживания, количество дней", this));
     layout->addWidget(frequencyToEdit);
+    layout->addWidget(new QLabel("Время исполнения", this));
+    layout->addWidget(timeToEdit);
     layout->addWidget(saveButton);
     layout->addWidget(deleteButton);
 
@@ -45,7 +49,7 @@ void TOEditDialog::saveDataTo() {
 
     qDebug() << "saveData to";
 
-    db.updateTOSelectTable(nameTableModel, toItem.getNameTo(), toItem.getFrequencyTo(), nameToEdit->text(), frequencyToEdit->text());
+    db.updateTOSelectTable(nameTableModel, toItem.getNameTo(), toItem.getFrequencyTo(), toItem.getTimeTo(), nameToEdit->text(), frequencyToEdit->text(), timeToEdit->text());
     accept();
 }
 
