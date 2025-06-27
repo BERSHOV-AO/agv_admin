@@ -29,8 +29,13 @@ private:
     QTableWidget *tableWidget;
     DataBase& db = DataBase::getInstance();
 
+    QHBoxLayout *statusLayout;
+    QLabel *statusLabel;
+    QLabel *timeLeftLabel;
+
     QPushButton *deleteButton;
     QPushButton *editButton;
+    QPushButton *statisticToOneYearButton;
     AgvItem agv;
 
     void loadData();

@@ -19,8 +19,29 @@ TableToOneAgvShowDialog::TableToOneAgvShowDialog(const AgvItem &agv, QWidget *pa
     editButton = new QPushButton("Редактировать AGV", this);
     editButton->setStyleSheet("background-color: #4986cf; color: white;");
     connect(editButton, &QPushButton::clicked, this, &TableToOneAgvShowDialog::oneEditAGVClicked);
+
+    statisticToOneYearButton = new QPushButton("Статистика годового плана ТО", this);
+    statisticToOneYearButton->setStyleSheet("background-color: #4CAF50; color: white;");
+    connect(statisticToOneYearButton, &QPushButton::clicked, this, &TableToOneAgvShowDialog::oneEditAGVClicked);
     
+    //----------------------------------------------------------------
     layout = new QVBoxLayout(this);
+    statusLayout = new QHBoxLayout(this);
+
+    statusLabel = new QLabel("Статус ТО: Все работы по графику", this);
+    statusLabel->setStyleSheet("background-color: #4CAF50; font-weight: bold; padding: 5px;");
+    statusLabel->setAlignment(Qt::AlignLeft);
+
+    timeLeftLabel = new QLabel("Время выполнения ТО: 1155 часов", this);
+    timeLeftLabel->setStyleSheet("background-color: #4CAF50; font-weight: bold; padding: 5px;");
+    timeLeftLabel->setAlignment(Qt::AlignRight);
+
+    // Добавляем метки в layout
+    statusLayout->addWidget(statusLabel);
+    statusLayout->addWidget(timeLeftLabel);
+    //------------------------------------------------------------------
+
+
     tableWidget = new QTableWidget(this);
     tableWidget->setColumnCount(3); // Например, 3 колонки: ID, Название, Статус
     tableWidget->setHorizontalHeaderLabels(QStringList() << "Деталь/Наименование работ" << "Дата последнего обслуживания" << "Дата следующего обслуживания");
@@ -35,10 +56,10 @@ TableToOneAgvShowDialog::TableToOneAgvShowDialog(const AgvItem &agv, QWidget *pa
     QHBoxLayout *buttonLayout = new QHBoxLayout();
     buttonLayout->addWidget(deleteButton);
     buttonLayout->addWidget(editButton);
+    buttonLayout->addWidget(statisticToOneYearButton);
     
+    layout->addLayout(statusLayout);
     layout->addWidget(tableWidget);
-    
-    // Добавляем кнопки в основной layout
     layout->addLayout(buttonLayout);
     
     setLayout(layout);

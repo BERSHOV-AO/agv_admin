@@ -35,7 +35,6 @@ private:
     QLineEdit *modelEdit;
     DataBase& db = DataBase::getInstance();
     QCheckBox *defaultCheckBox;
-    // QMap <QString, QString> mapDafaultTO;
     QMap<QString, TOData> mapDafaultTO;
 };
 
